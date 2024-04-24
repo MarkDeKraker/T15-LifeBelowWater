@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function SideBarItem({
   title,
   active,
@@ -11,7 +9,7 @@ export default function SideBarItem({
   active: number;
   setActive: any;
   icon: any;
-  index: number
+  index: number;
 }) {
   return (
     <div
