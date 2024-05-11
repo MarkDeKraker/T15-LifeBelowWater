@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+
+import colors from "tailwindcss/colors";
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
@@ -7,7 +9,10 @@ export default {
         custom: ["Montserrat", "sans-serif"],
       },
       colors: {
-        primary: "#47B4F4",
+        primary: colors.sky[600],
+        secondary: colors.blue[200],
+        tertiary: "rgba(0,55,75,1)",
+        light: "#F5F5F5",
       },
     },
   },
