@@ -4,7 +4,7 @@ import App from "./App.tsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Test from "./Test.tsx";
-import ContentSplash from "./ContentSplashPage.tsx"
+import Plastic_1 from "./PlasticContentPage_1.tsx"
 
 const router = createBrowserRouter([
   {
@@ -16,8 +16,8 @@ const router = createBrowserRouter([
     element: <Test />,
   },
   {
-    path: "/lesson/1",
-    element: <ContentSplash />,
+    path: "/plastic/1",
+    element: <Plastic_1 />,
   },
 ]);
 
