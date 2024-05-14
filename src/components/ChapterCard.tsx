@@ -15,10 +15,12 @@ export default function ChapterCard(props: Params) {
           />
         </div>
         <div className="my-auto">
-          <p className="text-2xl">{props.title}</p>
-          <p className="font-normal text-[#666]">{props.subTitle}</p>
-          <button className="bg-[#bfdbfe] p-2 w-60 rounded-full mt-5">
-            Ga naar hoofdstuk
+          <p className="text-2xl font-custom">{props.title}</p>
+          <p className="font-normal text-[#666] font-custom">
+            {props.subTitle}
+          </p>
+          <button className="bg-secondary p-2 w-60 rounded-full mt-5 font-custom">
+            Ga naar onderwerp
           </button>
         </div>
       </div>

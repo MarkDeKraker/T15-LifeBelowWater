@@ -1,31 +1,25 @@
+import NavigationContext from "./context/NavigationContext";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import HomePage from "./components/HomePage";
+import { useState } from "react";
 import Layout from "./components/Layout";
-import plasticsoep from "./assets/plasticsoep.jpg";
-import ChapterCard from "./components/ChapterCard";
-function App() {
+import QuizOverviewPage from "./components/QuizOverviewPage";
+
+const App = () => {
+  const [active, setActive] = useState<number>(0);
+
   return (
-    <>
-      <Layout>
-        <h2 className="text-center text-2xl font-bold my-10">Hoofdstukken</h2>
-        <div className="space-y-10">
-          <ChapterCard
-            title="Plastic soep"
-            subTitle="Lorem ipsum dolar sit amet"
-            image={plasticsoep}
-          />
-          <ChapterCard
-            title="Plastic soep"
-            subTitle="Lorem ipsum dolar sit amet"
-            image={plasticsoep}
-          />
-          <ChapterCard
-            title="Plastic soep"
-            subTitle="Lorem ipsum dolar sit amet"
-            image={plasticsoep}
-          />
-        </div>
-      </Layout>
-    </>
+    <NavigationContext.Provider value={{ active, setActive }}>
+      <BrowserRouter>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/quiz/overview" element={<QuizOverviewPage />} />
+          </Routes>
+        </Layout>
+      </BrowserRouter>
+    </NavigationContext.Provider>
   );
-}
+};
 
 export default App;
