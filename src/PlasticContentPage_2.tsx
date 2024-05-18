@@ -375,7 +375,7 @@ export default function Plastic_2() {
                             groeien en minder voortplanten, waardoor er minder zuurstof uit de oceaan komt.
 
                             <iframe
-                                className="h-60 float-right inline-block ml-auto rounded-[40px] w-full h-96 border=0"
+                                className="float-right inline-block ml-auto rounded-[40px] w-full h-96 border=0"
                                 src="https://player.vimeo.com/video/899060411?h=a7f6a5e1f4"
                                 allow="autoplay; fullscreen; picture-in-picture"
                                 allowFullScreen></iframe>
