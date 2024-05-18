@@ -17,7 +17,7 @@ export default function Plastic_1() {
                 <div
                     id={"title"}
                     className="col-start-3 col-end-10 relative text-center text-black text-6xl font-semibold italic font-['Roboto'] mb-5">
-                    TITEL OVER PROBLEEM OCEAAN
+                    PLASTIC VERVUILING IN DE OCEAAN
                 </div>
 
                 <Link to={"/plastic/1"} id={"Topic1"} className="colstart-2 col-end-5 col-span-3 z-20">
