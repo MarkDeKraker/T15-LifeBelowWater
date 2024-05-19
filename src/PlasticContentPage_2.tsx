@@ -24,7 +24,7 @@ export default function Plastic_2() {
                     PLASTIC VERVUILING IN DE OCEAAN
                 </div>
 
-                <Link to={"/plastic/1"} id={"Topic1"} className="colstart-2 col-end-5 col-span-3 z-20">
+                <Link to={"/plastic/probleem"} id={"Topic1"} className="colstart-2 col-end-5 col-span-3 z-20">
                     <div id={"Topic1_background"}
                          className="w-full h-14 bg-cyan-950 hover:text-white grid place-items-center border border-amber-200">
                         <div
@@ -33,7 +33,7 @@ export default function Plastic_2() {
                         </div>
                     </div>
                 </Link>
-                <Link to={"/plastic/2"} id={"Topic2"} className="colstart-5 col-span-3 z-20">
+                <Link to={"/plastic/gevolgen"} id={"Topic2"} className="colstart-5 col-span-3 z-20">
                     <div id={"Topic2_background"}
                          className="w-full h-14 bg-blue-950 hover:bg-blue-950 hover:text-white grid place-items-center border border-amber-200">
                         <div
@@ -42,7 +42,7 @@ export default function Plastic_2() {
                         </div>
                     </div>
                 </Link>
-                <Link to={"/plastic/3"} id={"Topic3"} className="colstart-8 col-span-3 z-20">
+                <Link to={"/plastic/aanpak"} id={"Topic3"} className="colstart-8 col-span-3 z-20">
                     <div id={"Topic3_background"}
                          className="w-full h-14 bg-cyan-950 hover:bg-blue-950 hover:text-white grid place-items-center border border-amber-200">
                         <div
@@ -84,12 +84,6 @@ export default function Plastic_2() {
                             niet meer bewegen.
 
                             <br/><br/>
-
-                            {/*Bijna 700 soorten zijn bekend die door plastic zijn getroffen. 17% van de soorten die last*/}
-                            {/*hebben van plastic in de oceaan staan op de <a href={"https://www.iucnredlist.org/en"} target={"_blank"}*/}
-                            {/*                                               className="underline text-cyan-700">*/}
-                            {/*    Rode Lijst van Bedreigde Soorten van de Internationale Unie voor Natuurbescherming.*/}
-                            {/*</a>*/}
 
                             <br/><br/>
 
@@ -135,21 +129,6 @@ export default function Plastic_2() {
                     </div>
 
                 </motion.div>
-
-                {/*<div className="col-start-2 col-span-9 space-y-5 mt-10">*/}
-                {/*    <div*/}
-                {/*        className="col-start-3 p-40 bg-tertiary rounded-full z-20 relative overflow-hidden">*/}
-                {/*        <img className="absolute inset-0 w-full h-full object-cover"*/}
-                {/*             src={plastic_in_medical}*/}
-                {/*             alt={"Afbeelding van medische apparatuur gemaakt met plastic"}/>*/}
-                {/*    </div>*/}
-                {/*    <div*/}
-                {/*        className="col-start-3 p-40 bg-tertiary rounded-full z-20 relative overflow-hidden">*/}
-                {/*        <img className="absolute inset-0 w-full h-full object-cover"*/}
-                {/*             src={plastic_in_automobiles}*/}
-                {/*             alt={"Afbeelding van auto voorbumpers"}/>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
 
                 <div className="col-start-2 col-span-9 space-y-5 mt-10">
 
@@ -220,64 +199,6 @@ export default function Plastic_2() {
                         </div>
                     </motion.div>
                 </div>
-
-                {/*<div*/}
-                {/*    id={"information_block_3"}*/}
-                {/*    className="col-start-3 col-span-7 h-['300px'] mt-10 bg-zinc-300 rounded-lg border-4 border-black z-20">*/}
-
-                {/*    <div*/}
-                {/*        id={"information_text_3"}*/}
-                {/*        className="col-start-4 relative z-20 space-y-1 px-3 clear-right">*/}
-
-                {/*        <img className=" h-60 float-right inline-block ml-auto p-3 rounded-[40px]"*/}
-                {/*             src="https://via.placeholder.com/429x459" alt={"information_image"}/>*/}
-
-                {/*        <h2 className="text-cyan-950 text-md font-bold font-['Montserrat'] text-wrap py-3">*/}
-                {/*            Gezondheidsrisico's*/}
-                {/*        </h2>*/}
-
-                {/*        <p className="text-cyan-950 text-sm font-semibold font-['Montserrat'] text-wrap py-3">Microplastics*/}
-                {/*            kunnen zich ophopen in de voedselketen en uiteindelijk ook in ons voedsel terechtkomen. Dit*/}
-                {/*            kan gevaarlijk zijn voor onze gezondheid.*/}
-
-                {/*            <br/><br/>*/}
-
-                {/*            Plastic kan ziekte veroorzaken en problemen geven met onze groei, ons denken, onze*/}
-                {/*            voortplanting en ons afweersysteem. Ook kunnen er giftige stoffen op het plastic zitten die naar ons toe komen*/}
-                {/*            als we vis eten die in plastic vervuild water heeft gezwommen.</p>*/}
-                {/*    </div>*/}
-
-                {/*</div>*/}
-
-                {/*<div*/}
-                {/*    id={"information_block_4"}*/}
-                {/*    className="col-start-3 col-span-7 h-['300px'] mt-5 bg-zinc-300 rounded-lg border-4 border-black z-20">*/}
-
-                {/*    <div*/}
-                {/*        id={"information_text_4"}*/}
-                {/*        className="col-start-4 relative z-20 space-y-1 px-3 clear-right">*/}
-
-                {/*        <img className=" h-60 float-right inline-block ml-auto p-3 rounded-[40px]"*/}
-                {/*             src="https://via.placeholder.com/429x459" alt={"information_image"}/>*/}
-
-                {/*        <h2 className="text-cyan-950 text-md font-bold font-['Montserrat'] text-wrap py-3">*/}
-                {/*            Economische schade*/}
-                {/*        </h2>*/}
-
-                {/*        <p className="text-cyan-950 text-sm font-semibold font-['Montserrat'] text-wrap py-3">De*/}
-                {/*            plasticvervuiling in de oceanen heeft negatieve gevolgen voor de visserij, het toerisme en*/}
-                {/*            andere industrieën die afhankelijk zijn van gezonde oceanen.*/}
-
-                {/*            <br/><br/>*/}
-
-                {/*            Volgens onderzoek kosten de problemen met plastic in de oceaan elk jaar tussen de $6 en $19*/}
-                {/*            miljard dollar. Deze kosten worden veroorzaakt door de impact op toerisme, visserij en*/}
-                {/*            schoonmaakacties die de overheid moet doen.*/}
-
-                {/*        </p>*/}
-                {/*    </div>*/}
-
-                {/*</div>*/}
 
                 <motion.div
                     id={"information_block_5"}
@@ -399,9 +320,6 @@ export default function Plastic_2() {
 
                             <br/>
 
-                            {/*<img className="h-60 float-right inline-block ml-auto p-3 rounded-[40px]"*/}
-                            {/*     src={burning_plastic} alt={"information_image"}/>*/}
-
                             Onderzoek laat ook zien dat microplastics het vermogen van zee-organismen om koolstofdioxide
                             op te nemen en zuurstof vrij te geven, kunnen verstoren. Dit is belangrijk omdat de oceaan
                             verantwoordelijk is voor ten minste de helft van de zuurstof op aarde, voornamelijk
@@ -447,14 +365,6 @@ export default function Plastic_2() {
                     </div>
 
                 </motion.div>
-
-                {/*<div className="col-start-3 p-20 inline-block bg-tertiary rounded-full mt-10 z-20"/>*/}
-                {/*<div className="col-start-6 p-20 inline-block bg-tertiary rounded-full mt-10 z-20"/>*/}
-                {/*<div className="col-start-9 p-20 inline-block bg-tertiary rounded-full mt-10 z-20"/>*/}
-
-                {/*<img className="col-start-4 col-span-5 mt-10 z-20 relative"*/}
-                {/*     src="https://via.placeholder.com/1174x566"*/}
-                {/*     alt={"image of turtles swimming next to a plastic bag"}/>*/}
 
             </div>
     );

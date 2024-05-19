@@ -17,9 +17,9 @@ const App = () => {
         <Layout>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/plastic/1" element={<Plastic_1 />} />
-            <Route path="/plastic/2" element={<Plastic_2 />} />
-            <Route path="/plastic/3" element={<Plastic_3 />} />
+            <Route path="/plastic/probleem" element={<Plastic_1 />} />
+            <Route path="/plastic/gevolgen" element={<Plastic_2 />} />
+            <Route path="/plastic/aanpak" element={<Plastic_3 />} />
             <Route path="/quiz/overview" element={<QuizOverviewPage />} />
           </Routes>
         </Layout>

@@ -20,7 +20,7 @@ export default function Plastic_3() {
                     PLASTIC VERVUILING IN DE OCEAAN
                 </div>
 
-                <Link to={"/plastic/1"} id={"Topic1"} className="colstart-2 col-end-5 col-span-3 z-20">
+                <Link to={"/plastic/probleem"} id={"Topic1"} className="colstart-2 col-end-5 col-span-3 z-20">
                     <div id={"Topic1_background"}
                          className="w-full h-14 bg-cyan-950 hover:text-white grid place-items-center border border-amber-200">
                         <div
@@ -29,7 +29,7 @@ export default function Plastic_3() {
                         </div>
                     </div>
                 </Link>
-                <Link to={"/plastic/2"} id={"Topic2"} className="colstart-5 col-span-3 z-20">
+                <Link to={"/plastic/gevolgen"} id={"Topic2"} className="colstart-5 col-span-3 z-20">
                     <div id={"Topic2_background"}
                          className="w-full h-14 bg-cyan-950 hover:bg-blue-950 hover:text-white grid place-items-center border border-amber-200">
                         <div
@@ -38,7 +38,7 @@ export default function Plastic_3() {
                         </div>
                     </div>
                 </Link>
-                <Link to={"/plastic/3"} id={"Topic3"} className="colstart-8 col-span-3 z-20">
+                <Link to={"/plastic/aanpak"} id={"Topic3"} className="colstart-8 col-span-3 z-20">
                     <div id={"Topic3_background"}
                          className="w-full h-14 bg-blue-950 hover:bg-blue-950 hover:text-white grid place-items-center border border-amber-200">
                         <div
