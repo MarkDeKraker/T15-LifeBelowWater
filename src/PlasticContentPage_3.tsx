@@ -1,4 +1,3 @@
-import Layout from "./components/Layout";
 import {Link} from "react-router-dom";
 import banner from "./assets/plastic_cleanup_gettyimages-1179252601-1024x683.webp";
 import ocean_cleanup from "./assets/TheOceanCleanup_October2nd_Press_Briefing_System001B-24.jpg.webp";
@@ -11,7 +10,6 @@ import { motion } from "framer-motion";
 export default function Plastic_3() {
 
     return (
-        <Layout>
             <div className="sticky grid grid-cols-11 w-full h-full z-0  overflow-y-auto" style={{
                 "background": "linear-gradient(180deg, rgba(100,209,255,1) 0%, rgba(74,151,184,1) 55%, rgba(15,73,186,1) 60%, rgba(4,19,49,1) 100%)",
                 "filter": "progid:DXImageTransform.Microsoft.gradient(startColorstr=\"#64d1ff\",endColorstr=\"#041331\",GradientType=1)"
@@ -51,7 +49,7 @@ export default function Plastic_3() {
                 </Link>
 
                 <img className="col-start-2 col-end-11 relative z-20"
-                     src={banner} alt={"banner image"}
+                     src={banner} alt={"Afbeelding van mensen die plastic op een strand opruimen"}
                 />
                 <div className="col-start-6 fixed top-[40%] left-[45%] items-center justify-center h-screen z-10">
                     <div id={"background_sun"}
@@ -84,12 +82,12 @@ export default function Plastic_3() {
                                 barrières en op afval gerichte schepen.</a>
 
                             <img className="inline-block ml-auto p-3 rounded-[40px]"
-                                 src={ocean_cleanup} alt={"information_image"}/>
+                                 src={ocean_cleanup} alt={"Afbeelding van een drijvende barrière die plastic uit de oceaan haalt"}/>
 
                         </p>
 
                         <img className="bg-black inline-block float-right h-60 ml-auto p-4 rounded-[40px]"
-                             src={recycling_plastic} alt={"information_image"}/>
+                             src={recycling_plastic} alt={"Afbeelding van een recyclebakje vol met plastic flesjes"}/>
 
                         <p className="text-cyan-950 text-sm font-semibold font-['Montserrat'] text-wrap p-3">
                             Kleine plastic voorwerpen en microplastics zijn bijna onmogelijk te bereiken, vooral als ze
@@ -189,7 +187,7 @@ export default function Plastic_3() {
                             </h3>
 
                             <img className="p-3 rounded-[40px]"
-                                 src={plastic_cleanup} alt={"information_image"}/>
+                                 src={plastic_cleanup} alt={"Afbeelding van een groep kinderen die plastic uit water opruimen"}/>
 
                             Als je bij een zee of rivier woont, kun je je vrijwillig aanmelden om zwerfvuil op te ruimen
                             in je lokale gemeenschap, waardoor je plastics uit de waterwegen verwijdert en voorkomt dat
@@ -279,7 +277,7 @@ export default function Plastic_3() {
 
                     <img className="col-start-2 col-span-9 z-20 relative"
                          src={clean_ocean}
-                         alt={"image of turtles swimming next to a plastic bag"}/>
+                         alt={"Afbeelding van water met zonneschijn in de achtergrond"}/>
 
                     <div
                         id={"information_text_6"}
@@ -298,12 +296,6 @@ export default function Plastic_3() {
 
                 </motion.div>
 
-                {/*<div className="col-start-3 p-20 inline-block bg-tertiary rounded-full mt-10 z-20"/>*/}
-                {/*<div className="col-start-6 p-20 inline-block bg-tertiary rounded-full mt-10 z-20"/>*/}
-                {/*<div className="col-start-9 p-20 inline-block bg-tertiary rounded-full mt-10 z-20"/>*/}
-
-
             </div>
-        </Layout>
     );
 }

@@ -1,4 +1,3 @@
-import Layout from "./components/Layout";
 import {Link} from "react-router-dom";
 
 import banner from "./assets/shutterstock_1772455853-scaled.webp";
@@ -15,7 +14,6 @@ import { motion } from "framer-motion";
 export default function Plastic_2() {
 
     return (
-        <Layout>
             <div className="sticky grid grid-cols-11 w-full h-full z-0  overflow-y-auto" style={{
                 "background": "linear-gradient(180deg, rgba(128,206,250,1) 0%, rgba(93,148,180,1) 55%, rgba(48,99,147,1) 60%, rgba(10,22,34,1) 100%)",
                 "filter": "progid:DXImageTransform.Microsoft.gradient(startColorstr=\"#80cefa\",endColorstr=\"#0a1622\",GradientType=1)"
@@ -459,6 +457,5 @@ export default function Plastic_2() {
                 {/*     alt={"image of turtles swimming next to a plastic bag"}/>*/}
 
             </div>
-        </Layout>
     );
 }

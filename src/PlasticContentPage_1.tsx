@@ -1,4 +1,3 @@
-import Layout from "./components/Layout";
 import {Link} from "react-router-dom";
 import banner from "./assets/water-pollution@2x.jpg";
 import image1 from "./assets/Single-Use-Plastics-1024x675.jpeg";
@@ -11,7 +10,6 @@ import { motion } from "framer-motion"
 export default function Plastic_1() {
 
     return (
-        <Layout>
             <div className="sticky grid grid-cols-11 w-full h-full z-0  overflow-y-auto" style={{
                 "background": "linear-gradient(180deg, rgba(147,203,199,1) 0%, rgba(105,138,136,1) 55%, rgba(93,146,149,1) 60%, rgba(39,49,42,1) 100%)",
                 "filter": "progid:DXImageTransform.Microsoft.gradient(startColorstr=\"#93cbc7\",endColorstr=\"#27312a\",GradientType=1)"
@@ -106,9 +104,6 @@ export default function Plastic_1() {
                         id={"information_text_2"}
                         className="col-start-4 relative z-20 space-y-1 px-3 clear-right">
 
-                        {/*<img className="h-60 float-right inline-block ml-auto p-3 rounded-[40px]"*/}
-                        {/*     src="https://via.placeholder.com/429x459" alt={"information_image"}/>*/}
-
                         <p className="text-cyan-950 text-sm font-semibold font-['Montserrat'] text-wrap py-3">Plastic
                             heeft de dokters geholpen met spullen die levens redden, het heeft het mogelijk gemaakt om
                             naar de ruimte te gaan, en het heeft auto's en vliegtuigen lichter gemaakt, waardoor ze
@@ -149,10 +144,6 @@ export default function Plastic_1() {
                     </div>
 
                 </motion.div>
-
-                {/*<img className="col-start-4 col-span-5 mt-10 z-20 relative"*/}
-                {/*     src="https://www.iisd.org/sites/default/files/styles/og_image/public/2020-12/plastic-in-ocean.jpg?itok=LrjpIznP"*/}
-                {/*     alt={"image of turtles swimming next to a plastic bag"}/>*/}
 
                 <iframe className="col-start-3 col-span-7 w-full h-96 mt-10 z-20 relative border-0"
                         src="https://www.youtube.com/embed/73KVh4UEdrQ?autoplay=1&mute=1"
@@ -273,6 +264,5 @@ export default function Plastic_1() {
                 </motion.div>
 
             </div>
-        </Layout>
     );
 }
