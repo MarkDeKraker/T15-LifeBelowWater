@@ -1,5 +1,6 @@
 import Layout from "./components/Layout";
 import {Link} from "react-router-dom";
+
 import banner from "./assets/shutterstock_1772455853-scaled.webp";
 import image1 from "./assets/101680273_ngm_0618_plastics_008_trim.jpg";
 import microplastics from "./assets/38068390.jpg";
@@ -9,6 +10,7 @@ import burning_plastic from "./assets/plastic_waste_burning.jpg";
 import greenhouse_gases from "./assets/broeikasgassen_fd4109a1-pie-chart-1024x724.png";
 import climate_effect from "./assets/broeikas-effect-1024x674.webp";
 
+import { motion } from "framer-motion";
 
 export default function Plastic_2() {
 
@@ -62,9 +64,12 @@ export default function Plastic_2() {
                     />
                 </div>
 
-                <div
+                <motion.div
                     id={"information_block"}
-                    className="col-start-3 col-span-3 h-['300px'] mt-10 bg-zinc-300 rounded-lg border-4 border-black z-20">
+                    className="col-start-3 col-span-3 h-['300px'] mt-10 bg-zinc-300 rounded-lg border-4 border-black z-20"
+                    initial={{opacity: 0, y: 50}}
+                    whileInView={{opacity: 1, y: 0}}
+                    transition={{duration: 0.6}}>
 
                     <div
                         id={"information_text"}
@@ -94,15 +99,21 @@ export default function Plastic_2() {
 
                     </div>
 
-                </div>
+                </motion.div>
 
-                <img
+                <motion.img
                     className="lg:col-start-6 col-start-7 col-span-4 float-right h-96 inline-block ml-auto mt-10 rounded-[40px] z-20"
-                    src={image1} alt={"Afbeelding van een vogel die vast zit in een plastic zakje"}/>
+                    src={image1} alt={"Afbeelding van een vogel die vast zit in een plastic zakje"}
+                    initial={{opacity: 0, y: 50}}
+                    whileInView={{opacity: 1, y: 0}}
+                    transition={{duration: 0.6}}/>
 
-                <div
+                <motion.div
                     id={"information_block_2"}
-                    className="col-start-3 col-span-7 h-['300px'] mt-10 bg-zinc-300 rounded-lg border-4 border-black z-20">
+                    className="col-start-3 col-span-7 h-['300px'] mt-10 bg-zinc-300 rounded-lg border-4 border-black z-20"
+                    initial={{opacity: 0, y: 50}}
+                    whileInView={{opacity: 1, y: 0}}
+                    transition={{duration: 0.6}}>
 
                     <div
                         id={"information_text_2"}
@@ -125,7 +136,7 @@ export default function Plastic_2() {
                         </p>
                     </div>
 
-                </div>
+                </motion.div>
 
                 {/*<div className="col-start-2 col-span-9 space-y-5 mt-10">*/}
                 {/*    <div*/}
@@ -144,8 +155,13 @@ export default function Plastic_2() {
 
                 <div className="col-start-2 col-span-9 space-y-5 mt-10">
 
-                    <div id={"information_block_3"}
-                         className="col-start-3 p-40 bg-tertiary rounded-full z-20 relative overflow-hidden group">
+                    <motion.div
+                        id={"information_block_3"}
+                        className="col-start-3 p-40 bg-tertiary rounded-full z-20 relative overflow-hidden group"
+                        initial={{opacity: 0, y: 50}}
+                        whileInView={{opacity: 1, y: 0}}
+                        transition={{duration: 0.6}}
+                        viewport={{ once: true }}>
 
                         <img
                             className="absolute inset-0 w-full h-full object-cover"
@@ -170,15 +186,22 @@ export default function Plastic_2() {
                                 </p>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
 
-                    <div id={"information_block_4"}
-                         className="col-start-3 p-40 bg-tertiary rounded-full z-20 relative overflow-hidden group">
+                    <motion.div
+                        id={"information_block_4"}
+                        className="col-start-3 p-40 bg-tertiary rounded-full z-20 relative overflow-hidden group"
+                        initial={{opacity: 0, y: 50}}
+                        whileInView={{opacity: 1, y: 0}}
+                        transition={{duration: 0.6}}
+                        viewport={{ once: true }}>
+
                         <img
                             className="absolute inset-0 w-full h-full object-cover"
                             src={plastic_economics}
                             alt="Afbeelding van een veld gras vol met plastic afval, terwijl er luxe gebouwen in de achtergrond zijn."
                         />
+
                         <div id={"information_text_4"}
                              className="absolute inset-0 bg-black bg-opacity-80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             <div className="text-center text-white p-4">
@@ -197,7 +220,7 @@ export default function Plastic_2() {
                                 </p>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
 
                 {/*<div*/}
@@ -258,9 +281,13 @@ export default function Plastic_2() {
 
                 {/*</div>*/}
 
-                <div
+                <motion.div
                     id={"information_block_5"}
-                    className="col-start-3 col-span-7 h-['300px'] mt-10 bg-zinc-300 rounded-lg border-4 border-black z-20">
+                    className="col-start-3 col-span-7 h-['300px'] mt-10 bg-zinc-300 rounded-lg border-4 border-black z-20"
+                    initial={{opacity: 0, y: 50}}
+                    whileInView={{opacity: 1, y: 0}}
+                    transition={{duration: 0.6}}
+                    viewport={{ once: true }}>
 
                     <div
                         id={"information_text_5"}
@@ -282,11 +309,14 @@ export default function Plastic_2() {
 
                     </div>
 
-                </div>
+                </motion.div>
 
-                <div
+                <motion.div
                     id={"information_block_6"}
-                    className="col-start-3 col-span-7 h-['300px'] mt-5 bg-zinc-300 rounded-lg border-4 border-black z-20">
+                    className="col-start-3 col-span-7 h-['300px'] mt-5 bg-zinc-300 rounded-lg border-4 border-black z-20"
+                    initial={{opacity: 0, y: 50}}
+                    whileInView={{opacity: 1, y: 0}}
+                    transition={{duration: 0.6}}>
 
                     <div
                         id={"information_text_6"}
@@ -306,11 +336,14 @@ export default function Plastic_2() {
 
                     </div>
 
-                </div>
+                </motion.div>
 
-                <div
+                <motion.div
                     id={"information_block_7"}
-                    className="col-start-3 col-span-7 h-['300px'] mt-5 bg-zinc-300 rounded-lg border-4 border-black z-20">
+                    className="col-start-3 col-span-7 h-['300px'] mt-5 bg-zinc-300 rounded-lg border-4 border-black z-20"
+                    initial={{opacity: 0, y: 50}}
+                    whileInView={{opacity: 1, y: 0}}
+                    transition={{duration: 0.6}}>
 
                     <div
                         id={"information_text_7"}
@@ -335,11 +368,14 @@ export default function Plastic_2() {
 
                     </div>
 
-                </div>
+                </motion.div>
 
-                <div
+                <motion.div
                     id={"information_block_8"}
-                    className="col-start-3 col-span-7 h-['300px'] mt-5 bg-zinc-300 rounded-lg border-4 border-black z-20">
+                    className="col-start-3 col-span-7 h-['300px'] mt-5 bg-zinc-300 rounded-lg border-4 border-black z-20"
+                    initial={{opacity: 0, y: 50}}
+                    whileInView={{opacity: 1, y: 0}}
+                    transition={{duration: 0.6}}>
 
                     <div
                         id={"information_text_8"}
@@ -388,11 +424,14 @@ export default function Plastic_2() {
 
                     </div>
 
-                </div>
+                </motion.div>
 
-                <div
+                <motion.div
                     id={"information_block_9"}
-                    className="col-start-3 col-span-7 h-['300px'] mt-5 bg-teal-100 rounded-lg border-4 border-black z-20">
+                    className="col-start-3 col-span-7 h-['300px'] mt-5 bg-teal-100 rounded-lg border-4 border-black z-20"
+                    initial={{opacity: 0, y: 50}}
+                    whileInView={{opacity: 1, y: 0}}
+                    transition={{duration: 0.6}}>
 
                     <div
                         id={"information_text_9"}
@@ -409,7 +448,7 @@ export default function Plastic_2() {
 
                     </div>
 
-                </div>
+                </motion.div>
 
                 {/*<div className="col-start-3 p-20 inline-block bg-tertiary rounded-full mt-10 z-20"/>*/}
                 {/*<div className="col-start-6 p-20 inline-block bg-tertiary rounded-full mt-10 z-20"/>*/}
