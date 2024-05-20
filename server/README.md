@@ -17,7 +17,17 @@ This is a simple Express Quiz API designed to manage quiz questions and answers.
 
 ## API Routes
 
+### General
+
 - `GET /`: Returns the welcome message.
+
+### Authentication
+
+- `POST /api/v1/auth/register`: Register a new admin. Required fields are `username`, `email`, and `password`.
+- `POST /api/v1/auth/login`: Login an admin. Required fields are `email` and `password`. Returns a Bearer Token for communication with the API.
+
+### Admins
+
 - `GET /api/v1/admins`: Retrieves all admins.
 - `GET /api/v1/admins/{id}`: Retrieves an admin based on the given ID.
 
