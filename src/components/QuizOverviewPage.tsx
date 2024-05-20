@@ -9,9 +9,6 @@ export default function QuizOverviewPage() {
               <div className="text-black text-[32px] font-normal font-custom">
                 Quizzes Overzicht
               </div>
-              <div className="bg-blue-200 rounded-full p-2 border-zinc-300 cursor-pointer hover:shadow-md">
-                Add quiz
-              </div>
             </div>
           </div>
           <div className=" justify-center items-centerinline-flex flex-col space-y-4 mt-4">
