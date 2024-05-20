@@ -10,6 +10,15 @@ This is a simple Express Quiz API designed to manage quiz questions and answers.
 2. Install the required packages with `npm install`.
 3. Copy the `.env.example` file to a new file named `.env` and fill in the required variables.
 
+## Docker Compose
+
+This application can be run using Docker Compose. This will create a container for the application and another for the database.
+
+1. Build the Docker images: `docker-compose build`
+2. Start the containers: `docker-compose up`
+
+To stop the containers, use: `docker-compose down`
+
 ## Scripts
 
 - `npm run dev`: Starts the server in development mode with hot-reloading.
