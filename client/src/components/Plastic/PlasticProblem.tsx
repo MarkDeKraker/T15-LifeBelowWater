@@ -1,10 +1,10 @@
-import PlasticExampleComp from "./PlasticExampleComp";
+import PlasticExampleComp from "./PlasticExampleComp.tsx";
 
 import title from "../../misc/Title";
 import banner from "../../assets/water-pollution@2x.jpg";
-import TopicLink from "./TopicComp";
-import BannerComp from "./BannerComp";
-import BackgroundSunComp from "./BackgroundSunComp";
+import TopicLink from "./TopicComp.tsx";
+import BannerComp from "./BannerComp.tsx";
+import BackgroundSunComp from "./BackgroundSunComp.tsx";
 
 import plasticProducts from "../../misc/PlasticProblem/PlasticProducts";
 import plasticInnovations from "../../misc/PlasticProblem/PlasticInnovations";

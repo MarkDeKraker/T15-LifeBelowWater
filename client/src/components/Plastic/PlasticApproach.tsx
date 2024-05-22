@@ -1,10 +1,10 @@
-import PlasticExampleComp from "./PlasticExampleComp";
+import PlasticExampleComp from "./PlasticExampleComp.tsx";
 
 import title from "../../misc/Title";
 import banner from "../../assets/plastic_cleanup_gettyimages-1179252601-1024x683.webp";
-import TopicLink from "./TopicComp";
-import BannerComp from "./BannerComp";
-import BackgroundSunComp from "./BackgroundSunComp";
+import TopicLink from "./TopicComp.tsx";
+import BannerComp from "./BannerComp.tsx";
+import BackgroundSunComp from "./BackgroundSunComp.tsx";
 
 import innovations from "../../misc/PlasticApproach/Innovations";
 import whatCanWeDoAboutIt from "../../misc/PlasticApproach/WhatCanWeDoAboutIt";

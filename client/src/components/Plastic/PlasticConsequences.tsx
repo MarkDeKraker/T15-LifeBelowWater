@@ -1,10 +1,10 @@
-import PlasticExampleComp from "./PlasticExampleComp";
+import PlasticExampleComp from "./PlasticExampleComp.tsx";
 
 import title from "../../misc/Title";
 import banner from "../../assets/shutterstock_1772455853-scaled.webp";
-import TopicLink from "./TopicComp";
-import BannerComp from "./BannerComp";
-import BackgroundSunComp from "./BackgroundSunComp";
+import TopicLink from "./TopicComp.tsx";
+import BannerComp from "./BannerComp.tsx";
+import BackgroundSunComp from "./BackgroundSunComp.tsx";
 
 import harmToAnimals from "../../misc/PlasticConsequences/HarmToAnimals";
 import harmToAnimalsPicture from "../../misc/PlasticConsequences/HarmToAnimalsPicture";
@@ -14,8 +14,8 @@ import economicDamage from "../../misc/PlasticConsequences/EconomicDamage";
 import climateEffect from "../../misc/PlasticConsequences/EffectOnClimateChange";
 import increasedPollution from "../../misc/PlasticConsequences/IncreasedPollution";
 import burningPlastic from "../../misc/PlasticConsequences/BurningPlasticWaste";
-import plasticCausingClimateChange from "../../misc/PlasticConsequences/PlasticCausingClimateChange";
-import conclusion from "../../misc/PlasticConsequences/Conclusion";
+import plasticCausingClimateChange from "../../misc/PlasticConsequences/PlasticCausingClimateChange.tsx";
+import conclusion from "../../misc/PlasticConsequences/Conclusion.tsx";
 
 export default function PlasticConsequences() {
   return (
