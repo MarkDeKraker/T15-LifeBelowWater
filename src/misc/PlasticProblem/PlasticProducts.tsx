@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 
-import singleUsePlasticImage1024x675 from "../assets/Single-Use-Plastics-1024x675.jpeg";
+import SingleUsePlasticImage1024x675 from "../../assets/Single-Use-Plastics-1024x675.jpeg";
 
-const plastic = {
+const plasticProducts = {
   title: "Plastic",
   divs: (
     <motion.div
@@ -15,7 +15,7 @@ const plastic = {
       <div className="col-start-4 relative z-20 space-y-1 px-3 clear-right">
         <img
           className="h-52 float-right inline-block ml-auto p-3 rounded-[40px]"
-          src={singleUsePlasticImage1024x675}
+          src={SingleUsePlasticImage1024x675}
           alt={
             "Afbeelding van dagelijkse plastic producten, zoals flesjes, bekers en rietjes."
           }
@@ -43,4 +43,4 @@ const plastic = {
   ),
 };
 
-export default plastic;
+export default plasticProducts;
