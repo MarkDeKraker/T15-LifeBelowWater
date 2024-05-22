@@ -1,5 +1,8 @@
 import { useContext } from "react";
+
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+
 import NavigationContext from "../context/NavigationContext";
 
 type Params = {
@@ -26,7 +29,17 @@ export default function SideBarItem(props: Params) {
       className={`space-x-4 flex bg rounded-full font-bold p-2 cursor-pointer hover:underline-offset-2 ${onActive}`}
     >
       <div>{props.icon}</div>
-      {!props.collapsed ? <p className={onActive}>{props.title} </p> : null}
+      {!props.collapsed ? (
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5, delay: 0.35 }}
+          className={onActive}
+        >
+          {props.title}{" "}
+        </motion.p>
+      ) : null}
     </div>
   );
 }
