@@ -1,3 +1,4 @@
+import { Button } from "./buttons/Button";
 type Params = {
   title: string;
   subTitle: string;
@@ -6,7 +7,7 @@ type Params = {
 
 export default function ChapterCard(props: Params) {
   return (
-    <div className="bg-white p-5 shadow-lg max-w-5xl rounded-lg mx-auto">
+    <div className="max-w-5xl p-5 mx-auto bg-white rounded-lg shadow-lg">
       <div className="flex space-x-4">
         <div>
           <img
@@ -19,9 +20,7 @@ export default function ChapterCard(props: Params) {
           <p className="font-normal text-[#666] font-custom">
             {props.subTitle}
           </p>
-          <button className="bg-secondary p-2 w-60 rounded-full mt-5 font-custom">
-            Ga naar onderwerp
-          </button>
+          <Button buttonStyle="secondary" children={"Ga naar onderwerp"} />
         </div>
       </div>
     </div>
