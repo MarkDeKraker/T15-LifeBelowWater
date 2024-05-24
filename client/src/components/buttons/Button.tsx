@@ -1,6 +1,10 @@
+import { NavigateOptions, To, useNavigate } from "react-router-dom";
+
 type Props = {
   children: React.ReactNode;
   buttonStyle?: "primary" | "secondary" | "tertiary";
+  To: To;
+  options?: NavigateOptions | undefined;
 };
 
 export function Button(props: Props) {
@@ -12,10 +16,14 @@ export function Button(props: Props) {
     tertiary: "bg-tertiary",
   };
 
+  const navigate = useNavigate();
   return (
     <>
       <button
         className={`p-2 mt-5 rounded-full caption-top ${bgColor[buttonStyle]} w-60 font-custom`}
+        onClick={() => {
+          navigate(props.To, props.options);
+        }}
       >
         {props.children}
       </button>{" "}
