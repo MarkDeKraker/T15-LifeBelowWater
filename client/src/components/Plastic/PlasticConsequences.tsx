@@ -1,8 +1,8 @@
-import PlasticExampleComp from "./PlasticExampleComp.tsx";
+import PlasticPageParentComp from "./PlasticPageParentComp.tsx";
 
 import title from "../../misc/Title";
 import banner from "../../assets/shutterstock_1772455853-scaled.webp";
-import TopicLink from "./TopicComp.tsx";
+import TopicComp from "./TopicComp.tsx";
 import BannerComp from "./BannerComp.tsx";
 import BackgroundSunComp from "./BackgroundSunComp.tsx";
 
@@ -18,62 +18,40 @@ import plasticCausingClimateChange from "../../misc/PlasticConsequences/PlasticC
 import conclusion from "../../misc/PlasticConsequences/Conclusion.tsx";
 
 export default function PlasticConsequences() {
-  return (
-    <div className="sticky grid grid-cols-11 w-full h-full z-0 overflow-y-auto bg-gradient-b">
+    return (
+        <div className="sticky grid grid-cols-11 w-full h-full z-0 overflow-y-auto bg-gradient-b">
 
-      <PlasticExampleComp children={title.divs} />
+            <PlasticPageParentComp children={title.divs}/>
 
-      <TopicLink
-        to="/plastic/probleem"
-        colStart="2"
-        colEnd="5"
-        bgColor="bg-cyan-950"
-        textColor="text-altYellow"
-        text="Het probleem"
-      />
-      <TopicLink
-        to="/plastic/gevolgen"
-        colStart="5"
-        colEnd="8"
-        bgColor="bg-blue-950"
-        textColor="text-green-300"
-        text="Gevolgen"
-      />
-      <TopicLink
-        to="/plastic/aanpak"
-        colStart="8"
-        colEnd="11"
-        bgColor="bg-cyan-950"
-        textColor="text-altYellow"
-        text="Aanpak"
-      />
+            <TopicComp />
 
-      <BannerComp source={banner} alt={"Grote afbeelding dat plastic vervuiling in de oceaan en een schildpad laat zien"} />
+            <BannerComp source={banner}
+                        alt={"Grote afbeelding dat plastic vervuiling in de oceaan en een schildpad laat zien"}/>
 
-      <BackgroundSunComp bg={"bg-white"} />
+            <BackgroundSunComp bg={"bg-white"}/>
 
-      <PlasticExampleComp children={harmToAnimals.divs} />
+            <PlasticPageParentComp children={harmToAnimals.divs}/>
 
-      <PlasticExampleComp children={harmToAnimalsPicture.divs} />
+            <PlasticPageParentComp children={harmToAnimalsPicture.divs}/>
 
-      <PlasticExampleComp children={harmToAnimalsContinued.divs} />
+            <PlasticPageParentComp children={harmToAnimalsContinued.divs}/>
 
-      <div className="col-start-2 col-span-9 space-y-5 mt-10">
-        <PlasticExampleComp children={healthRisks.divs} />
+            <div className="col-start-2 col-span-9 space-y-5 mt-10">
+                <PlasticPageParentComp children={healthRisks.divs}/>
 
-        <PlasticExampleComp children={economicDamage.divs} />
-      </div>
+                <PlasticPageParentComp children={economicDamage.divs}/>
+            </div>
 
-      <PlasticExampleComp children={climateEffect.divs} />
+            <PlasticPageParentComp children={climateEffect.divs}/>
 
-      <PlasticExampleComp children={increasedPollution.divs} />
+            <PlasticPageParentComp children={increasedPollution.divs}/>
 
-      <PlasticExampleComp children={burningPlastic.divs} />
+            <PlasticPageParentComp children={burningPlastic.divs}/>
 
-      <PlasticExampleComp children={plasticCausingClimateChange.divs} />
+            <PlasticPageParentComp children={plasticCausingClimateChange.divs}/>
 
-      <PlasticExampleComp children={conclusion.divs} />
+            <PlasticPageParentComp children={conclusion.divs}/>
 
-    </div>
-  );
+        </div>
+    );
 }

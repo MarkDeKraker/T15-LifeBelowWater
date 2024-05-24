@@ -1,8 +1,8 @@
-import PlasticExampleComp from "./PlasticExampleComp.tsx";
+import PlasticPageParentComp from "./PlasticPageParentComp.tsx";
 
 import title from "../../misc/Title";
 import banner from "../../assets/water-pollution@2x.jpg";
-import TopicLink from "./TopicComp.tsx";
+import TopicComp from "./TopicComp.tsx";
 import BannerComp from "./BannerComp.tsx";
 import BackgroundSunComp from "./BackgroundSunComp.tsx";
 
@@ -14,52 +14,29 @@ import Microplastics from "../../misc/PlasticProblem/Microplastics";
 import KeyFacts from "../../misc/PlasticProblem/KeyFacts";
 
 export default function PlasticProblem() {
-  return (
-    <div className="sticky grid grid-cols-11 w-full h-full z-0 overflow-y-auto bg-gradient-a">
+    return (
+        <div className="sticky grid grid-cols-11 w-full h-full z-0 overflow-y-auto bg-gradient-a">
 
-      <PlasticExampleComp children={title.divs} />
+            <PlasticPageParentComp children={title.divs}/>
 
-      <TopicLink
-        to="/plastic/probleem"
-        colStart="2"
-        colEnd="5"
-        bgColor="bg-blue-950"
-        textColor="text-green-300"
-        text="Het probleem"
-      />
-      <TopicLink
-        to="/plastic/gevolgen"
-        colStart="5"
-        colEnd="8"
-        bgColor="bg-cyan-950"
-        textColor="text-altYellow"
-        text="Gevolgen"
-      />
-      <TopicLink
-        to="/plastic/aanpak"
-        colStart="8"
-        colEnd="11"
-        bgColor="bg-cyan-950"
-        textColor="text-altYellow"
-        text="Aanpak"
-      />
+            <TopicComp />
 
-      <BannerComp source={banner} alt={"Grote afbeelding dat plastic vervuiling in de oceaan laat zien"} />
+            <BannerComp source={banner} alt={"Grote afbeelding dat plastic vervuiling in de oceaan laat zien"}/>
 
-      <BackgroundSunComp bg={"bg-white"} />
+            <BackgroundSunComp bg={"bg-white"}/>
 
-      <PlasticExampleComp children={plasticProducts.divs} />
+            <PlasticPageParentComp children={plasticProducts.divs}/>
 
-      <PlasticExampleComp children={plasticInnovations.divs} />
+            <PlasticPageParentComp children={plasticInnovations.divs}/>
 
-      <PlasticExampleComp children={problemVideo.divs} />
+            <PlasticPageParentComp children={problemVideo.divs}/>
 
-      <PlasticExampleComp children={plasticMoving.divs} />
+            <PlasticPageParentComp children={plasticMoving.divs}/>
 
-      <PlasticExampleComp children={Microplastics.divs} />
+            <PlasticPageParentComp children={Microplastics.divs}/>
 
-      <PlasticExampleComp children={KeyFacts.divs} />
+            <PlasticPageParentComp children={KeyFacts.divs}/>
 
-    </div>
-  );
+        </div>
+    );
 }
