@@ -10,15 +10,14 @@ Responsibilities:
 Not Reponsible:
  for text alignment like center, left, right
 */
-
-function H1(props: Props) {
+function H2(props: Props) {
   return (
     <h1
-      className={`text-xl font-bold leading-tight tracking-tight font-custom md:text-2xl text-inherit ${props.className}`}
+      className={`text-xl font-bold font-custom md:text-2xl text-inherit ${props.className}`}
     >
       {props.children}
     </h1>
   );
 }
 
-export default H1;
+export default H2;
