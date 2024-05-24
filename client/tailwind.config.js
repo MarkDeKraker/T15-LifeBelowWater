@@ -14,6 +14,9 @@ export default {
         tertiary: "rgba(0,55,75,1)",
         light: "#F5F5F5",
       },
+      borderRadius: {
+        custom: "3vmin",
+      },
     },
   },
   plugins: [],
