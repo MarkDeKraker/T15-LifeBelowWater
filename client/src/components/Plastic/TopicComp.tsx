@@ -60,6 +60,3 @@ const TopicComp = () => {
 };
 
 export default TopicComp;
-
-
-// export default TopicLink;
