@@ -15,9 +15,6 @@ function LoginForm() {
 
   const navigate = useNavigate();
 
-  // Id moet nog worden geïmplementeerd
-  // { headers: { "Content-Type": "application/json", Accept: "application/json", }, } TODO: weghalen als het niet nodig is
-
   const onSubmit: SubmitHandler<FormValues> = async ({ inlogCode }) => {
     try {
       const res = await fetch(url);
@@ -91,7 +88,8 @@ function LoginForm() {
 
       <button
         type="submit"
-        className="w-full text-white bg-primary hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-custom text-sm px-5 py-2.5 text-center "
+        disabled={errors.inlogCode ? true : false}
+        className="w-full text-white bg-primary hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-custom text-sm px-5 py-2.5 disabled:bg-opacity-25 text-center "
       >
         Start quiz
       </button>
