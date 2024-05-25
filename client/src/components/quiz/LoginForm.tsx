@@ -53,7 +53,7 @@ function LoginForm() {
     >
       <div>
         <label
-          htmlFor="email"
+          htmlFor="inlogCode" //change this to inlogCode
           className="block mb-2 text-sm font-medium text-gray-900 "
         >
           Jouw inlogcode
@@ -65,8 +65,8 @@ function LoginForm() {
         </label>
         <input
           type="text"
-          id="email"
-          className={`bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-custom focus:ring-none  block w-full p-2.5 focus-visible:outline-none ${transitionStyle} ${isErrorStyle}`}
+          id="inlogCode"
+          className={`bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-custom focus:ring-none block w-full p-2.5 focus-visible:outline-none ${transitionStyle} ${isErrorStyle}`}
           placeholder="bxf23i4"
           {...register("inlogCode", {
             required: {
