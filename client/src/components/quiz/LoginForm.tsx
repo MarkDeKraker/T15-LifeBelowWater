@@ -5,6 +5,7 @@ type FormValues = {
   inlogCode: string;
 };
 
+const url = `/src/data/QuizMockData.json`;
 function LoginForm() {
   const {
     register,
@@ -15,26 +16,25 @@ function LoginForm() {
   const navigate = useNavigate();
 
   // Id moet nog worden geïmplementeerd
+  // { headers: { "Content-Type": "application/json", Accept: "application/json", }, } TODO: weghalen als het niet nodig is
 
   const onSubmit: SubmitHandler<FormValues> = async ({ inlogCode }) => {
-    const url = `/src/data/QuizMockData.json`;
     try {
-      const res = await fetch(url, {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      });
-      if (res.ok) {
-        const data = await res.json();
-        if (inlogCode === data._id) {
-          navigate(`/quiz/${inlogCode}`);
-        } else {
-          return <div>Voer een geldige logincode in!</div>;
-        }
-      } else {
-        return <div>Voer een geldige logincode in!</div>;
+      const res = await fetch(url);
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(
+          "Er is iets misgegaan bij het ophalen van de data. Probeer het later opnieuw."
+        );
       }
+
+      // Als de inlogcode overeenkomt met de data, navigeer dan naar de quizpagina
+      if (inlogCode === data._id) {
+        navigate(`/quiz/${inlogCode}`);
+      }
+
+      return "Voer een geldige logincode in!";
     } catch (err) {
       console.log(err);
     }
@@ -79,7 +79,6 @@ function LoginForm() {
             },
             validate: async (value) => {
               // Voor nu wordt de data uit een json bestand gehaald, Later moet dit vervangen worden door een fetch naar de backend.
-              const url = `/src/data/QuizMockData.json`;
               const response = await fetch(url);
               const data = await response.json();
               if (value !== data._id) {
