@@ -1,14 +1,32 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import H1 from "../components/typography/H1";
+import { useEffect, useState } from "react";
 // import { default as quizData } from "../data/QuizMockData.json";
 
 function QuizLoginPage() {
   // Id wordt gebruikt om bij de juiste quiz te komen, maar is nu nog niet geïmplementeerd.
   const { _slug: slug } = useParams();
 
-  // const isValidSlug = quizData._slug !== slug;
-  const isValidSlug = true;
+  // Do an api call to check if the slug is valid
+  const [isValidSlug, setIsValidSlug] = useState(false);
+
+  useEffect(() => {
+    const checkSlugValidity = async () => {
+      try {
+        const response = await fetch(`/src/data/QuizMockData.json`);
+        const data = await response.json();
+        // slug
+        if (slug === data._slug) {
+          setIsValidSlug(true);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    checkSlugValidity();
+  }, [slug]);
 
   return (
     <>
