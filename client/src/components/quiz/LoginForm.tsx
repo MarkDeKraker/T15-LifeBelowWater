@@ -40,8 +40,17 @@ function LoginForm() {
     }
   };
 
+  const isErrorStyle = errors.inlogCode
+    ? "border-red-300 focus:outline-red-300 focus:ring-red-300"
+    : "";
+
+  const transitionStyle = "transition-all duration-150 ease-in-out";
+
   return (
-    <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className={`space-y-4 md:space-y-6 ${transitionStyle}`}
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <div>
         <label
           htmlFor="email"
@@ -49,7 +58,7 @@ function LoginForm() {
         >
           Jouw inlogcode
           {errors.inlogCode && (
-            <span className="font-bold text-red-800 ">
+            <span className="font-bold text-red-800">
               : {errors.inlogCode?.message}
             </span>
           )}
@@ -57,7 +66,7 @@ function LoginForm() {
         <input
           type="text"
           id="email"
-          className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-custom focus:ring-primary focus:border-primary-600 block w-full p-2.5 "
+          className={`bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-custom focus:ring-none  block w-full p-2.5 focus-visible:outline-none ${transitionStyle} ${isErrorStyle}`}
           placeholder="bxf23i4"
           {...register("inlogCode", {
             required: {
