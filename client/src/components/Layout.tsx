@@ -1,6 +1,6 @@
+import Content from "./Content";
 // Layout.js
 import SideBar from "./SideBar";
-import Content from "./Content";
 
 const Layout = ({ children }: { children: any }) => {
   return (
