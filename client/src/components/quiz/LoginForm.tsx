@@ -28,10 +28,10 @@ function LoginForm() {
 
       // Als de password overeenkomt met de data, navigeer dan naar de quizpagina
       if (password === data.password) {
-        navigate(`/quiz/${password}`);
+        navigate(`/quiz/${data._id}`);
       }
 
-      return "Voer een geldige logincode in!";
+      return "Voer een geldig wachtwoord in!";
     } catch (err) {
       console.log(err);
     }
@@ -68,7 +68,7 @@ function LoginForm() {
           {...register("password", {
             required: {
               value: true,
-              message: "logincode is verplicht",
+              message: "password is verplicht",
             },
             minLength: {
               value: 3,

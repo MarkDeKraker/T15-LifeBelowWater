@@ -6,7 +6,6 @@ import HomePage from "./components/HomePage";
 import Layout from "./components/Layout";
 import QuizOverviewPage from "./components/QuizOverviewPage";
 import QuizPage from "./pages/QuizPage";
-import SlugValidation from "./components/Plastic/SlugValidation.tsx";
 import NotFound from "./pages/NotFound";
 import NavigationContext from "./context/NavigationContext";
 import PlasticProblemPage from "./pages/PlasticProblemPage.tsx";
@@ -30,9 +29,11 @@ const App = () => {
             />
             <Route path="/plastic/aanpak" element={<PlasticApproachPage />} />
             <Route path="/quiz/overview" element={<QuizOverviewPage />} />
-            {/* quiz/login/id is de url die de leerling krijgt om in te loggen */}
+
+            {/* quiz/:slug is de url waar de leerling een wachtwoord moet invullen om te daarna de quiz te kunnen beginnen, Deze krijgt hij/zij van de docent. De docent krijgt deze url na het aanmaken van de quiz*/}
             <Route path="/quiz/login/:slug" element={<QuizLoginPage />} />
-            {/* quiz/:slug is de url waar de leerling de quiz start*/}
+
+            {/* quiz/login/:_id is waar de leerling naartoe wordt gestuurd als de wachtwoord correct is*/}
             <Route path="/quiz/:_id" element={<QuizPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
