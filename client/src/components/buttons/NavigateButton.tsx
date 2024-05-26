@@ -20,7 +20,7 @@ export function NavigateButton(props: Props) {
   return (
     <>
       <button
-        className={`p-2 mt-5 rounded-full caption-top ${bgColor[buttonStyle]} w-60 font-custom`}
+        className={`px-4 py-2 mt-5 rounded-full caption-top ${bgColor[buttonStyle]} font-custom hover:bg-primary/70 transition duration-200 ease-in-out hover:text-white hover:shadow-md active:shadow-md focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50`}
         onClick={() => {
           navigate(props.To, props.options);
         }}
