@@ -1,4 +1,4 @@
-export default function QuizOverviewPage() {
+export default function QuizOverview() {
   return (
     <div className="flex justify-center align-middle text-center min-h-full">
       <div className=" justify-center items-center inline-flex">
