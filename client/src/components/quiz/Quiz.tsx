@@ -6,8 +6,8 @@ function Quiz() {
       <H1>Quiz</H1>
 
       <p>
-        Dit is de pagina wanneer de inlogcode correct is. De gebruiker wordt
-        naar deze pagina doorgestuurd.
+        Dit is de pagina wanneer password correct is. De gebruiker wordt naar
+        deze pagina doorgestuurd.
       </p>
     </>
   );
