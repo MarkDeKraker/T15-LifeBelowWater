@@ -2,8 +2,10 @@
 
 ## Test starting a quiz
 Go to `/quiz/login/sdg-14-quiz` in order to test login page. For now, we're using mock data to simulate starting a quiz.
+
+### Password for this quiz.
 ```
-quiz456
+sdg14
 ```
 
 

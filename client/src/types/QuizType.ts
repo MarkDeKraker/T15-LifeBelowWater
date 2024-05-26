@@ -1,7 +1,8 @@
 export interface QuizType {
   _id: string;
-  _slug: string;
+  slug: string;
   title: string;
+  password: string;
   questions: Question[];
   totalQuestions: number;
 }

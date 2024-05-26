@@ -1,7 +1,8 @@
 {
   "_id": "quiz456",
-  "_slug": "sdg-14-quiz",
+  "slug": "sdg-14-quiz",
   "title": "Leven Onder Water",
+  "password": "sdg14",
   "questions": [
     {
       "id": "q1",

@@ -6,7 +6,7 @@ import LoginForm from "../components/quiz/LoginForm";
 
 function QuizLoginPage() {
   // Id wordt gebruikt om bij de juiste quiz te komen, maar is nu nog niet geïmplementeerd.
-  const { _slug: slug } = useParams();
+  const { slug: slug } = useParams();
 
   const [isValidSlug, setIsValidSlug] = useState(false);
 
@@ -16,7 +16,7 @@ function QuizLoginPage() {
         const response = await fetch(`/src/data/QuizMockData.json`);
         const data = await response.json();
         // slug
-        if (slug === data._slug) {
+        if (slug === data.slug) {
           setIsValidSlug(true);
         }
       } catch (error) {

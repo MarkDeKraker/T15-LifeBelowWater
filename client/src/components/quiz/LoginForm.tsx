@@ -2,7 +2,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 type FormValues = {
-  inlogCode: string;
+  password: string;
 };
 
 const url = `/src/data/QuizMockData.json`;
@@ -15,7 +15,7 @@ function LoginForm() {
 
   const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<FormValues> = async ({ inlogCode }) => {
+  const onSubmit: SubmitHandler<FormValues> = async ({ password }) => {
     try {
       const res = await fetch(url);
       const data = await res.json();
@@ -26,9 +26,9 @@ function LoginForm() {
         );
       }
 
-      // Als de inlogcode overeenkomt met de data, navigeer dan naar de quizpagina
-      if (inlogCode === data._id) {
-        navigate(`/quiz/${inlogCode}`);
+      // Als de password overeenkomt met de data, navigeer dan naar de quizpagina
+      if (password === data.password) {
+        navigate(`/quiz/${password}`);
       }
 
       return "Voer een geldige logincode in!";
@@ -37,7 +37,7 @@ function LoginForm() {
     }
   };
 
-  const isErrorStyle = errors.inlogCode
+  const isErrorStyle = errors.password
     ? "border-red-300 focus:outline-red-300 focus:ring-red-300"
     : "";
 
@@ -50,22 +50,22 @@ function LoginForm() {
     >
       <div>
         <label
-          htmlFor="inlogCode" //change this to inlogCode
+          htmlFor="password" //change this to password
           className="block mb-2 text-sm font-medium text-gray-900 "
         >
-          Jouw inlogcode
-          {errors.inlogCode && (
+          Jouw password
+          {errors.password && (
             <span className="font-bold text-red-800">
-              : {errors.inlogCode?.message}
+              : {errors.password?.message}
             </span>
           )}
         </label>
         <input
           type="text"
-          id="inlogCode"
+          id="password"
           className={`bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-custom focus:ring-none block w-full p-2.5 focus-visible:outline-none ${transitionStyle} ${isErrorStyle}`}
           placeholder="bxf23i4"
-          {...register("inlogCode", {
+          {...register("password", {
             required: {
               value: true,
               message: "logincode is verplicht",
@@ -78,8 +78,8 @@ function LoginForm() {
               // Voor nu wordt de data uit een json bestand gehaald, Later moet dit vervangen worden door een fetch naar de backend.
               const response = await fetch(url);
               const data = await response.json();
-              if (value !== data._id) {
-                return "Voer een geldige logincode in!";
+              if (value !== data.password) {
+                return "Voer een geldige wachtwoord in!";
               }
             },
           })}
@@ -88,7 +88,7 @@ function LoginForm() {
 
       <button
         type="submit"
-        disabled={errors.inlogCode ? true : false}
+        disabled={errors.password ? true : false}
         className="w-full text-white bg-primary hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-custom text-sm px-5 py-2.5 disabled:bg-opacity-25 text-center "
       >
         Start quiz
