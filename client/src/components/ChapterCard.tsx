@@ -1,4 +1,4 @@
-import { Button } from "./buttons/Button";
+import { NavigateButton } from "./buttons/NavigateButton";
 type Params = {
   title: string;
   subTitle: string;
@@ -20,7 +20,11 @@ export default function ChapterCard(props: Params) {
           <p className="font-normal text-[#666] font-custom">
             {props.subTitle}
           </p>
-          <Button buttonStyle="secondary" children={"Ga naar onderwerp"} />
+          <NavigateButton
+            buttonStyle="secondary"
+            To="/plastic/probleem"
+            children={"Ga naar onderwerp"}
+          />
         </div>
       </div>
     </div>

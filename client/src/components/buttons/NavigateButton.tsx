@@ -7,7 +7,7 @@ type Props = {
   options?: NavigateOptions | undefined;
 };
 
-export function Button(props: Props) {
+export function NavigateButton(props: Props) {
   const buttonStyle = props.buttonStyle || "primary";
 
   const bgColor = {

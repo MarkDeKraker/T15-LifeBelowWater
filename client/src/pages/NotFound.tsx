@@ -1,4 +1,4 @@
-import { Button } from "../components/buttons/Button";
+import { NavigateButton } from "../components/buttons/NavigateButton";
 
 function NotFound() {
   return (
@@ -15,9 +15,9 @@ function NotFound() {
             Sorry, we kunnen die pagina niet vinden. Je vindt veel om te
             ontdekken op de homepagina.{" "}
           </p>
-          <Button To="/" buttonStyle="secondary">
+          <NavigateButton To="/" buttonStyle="secondary">
             Terug naar de homepage
-          </Button>
+          </NavigateButton>
         </div>
       </div>
     </section>
