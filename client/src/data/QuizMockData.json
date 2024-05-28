@@ -1,0 +1,71 @@
+{
+  "_id": "66539b49d467da901021c78e",
+  "slug": "leven-onder-water",
+  "title": "Leven Onder Water",
+  "password": "sdg14",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Wat is het doel van SDG 14?",
+      "answers": {
+        "A": { "answer": "Minder plastic gebruiken", "isCorrect": false },
+        "B": { "answer": "Leven onder water beschermen", "isCorrect": true },
+        "C": { "answer": "Meer bomen planten", "isCorrect": false },
+        "D": { "answer": "Energie besparen", "isCorrect": false }
+      }
+    },
+    {
+      "id": "q2",
+      "question": "Waarom is het belangrijk om de oceanen schoon te houden?",
+      "answers": {
+        "A": { "answer": "Omdat vissen dat leuk vinden", "isCorrect": false },
+        "B": {
+          "answer": "Omdat het goed is voor toeristen",
+          "isCorrect": false
+        },
+        "C": {
+          "answer": "Omdat het helpt om het leven onder water te beschermen",
+          "isCorrect": true
+        },
+        "D": { "answer": "Omdat het goedkoper is", "isCorrect": false }
+      }
+    },
+    {
+      "id": "q3",
+      "question": "Wat kun je doen om het leven in de zee te helpen?",
+      "answers": {
+        "A": { "answer": "Geen plastic in zee gooien", "isCorrect": true },
+        "B": { "answer": "Meer vis eten", "isCorrect": false },
+        "C": {
+          "answer": "Met de auto naar het strand gaan",
+          "isCorrect": false
+        },
+        "D": { "answer": "De tuin vaker sproeien", "isCorrect": false }
+      }
+    },
+    {
+      "id": "q4",
+      "question": "Hoeveel procent van de aarde is bedekt met oceanen?",
+      "answers": {
+        "A": { "answer": "30%", "isCorrect": false },
+        "B": { "answer": "50%", "isCorrect": false },
+        "C": { "answer": "70%", "isCorrect": true },
+        "D": { "answer": "90%", "isCorrect": false }
+      }
+    },
+    {
+      "id": "q5",
+      "question": "Wat gebeurt er als koraalriffen verdwijnen?",
+      "answers": {
+        "A": { "answer": "Er komen meer vissen", "isCorrect": false },
+        "B": { "answer": "Vissen verliezen hun huis", "isCorrect": true },
+        "C": {
+          "answer": "Er is minder zand op het strand",
+          "isCorrect": false
+        },
+        "D": { "answer": "Er zijn meer haaien", "isCorrect": false }
+      }
+    }
+  ],
+  "totalQuestions": 5
+}

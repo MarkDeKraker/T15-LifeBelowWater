@@ -1,12 +1,13 @@
-import chalk from "chalk";
-import dotenv from "dotenv";
-import express from "express";
-import mongoose from "mongoose";
-import swaggerUi from "swagger-ui-express";
+import chalk from 'chalk';
+import dotenv from 'dotenv';
+import express from 'express';
+import mongoose from 'mongoose';
+import swaggerUi from 'swagger-ui-express';
 
-import adminRoutes from "./routes/admins/admins.js";
-import authRoutes from "./routes/auth/authentication.js";
-import swaggerDocs from "./settings/swagger.js";
+import adminRoutes from './routes/admins/admins.js';
+import authRoutes from './routes/auth/authentication.js';
+import quizRoutes from './routes/quiz/http.js';
+import swaggerDocs from './settings/swagger.js';
 
 dotenv.config();
 
@@ -57,6 +58,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/admins", adminRoutes);
+app.use("/api/v1", quizRoutes);
 
 app.listen(port, () => {
   console.log(`Server runs on port ${chalk.yellowBright(port)}`);

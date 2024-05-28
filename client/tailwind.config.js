@@ -25,6 +25,9 @@ export default {
         altYellow: "#EABC3E",
         sun: "#F1D95B",
       },
+      borderRadius: {
+        custom: "3vmin",
+      },
     },
   },
   plugins: [],
