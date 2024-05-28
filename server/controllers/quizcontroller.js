@@ -4,7 +4,7 @@ export class QuizController {
     // get all quizzes
     /**
  * @swagger
- * /quiz:
+ * /api/v1/quiz:
  *   get:
  *     summary: Retrieve a list of quizzes
  *     security:
@@ -44,7 +44,7 @@ export class QuizController {
     // get quiz by id
     /**
  * @swagger
- * /quiz/{id}:
+ * /api/v1/quiz/{id}:
  *   get:
  *     summary: Get a quiz by ID
  *     security:
@@ -95,7 +95,7 @@ export class QuizController {
     // create quiz
     /**
  * @swagger
- * /quiz:
+ * /api/v1/quiz:
  *   post:
  *     summary: Create a new quiz
  *     security:
@@ -157,7 +157,7 @@ async createQuiz(req, res) {
 // update quiz
 /**
  * @swagger
- * /quiz/{id}:
+ * /api/v1/quiz/{id}:
  *   put:
  *     summary: Update a quiz
  *     security:
@@ -231,7 +231,7 @@ async updateQuiz(req, res) {
 // delete quiz
 /**
  * @swagger
- * /quiz/{id}:
+ * /api/v1/quiz/{id}:
  *   delete:
  *     summary: Delete a quiz
  *     security:
