@@ -6,7 +6,6 @@ const answerSchema = new mongoose.Schema({
 }, { _id: false });
 
 const questionSchema = new mongoose.Schema({
-  id: { type: String, required: true },
   question: { type: String, required: true },
   answers: {
     A: answerSchema,
@@ -14,7 +13,7 @@ const questionSchema = new mongoose.Schema({
     C: answerSchema,
     D: answerSchema,
   },
-}, { _id: false });
+},);
 
 const quizSchema = new mongoose.Schema({
   slug: { type: String, required: true },
