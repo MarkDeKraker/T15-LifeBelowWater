@@ -4,13 +4,13 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import HomePage from "./components/HomePage";
 import Layout from "./components/Layout";
-import QuizOverviewPage from "./components/QuizOverviewPage";
 import QuizPage from "./pages/QuizPage";
 import NotFound from "./pages/NotFound";
 import NavigationContext from "./context/NavigationContext";
 import PlasticProblemPage from "./pages/PlasticProblemPage.tsx";
 import PlasticConsequencesPage from "./pages/PlasticConsequencesPage.tsx";
 import PlasticApproachPage from "./pages/PlasticApproachPage.tsx";
+import QuizOverviewPage from "./pages/QuizOverviewPage.tsx";
 import QuizLoginPage from "./pages/QuizLoginPage.tsx";
 
 const App = () => {
