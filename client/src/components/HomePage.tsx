@@ -11,16 +11,7 @@ export default function HomePage() {
           title="Plastic soep"
           subTitle="Lorem ipsum dolar sit amet"
           image={plasticsoep}
-        />
-        <ChapterCard
-          title="Plastic soep"
-          subTitle="Lorem ipsum dolar sit amet"
-          image={plasticsoep}
-        />
-        <ChapterCard
-          title="Plastic soep"
-          subTitle="Lorem ipsum dolar sit amet"
-          image={plasticsoep}
+          To="/probleem/aanpak/"
         />
       </div>
     </>
