@@ -1,12 +1,11 @@
 import ChapterCard from "./ChapterCard";
 import plasticsoep from "../assets/plasticsoep.jpg";
+import H2 from "./typography/H2";
 
 export default function HomePage() {
   return (
     <>
-      <h2 className="text-center text-2xl font-bold my-10 font-custom">
-        Onderwerpen
-      </h2>
+      <H2 className="my-10 text-center">Onderwerpen</H2>
       <div className="space-y-10">
         <ChapterCard
           title="Plastic soep"
