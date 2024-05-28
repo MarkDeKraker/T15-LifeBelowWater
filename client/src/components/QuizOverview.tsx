@@ -30,24 +30,6 @@ export default function QuizOverview() {
                       fill="none"
                     >
                       <path
-                        d="M12.5 9V12M12.5 12V15M12.5 12H15.5M12.5 12H9.5M21.5 12C21.5 16.9706 17.4706 21 12.5 21C7.52944 21 3.5 16.9706 3.5 12C3.5 7.02944 7.52944 3 12.5 3C17.4706 3 21.5 7.02944 21.5 12Z"
-                        stroke="#3DC64B"
-                        strokeOpacity="0.83"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </button>
-                  <button>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="25"
-                      height="24"
-                      viewBox="0 0 25 24"
-                      fill="none"
-                    >
-                      <path
                         d="M15.7322 5.23223L19.2677 8.76777M17.2322 3.73223C18.2085 2.75592 19.7914 2.75592 20.7677 3.73223C21.744 4.70854 21.744 6.29146 20.7677 7.26777L7 21.0355H3.5V17.4644L17.2322 3.73223Z"
                         stroke="#FFB596"
                         strokeWidth="2"
