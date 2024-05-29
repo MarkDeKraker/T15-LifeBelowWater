@@ -1,72 +1,17 @@
-import { useAuth } from "../context/AuthContext";
-import { QuizCreateForm } from "./QuizCreateForm";
-import axios from "axios";
+import { mockQuizzes } from "./quiz/mockVariables";
+import { useState } from "react";
+import { QuizType } from "../types/QuizType";
 
 export default function QuizOverview() {
-  const { tokenForBearer } = useAuth();
+  const [quizList, setQuiz] = useState<QuizType[]>([...mockQuizzes]);
 
-  const postNewQuiz = () => {
-    const payload = {
-      slug: "kipp",
-      title: "kipp",
-      password: "kipp",
-      questions: [
-        {
-          answers: {
-            A: {
-              answer: "Answer A",
-              isCorrect: false,
-            },
-            B: {
-              answer: "Answer B",
-              isCorrect: true,
-            },
-            C: {
-              answer: "Answer C",
-              isCorrect: false,
-            },
-            D: {
-              answer: "Answer D",
-              isCorrect: false,
-            },
-          },
-          question: "Test question 1?",
-        },
-        {
-          answers: {
-            A: {
-              answer: "Answer A",
-              isCorrect: false,
-            },
-            B: {
-              answer: "Answer B",
-              isCorrect: false,
-            },
-            C: {
-              answer: "Answer C",
-              isCorrect: true,
-            },
-            D: {
-              answer: "Answer D",
-              isCorrect: false,
-            },
-          },
-          question: "Test question 2?",
-        },
-      ],
-      totalQuestions: 2,
-    };
-    axios
-      .post("http://localhost:3000/api/v1/quiz", payload, {
-        headers: {
-          Authorization: tokenForBearer(),
-        },
-      })
-      .then((response) => console.log(response.data))
-      .catch((error) => console.error("Error:", error));
-  };
-  function handleCreateQuiz() {
-    postNewQuiz();
+  function handleQuizlist() {
+    // console.log();
+    // deze velde later vervangen met de input velden
+    setQuiz([...quizList, { title: "new quiz", password: "new password" }]);
+
+    // console.log(quizList);
+    // postNewQuiz();
   }
 
   return (
@@ -79,13 +24,13 @@ export default function QuizOverview() {
             </h1>
           </div>
           <div className="flex flex-col space-y-4">
-            {["Quiz 1", "Quiz 2", "Quiz 3"].map((quiz, index) => (
+            {quizList.map((post) => (
               <div
-                key={index}
+                key={post._id}
                 className="flex items-center justify-center space-x-4"
               >
                 <span className="text-lg font-normal text-black lg:text-2xl font-custom">
-                  {quiz}
+                  {post.title}
                 </span>
                 <span>-</span>
                 <div className="flex span-x-4">
@@ -129,14 +74,29 @@ export default function QuizOverview() {
           </div>
         </div>
         <div className="w-full p-4 lg:w-1/2">
-          {/* // Delete this button later */}
-          <button
-            onClick={handleCreateQuiz}
-            className="p-4 text-white rounded-full bg-primary font-custom"
-          >
-            Do Fake post call
-          </button>
-          <QuizCreateForm></QuizCreateForm>
+          <div className="form">
+            <div className="p-4 mb-4 rounded-2xl">
+              <h1 className="text-2xl font-normal text-black lg:text-3xl font-custom">
+                Maak een quiz aan
+              </h1>
+            </div>
+            <div className="flex flex-col space-y-4">
+              <input
+                placeholder="Titel"
+                className="w-full p-2 mb-2 border-2 rounded-full"
+              />
+              <input
+                placeholder="Beschrijving"
+                className="w-full p-2 mb-2 border-2 rounded-full"
+              />
+              <button
+                className="w-full p-2 text-white rounded-full bg-sky-600"
+                onClick={handleQuizlist}
+              >
+                Quiz aanmaken
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

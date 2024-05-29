@@ -1,25 +1,23 @@
 export interface QuizType {
-  _id: string;
-  slug: string;
+  _id?: string;
+  slug?: string;
   title: string;
   password: string;
-  questions: Question[];
-  totalQuestions: number;
+  questions?: Question[];
+  totalQuestions?: number;
+  __v?: number;
 }
-
 export interface Question {
-  id: string;
+  _id: string;
   question: string;
-  answers: Answer[];
+  answers: Answer;
 }
-
 export interface Answer {
-  A?: Option;
-  B?: Option;
-  C?: Option;
-  D?: Option;
+  A: Option;
+  B: Option;
+  C: Option;
+  D: Option;
 }
-
 export interface Option {
   answer: string;
   isCorrect: boolean;
