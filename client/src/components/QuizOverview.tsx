@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function QuizOverview() {
   return (
     <div className="flex justify-center align-middle text-center min-h-full p-4">

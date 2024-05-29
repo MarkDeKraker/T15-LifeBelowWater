@@ -5,19 +5,18 @@ export interface QuizType {
   password: string;
   questions: Question[];
   totalQuestions: number;
+  __v: number;
 }
 
 export interface Question {
-  id: string;
+  _id: string;
   question: string;
-  answers: Answer[];
-}
-
-export interface Answer {
-  A?: Option;
-  B?: Option;
-  C?: Option;
-  D?: Option;
+  answers: {
+    A: Option;
+    B: Option;
+    C: Option;
+    D: Option;
+  };
 }
 
 export interface Option {
