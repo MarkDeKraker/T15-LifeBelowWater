@@ -1,12 +1,80 @@
-import React from "react";
+import { useAuth } from "../context/AuthContext";
+import { QuizCreateForm } from "./QuizCreateForm";
+import axios from "axios";
 
 export default function QuizOverview() {
+  const { tokenForBearer } = useAuth();
+
+  const postNewQuiz = () => {
+    const payload = {
+      slug: "kipp",
+      title: "kipp",
+      password: "kipp",
+      questions: [
+        {
+          answers: {
+            A: {
+              answer: "Answer A",
+              isCorrect: false,
+            },
+            B: {
+              answer: "Answer B",
+              isCorrect: true,
+            },
+            C: {
+              answer: "Answer C",
+              isCorrect: false,
+            },
+            D: {
+              answer: "Answer D",
+              isCorrect: false,
+            },
+          },
+          question: "Test question 1?",
+        },
+        {
+          answers: {
+            A: {
+              answer: "Answer A",
+              isCorrect: false,
+            },
+            B: {
+              answer: "Answer B",
+              isCorrect: false,
+            },
+            C: {
+              answer: "Answer C",
+              isCorrect: true,
+            },
+            D: {
+              answer: "Answer D",
+              isCorrect: false,
+            },
+          },
+          question: "Test question 2?",
+        },
+      ],
+      totalQuestions: 2,
+    };
+    axios
+      .post("http://localhost:3000/api/v1/quiz", payload, {
+        headers: {
+          Authorization: tokenForBearer(),
+        },
+      })
+      .then((response) => console.log(response.data))
+      .catch((error) => console.error("Error:", error));
+  };
+  function handleCreateQuiz() {
+    postNewQuiz();
+  }
+
   return (
-    <div className="flex justify-center align-middle text-center min-h-full p-4">
-      <div className="flex flex-col lg:flex-row justify-center items-center w-full max-w-screen-lg">
-        <div className="w-full lg:w-1/2 p-4">
-          <div className="bg-blue-100 rounded-2xl border-2 border-zinc-300 p-4 mb-4">
-            <h1 className="text-black text-2xl lg:text-3xl font-normal font-custom">
+    <div className="flex justify-center min-h-full p-4 text-center align-middle">
+      <div className="flex flex-col items-center justify-center w-full max-w-screen-lg lg:flex-row">
+        <div className="w-full p-4 lg:w-1/2">
+          <div className="p-4 mb-4 bg-blue-100 border-2 rounded-2xl border-zinc-300">
+            <h1 className="text-2xl font-normal text-black lg:text-3xl font-custom">
               Quizzes Overzicht
             </h1>
           </div>
@@ -16,7 +84,7 @@ export default function QuizOverview() {
                 key={index}
                 className="flex items-center justify-center space-x-4"
               >
-                <span className="text-black text-lg lg:text-2xl font-normal font-custom">
+                <span className="text-lg font-normal text-black lg:text-2xl font-custom">
                   {quiz}
                 </span>
                 <span>-</span>
@@ -60,25 +128,15 @@ export default function QuizOverview() {
             ))}
           </div>
         </div>
-        <div className="w-full lg:w-1/2 p-4">
-          <div className="rounded-2xl p-4 mb-4">
-            <h1 className="text-black text-2xl lg:text-3xl font-normal font-custom">
-              Maak een quiz aan
-            </h1>
-          </div>
-          <div className="flex flex-col space-y-4">
-            <input
-              placeholder="Titel"
-              className="w-full border-2 p-2 rounded-full mb-2"
-            />
-            <input
-              placeholder="Beschrijving"
-              className="w-full border-2 p-2 rounded-full mb-2"
-            />
-            <button className="bg-sky-600 rounded-full p-2 w-full text-white">
-              Quiz aanmaken
-            </button>
-          </div>
+        <div className="w-full p-4 lg:w-1/2">
+          {/* // Delete this button later */}
+          <button
+            onClick={handleCreateQuiz}
+            className="p-4 text-white rounded-full bg-primary font-custom"
+          >
+            Do Fake post call
+          </button>
+          <QuizCreateForm></QuizCreateForm>
         </div>
       </div>
     </div>

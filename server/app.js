@@ -1,9 +1,9 @@
 import chalk from "chalk";
-import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 import swaggerUi from "swagger-ui-express";
+import cors from "cors";
 
 import adminRoutes from "./routes/admins/admins.js";
 import authRoutes from "./routes/auth/authentication.js";

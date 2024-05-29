@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 interface AuthContextType {
   token: string | null;
@@ -10,6 +10,7 @@ interface AuthContextType {
   authToken: (token: string) => void;
   authExpiresIn: (expiresIn: number) => void;
   Logout: () => void;
+  tokenForBearer: () => string;
 }
 
 const AuthContext = React.createContext<AuthContextType | undefined>(undefined);
@@ -49,6 +50,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setExpiresIn(null);
   };
 
+  const tokenForBearer = () => {
+    return token ? `Bearer ${token}` : "";
+  };
   return (
     <AuthContext.Provider
       value={{
@@ -59,6 +63,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         authToken,
         authExpiresIn,
         Logout,
+        tokenForBearer,
       }}
     >
       {children}
