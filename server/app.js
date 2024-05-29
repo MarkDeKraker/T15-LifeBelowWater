@@ -1,19 +1,21 @@
-import chalk from 'chalk';
-import dotenv from 'dotenv';
-import express from 'express';
-import mongoose from 'mongoose';
-import swaggerUi from 'swagger-ui-express';
+import chalk from "chalk";
+import cors from "cors";
+import dotenv from "dotenv";
+import express from "express";
+import mongoose from "mongoose";
+import swaggerUi from "swagger-ui-express";
 
-import adminRoutes from './routes/admins/admins.js';
-import authRoutes from './routes/auth/authentication.js';
-import quizRoutes from './routes/quiz/http.js';
-import swaggerDocs from './settings/swagger.js';
+import adminRoutes from "./routes/admins/admins.js";
+import authRoutes from "./routes/auth/authentication.js";
+import quizRoutes from "./routes/quiz/http.js";
+import swaggerDocs from "./settings/swagger.js";
 
 dotenv.config();
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 if (process.env.NODE_ENV === "development") {
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 }

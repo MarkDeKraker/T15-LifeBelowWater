@@ -1,8 +1,10 @@
-import ChapterCard from "./ChapterCard";
 import plasticsoep from "../assets/plasticsoep.jpg";
-import H2 from "./typography/H2";
+import ChapterCard from "../components/ChapterCard";
+import H2 from "../components/typography/H2";
+import { useRequireAuth } from "../hooks/useRequireAuth";
 
 export default function HomePage() {
+  useRequireAuth();
   return (
     <>
       <H2 className="my-10 text-center">Onderwerpen</H2>
