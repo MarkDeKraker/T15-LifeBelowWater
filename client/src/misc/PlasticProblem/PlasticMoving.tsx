@@ -22,20 +22,13 @@ const plasticMoving = {
             Hoe plastic verplaatst
           </h2>
           <p className="text-cyan-950 text-sm font-semibold font-custom text-wrap py-3">
-            De meerderheid van de plasticvervuiling in de oceaan wordt
-            veroorzaakt door het achterlaten van afval: we kopen of gebruiken
-            wegwerpproducten van plastic (voedselverpakkingen, plastic zakken,
-            scheermesjes, flessen, etc.) en we ruimen ze niet op de juiste
-            manier op. Plastic wordt via rivieren of direct vanaf kustlijnen
-            uiteindelijk rechtstreeks in de oceanen gedumpt.
-            <br />
-            <br />
             De meeste plastic rommel komt in de oceaan doordat mensen hun afval
             op straat of bij het water achterlaten. We kopen of gebruiken
             wegwerpproducten van plastic (voedselverpakkingen, plastic zakken,
             flessen, etc.) en we ruimen ze niet op de juiste manier op. Als we
-            dat afval niet goed opruimen, kan het in rivieren terechtkomen en
-            uiteindelijk in de oceaan drijven.
+            dat afval niet goed opruimen, kan het worden meegenomen door rivieren,
+            wind en golven en uiteindelijk in de oceaan drijven. Het komt natuurlijk 
+            ook voor dat plastic direct in de oceaan wordt gegooid.
             <br />
             <br />
             Als plastic eenmaal in de zee belandt, blijft een groot deel ervan

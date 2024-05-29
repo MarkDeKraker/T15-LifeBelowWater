@@ -26,9 +26,8 @@ const Microplastics = {
         />
         <p className="text-cyan-950 text-sm font-semibold font-custom text-wrap py-3">
           Maar niet al het plasticafval in de oceaan komt door zwerfafval.
-          Soms wordt plastic niet goed gemaakt en komen er kleine stukjes
-          plastic, genaamd <strong>microplastics</strong>, in het water. Ook
-          gooien sommige vissers plastic spullen in de oceaan, wat ook voor
+          Soms wordt plastic niet goed gemaakt en komen er <strong>microplastics</strong> in 
+          het water. Ook gooien sommige vissers plastic spullen in de oceaan, wat ook voor
           vervuiling zorgt.
           <br />
           <br />
