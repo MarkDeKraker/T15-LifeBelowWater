@@ -11,12 +11,9 @@ export function useRequireAuth(redirectUrl = "/login") {
   useEffect(() => {
     const expiresIn = getExpiresIn();
     const isTokenExpired = expiresIn
-      ? new Date().getTime() > Number(expiresIn)
+      ? new Date().getTime() > new Date(Number(expiresIn)).getTime()
       : true;
     const token = getToken();
-
-    console.log("isTokenExpired", isTokenExpired);
-    console.log("token", token);
 
     if (!token || isTokenExpired) {
       navigate(redirectUrl);
