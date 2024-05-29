@@ -1,17 +1,20 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { AnimatePresence, motion } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+} from 'framer-motion';
 
 import {
   AcademicCapIcon,
   ArrowLeftEndOnRectangleIcon,
   GlobeAltIcon,
-} from "@heroicons/react/16/solid";
+} from '@heroicons/react/16/solid';
 
-import CollapseButton from "./CollapseButton";
-import CollapsedIcon from "./icons/CollapsedIcon";
-import CollapseIcon from "./icons/CollapseIcon";
-import SideBarItem from "./SideBarItem";
+import CollapseButton from './CollapseButton';
+import CollapsedIcon from './icons/CollapsedIcon';
+import CollapseIcon from './icons/CollapseIcon';
+import SideBarItem from './SideBarItem';
 
 export default function SideBar() {
   const [collapsed, isCollapsed] = useState(false);
@@ -51,7 +54,7 @@ export default function SideBar() {
               collapsed={collapsed}
               index={0}
               icon={<GlobeAltIcon className="w-6 h-6" />}
-              link={"/"}
+              link={"/home"}
             />
             <SideBarItem
               title="Quizzes"
@@ -70,7 +73,7 @@ export default function SideBar() {
                 icon={
                   <ArrowLeftEndOnRectangleIcon className="w-6 h-6 text-light" />
                 }
-                link={"/"}
+                link={"/logout"}
               />
             )}
 

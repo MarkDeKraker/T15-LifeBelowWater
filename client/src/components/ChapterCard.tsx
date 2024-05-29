@@ -1,8 +1,10 @@
+import { To } from "react-router-dom";
 import { NavigateButton } from "./buttons/NavigateButton";
 type Params = {
   title: string;
   subTitle: string;
   image: string;
+  To: To;
 };
 
 export default function ChapterCard(props: Params) {
@@ -23,7 +25,7 @@ export default function ChapterCard(props: Params) {
           <NavigateButton
             buttonStyle="secondary"
             To="/plastic/probleem"
-            children={"Ga naar onderwerp"}
+            children="Ga naar onderwerp"
           />
         </div>
       </div>

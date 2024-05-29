@@ -1,45 +1,63 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Outlet,
+  Route,
+  Routes,
+} from 'react-router-dom';
 
-import HomePage from "./components/HomePage";
-import Layout from "./components/Layout";
-import QuizOverviewPage from "./components/QuizOverviewPage";
-import QuizPage from "./pages/QuizPage";
-import NotFound from "./pages/NotFound";
-import NavigationContext from "./context/NavigationContext";
-import PlasticProblemPage from "./pages/PlasticProblemPage.tsx";
-import PlasticConsequencesPage from "./pages/PlasticConsequencesPage.tsx";
-import PlasticApproachPage from "./pages/PlasticApproachPage.tsx";
-import QuizLoginPage from "./pages/QuizLoginPage.tsx";
+import Layout from './components/Layout';
+import { AuthProvider } from './context/AuthContext.tsx';
+import NavigationContext from './context/NavigationContext';
+import LoginPage from './pages/Auth/LoginPage.tsx';
+import LogoutPage from './pages/Auth/LogoutPage.tsx';
+import RegisterPage from './pages/Auth/RegisterPage.tsx';
+import HomePage from './pages/HomePage.tsx';
+import JoinQuizPage from './pages/JoinQuizPage.tsx';
+import NotFound from './pages/NotFound';
+import PlasticApproachPage from './pages/PlasticApproachPage.tsx';
+import PlasticConsequencesPage from './pages/PlasticConsequencesPage.tsx';
+import PlasticProblemPage from './pages/PlasticProblemPage.tsx';
+import QuizLoginPage from './pages/QuizLoginPage.tsx';
+import QuizOverviewPage from './pages/QuizOverviewPage.tsx';
+import QuizPage from './pages/QuizPage';
+
+const LayoutRoute = () => (
+  <Layout>
+    <Outlet />
+  </Layout>
+);
 
 const App = () => {
   const [active, setActive] = useState<number>(0);
 
   return (
-    <NavigationContext.Provider value={{ active, setActive }}>
-      <BrowserRouter>
-        <Layout>
+    <AuthProvider>
+      <NavigationContext.Provider value={{ active, setActive }}>
+        <BrowserRouter>
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/plastic/probleem" element={<PlasticProblemPage />} />
-            <Route
-              path="/plastic/gevolgen"
-              element={<PlasticConsequencesPage />}
-            />
-            <Route path="/plastic/aanpak" element={<PlasticApproachPage />} />
-            <Route path="/quiz/overview" element={<QuizOverviewPage />} />
-
-            {/* quiz/:slug is de url waar de leerling een wachtwoord moet invullen om te daarna de quiz te kunnen beginnen, Deze krijgt hij/zij van de docent. De docent krijgt deze url na het aanmaken van de quiz*/}
-            <Route path="/quiz/login/:slug" element={<QuizLoginPage />} />
-
-            {/* quiz/login/:_id is waar de leerling naartoe wordt gestuurd als de wachtwoord correct is*/}
-            <Route path="/quiz/:_id" element={<QuizPage />} />
+            <Route path="/" element={<JoinQuizPage />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="register" element={<RegisterPage />} />
+            <Route path="logout" element={<LogoutPage />} />
+            <Route element={<LayoutRoute />}>
+              <Route path="home" element={<HomePage />} />
+              <Route path="plastic/probleem" element={<PlasticProblemPage />} />
+              <Route
+                path="plastic/gevolgen"
+                element={<PlasticConsequencesPage />}
+              />
+              <Route path="plastic/aanpak" element={<PlasticApproachPage />} />
+              <Route path="quiz/overview" element={<QuizOverviewPage />} />
+              <Route path="quiz/login/:slug" element={<QuizLoginPage />} />
+              <Route path="quiz/:_id" element={<QuizPage />} />
+            </Route>
           </Routes>
-        </Layout>
-      </BrowserRouter>
-    </NavigationContext.Provider>
+        </BrowserRouter>
+      </NavigationContext.Provider>
+    </AuthProvider>
   );
 };
 
