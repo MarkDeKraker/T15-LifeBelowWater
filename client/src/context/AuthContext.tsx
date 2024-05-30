@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 interface AuthContextType {
   token: string | null;
@@ -7,6 +7,7 @@ interface AuthContextType {
   //   setExpiresIn: React.Dispatch<React.SetStateAction<number | null>>;
   getExpiresIn: () => string | null;
   getToken: () => string | null;
+  getTokenBearer: () => string;
   authToken: (token: string) => void;
   authExpiresIn: (expiresIn: number) => void;
   Logout: () => void;
@@ -36,6 +37,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     return token;
   };
 
+  const getTokenBearer = () => {
+    return token ? `Bearer ${token}` : "";
+  };
+
   const getExpiresIn = () => {
     const expiresIn = localStorage.getItem("expiresIn");
     setExpiresIn(expiresIn ? parseInt(expiresIn) : null);
@@ -59,6 +64,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         authToken,
         authExpiresIn,
         Logout,
+        getTokenBearer,
       }}
     >
       {children}
