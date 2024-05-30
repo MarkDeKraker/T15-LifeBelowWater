@@ -1,28 +1,22 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import {
-  BrowserRouter,
-  Outlet,
-  Route,
-  Routes,
-} from 'react-router-dom';
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
-import Layout from './components/Layout';
-import MockQuiz from './components/QuizQuestions/Mockquiz.tsx';
-import { AuthProvider } from './context/AuthContext.tsx';
-import NavigationContext from './context/NavigationContext';
-import LoginPage from './pages/Auth/LoginPage.tsx';
-import LogoutPage from './pages/Auth/LogoutPage.tsx';
-import RegisterPage from './pages/Auth/RegisterPage.tsx';
-import HomePage from './pages/HomePage.tsx';
-import JoinQuizPage from './pages/JoinQuizPage.tsx';
-import NotFound from './pages/NotFound';
-import PlasticApproachPage from './pages/PlasticApproachPage.tsx';
-import PlasticConsequencesPage from './pages/PlasticConsequencesPage.tsx';
-import PlasticProblemPage from './pages/PlasticProblemPage.tsx';
-import QuizLoginPage from './pages/QuizLoginPage.tsx';
-import QuizOverviewPage from './pages/QuizOverviewPage.tsx';
-import QuizPage from './pages/QuizPage';
+import Layout from "./components/Layout";
+import { AuthProvider } from "./context/AuthContext.tsx";
+import NavigationContext from "./context/NavigationContext";
+import LoginPage from "./pages/Auth/LoginPage.tsx";
+import LogoutPage from "./pages/Auth/LogoutPage.tsx";
+import RegisterPage from "./pages/Auth/RegisterPage.tsx";
+import HomePage from "./pages/HomePage.tsx";
+import JoinQuizPage from "./pages/JoinQuizPage.tsx";
+import NotFound from "./pages/NotFound";
+import PlasticApproachPage from "./pages/PlasticApproachPage.tsx";
+import PlasticConsequencesPage from "./pages/PlasticConsequencesPage.tsx";
+import PlasticProblemPage from "./pages/PlasticProblemPage.tsx";
+import QuizLoginPage from "./pages/QuizLoginPage.tsx";
+import QuizOverviewPage from "./pages/QuizOverviewPage.tsx";
+import QuizPage from "./pages/QuizPage";
 
 const LayoutRoute = () => (
   <Layout>
@@ -44,8 +38,6 @@ const App = () => {
             <Route path="register" element={<RegisterPage />} />
             <Route path="logout" element={<LogoutPage />} />
             <Route element={<LayoutRoute />}>
-              <Route path="mockquiz" element={<MockQuiz />} />
-
               <Route path="home" element={<HomePage />} />
               <Route path="plastic/probleem" element={<PlasticProblemPage />} />
               <Route
