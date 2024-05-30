@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 
 import Layout from './components/Layout';
+import MockQuiz from './components/QuizQuestions/Mockquiz.tsx';
 import { AuthProvider } from './context/AuthContext.tsx';
 import NavigationContext from './context/NavigationContext';
 import LoginPage from './pages/Auth/LoginPage.tsx';
@@ -43,6 +44,8 @@ const App = () => {
             <Route path="register" element={<RegisterPage />} />
             <Route path="logout" element={<LogoutPage />} />
             <Route element={<LayoutRoute />}>
+              <Route path="mockquiz" element={<MockQuiz />} />
+
               <Route path="home" element={<HomePage />} />
               <Route path="plastic/probleem" element={<PlasticProblemPage />} />
               <Route
