@@ -3,25 +3,24 @@ import {
   useState,
 } from 'react';
 
-export interface Question {
-  // _id: string;
+// THESE INTERFACES ARE FOR THE QUESTIONS THAT ARE BEING CREATED TO SEND TO THE API
+// THAT IS WHY THE QUESTIONTYPE DOESN'T HAVE A _ID
+export interface QuestionType {
   question: string;
-  answers: Answer;
+  answers: AnswerType[];
 }
-export interface Answer {
-  A: Option;
-  B: Option;
-  C: Option;
-  D: Option;
-  key?: string;
-}
-export interface Option {
+export interface AnswerType {
   answer: string;
   isCorrect: boolean;
+  _id: string;
 }
+// export interface Option {
+//   answer: string;
+//   isCorrect: boolean;
+// }
 
 function MockQuiz() {
-  const [questions, setQuestions] = useState<Question[]>([]);
+  const [questions, setQuestions] = useState<QuestionType[]>([]);
 
   useEffect(() => {
     console.log(questions);
@@ -32,33 +31,56 @@ function MockQuiz() {
       ...questions,
       {
         question: "",
-        answers: {
-          A: { answer: "", isCorrect: false },
-          B: { answer: "", isCorrect: false },
-          C: { answer: " ", isCorrect: false },
-          D: { answer: "", isCorrect: false },
-        },
+        answers: [
+          { _id: "A", answer: "", isCorrect: false },
+          { _id: "B", answer: "", isCorrect: false },
+          { _id: "C", answer: "", isCorrect: false },
+          { _id: "D", answer: "", isCorrect: false },
+        ],
       },
     ]);
   };
 
   const updateQuestion = (
     index: number,
-    field: string,
-    value: string,
-    key?: string
+    field: "question" | "isCorrect" | "answers",
+    value: string | boolean,
+    answerId?: string
   ) => {
     const updatedQuestions = questions.map((question, i) => {
       if (i === index) {
-        if (key) {
-          console.log(key);
-          if (field === "isCorrect") {
-            question.answers[key].isCorrect = !question.answers[key].isCorrect;
-          } else {
-            question.answers[key].answer = value;
-          }
-        } else {
-          question[field] = value;
+        switch (field) {
+          case "question":
+            // Update the question text
+            return { ...question, question: value as string };
+
+          case "answers":
+            // Update the text of a specific answer
+            return {
+              ...question,
+              answers: question.answers.map((answer) => {
+                if (answer._id === answerId) {
+                  return { ...answer, answer: value as string };
+                }
+                return answer;
+              }),
+            };
+
+          case "isCorrect":
+            // Toggle the correctness of a specific answer
+            return {
+              ...question,
+              answers: question.answers.map((answer) => {
+                if (answer._id === answerId) {
+                  return { ...answer, isCorrect: !answer.isCorrect };
+                }
+                return answer;
+              }),
+            };
+
+          default:
+            // In case an unknown field is used
+            return question;
         }
       }
       return question;
@@ -86,26 +108,26 @@ function MockQuiz() {
                 updateQuestion(index, "question", e.target.value)
               }
             />
-            {Object.keys(question.answers).map((key, i) => (
-              <div className="flex items-center mb-2" key={i}>
+            {question.answers.map((answer) => (
+              <div className="flex items-center mb-2" key={answer._id}>
                 <input
                   type="text"
                   className="flex-grow p-2 border rounded"
-                  placeholder={`Answer `}
-                  value={question.answers[key].answer}
+                  placeholder={`Answer ${answer._id}`}
+                  value={answer.answer}
                   onChange={(e) =>
-                    updateQuestion(index, "answers", e.target.value, key)
+                    updateQuestion(index, "answers", e.target.value, answer._id)
                   }
                 />
                 <button
                   className={`ml-2 px-4 py-2 rounded text-white ${
-                    question.answers[key].isCorrect
-                      ? "bg-green-500"
-                      : "bg-red-500"
+                    answer.isCorrect ? "bg-green-500" : "bg-red-500"
                   }`}
-                  onClick={() => updateQuestion(index, "isCorrect", "", key)}
+                  onClick={() =>
+                    updateQuestion(index, "isCorrect", true, answer._id)
+                  }
                 >
-                  {question.answers[key].isCorrect ? "Correct" : "Incorrect"}
+                  {answer.isCorrect ? "Correct" : "Incorrect"}
                 </button>
               </div>
             ))}
