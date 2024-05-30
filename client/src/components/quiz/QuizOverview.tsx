@@ -1,6 +1,6 @@
-import { mockQuizzes } from "./quiz/mockVariables";
+import { mockQuizzes } from "./mockVariables";
 import { useState } from "react";
-import { QuizType } from "../types/QuizType";
+import { QuizType } from "../../types/QuizType";
 
 export default function QuizOverview() {
   const [quizList, setQuiz] = useState<QuizType[]>([...mockQuizzes]);
