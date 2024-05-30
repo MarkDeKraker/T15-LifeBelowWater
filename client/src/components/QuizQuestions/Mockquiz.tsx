@@ -82,6 +82,11 @@ function MockQuiz() {
     setQuestions(updatedQuestions);
   };
 
+  const focusStyle =
+    "focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50";
+
+  const inputPadding = "p-2 py-3";
+
   return (
     <>
       <div className="p-5 border rounded-lg font-custom">
@@ -95,22 +100,21 @@ function MockQuiz() {
           >
             <input
               type="text"
-              className="block w-full p-2 mb-8 border rounded-2x"
+              className={`block w-full  mb-8 border rounded-2xl ${inputPadding} ${focusStyle}`}
               placeholder="Enter question"
               value={question.question}
               onChange={(e) =>
                 updateQuestion(index, "question", e.target.value)
               }
             />
-            <hr className="my-4" />
             {question.answers.map((answer) => (
               <div
-                className="flex items-center justify-center m-2 "
+                className="flex items-center justify-center m-2"
                 key={answer._id}
               >
                 <input
                   type="text"
-                  className="w-11/12 p-2 border rounded-l-2xl"
+                  className={`w-11/12 transition duration-200 ease-in-out border active:shadow-md  rounded-l-2xl ${inputPadding} ${focusStyle}`}
                   placeholder={`Answer ${answer._id}`}
                   value={answer.answer}
                   onChange={(e) =>
@@ -118,7 +122,7 @@ function MockQuiz() {
                   }
                 />
                 <button
-                  className={`ml-2 px-4 py-2 rounded-r-2xl text-white ${
+                  className={`ml-2 px-4 py-2 rounded-r-2xl text-white font-bold ${
                     answer.isCorrect ? "bg-green-500" : "bg-red-500/80"
                   }`}
                   onClick={() =>
