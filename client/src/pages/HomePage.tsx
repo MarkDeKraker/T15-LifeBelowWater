@@ -1,8 +1,7 @@
-import plasticsoep from '../assets/plasticsoep.jpg';
-import ChapterCard from '../components/ChapterCard';
-import Test from '../components/Test';
-import H2 from '../components/typography/H2';
-import { useRequireAuth } from '../hooks/useRequireAuth';
+import plasticsoep from "../assets/plasticsoep.jpg";
+import ChapterCard from "../components/ChapterCard";
+import H2 from "../components/typography/H2";
+import { useRequireAuth } from "../hooks/useRequireAuth";
 
 export default function HomePage() {
   useRequireAuth();
@@ -17,7 +16,6 @@ export default function HomePage() {
           To="/probleem/aanpak/"
         />
       </div>
-      <Test />
     </>
   );
 }
