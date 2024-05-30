@@ -66,9 +66,10 @@ function MockQuiz() {
               ...question,
               answers: question.answers.map((answer) => {
                 if (answer._id === answerId) {
-                  return { ...answer, isCorrect: !answer.isCorrect };
+                  return { ...answer, isCorrect: true };
+                } else {
+                  return { ...answer, isCorrect: false };
                 }
-                return answer;
               }),
             };
 
