@@ -26,7 +26,7 @@ function MockQuiz() {
       {
         question: "",
         answers: [
-          { _id: "A", answer: "", isCorrect: false },
+          { _id: "A", answer: "", isCorrect: true },
           { _id: "B", answer: "", isCorrect: false },
           { _id: "C", answer: "", isCorrect: false },
           { _id: "D", answer: "", isCorrect: false },
@@ -92,7 +92,7 @@ function MockQuiz() {
     <>
       <div className="p-5 border rounded-lg font-custom">
         <StyledButton buttonStyle="secondary" onClick={addQuestions}>
-          Add Question
+          Voeg vraag toe
         </StyledButton>
         {questions.map((question, index) => (
           <div
@@ -102,7 +102,7 @@ function MockQuiz() {
             <input
               type="text"
               className={`block w-full  mb-8 border rounded-2xl ${inputPadding} ${focusStyle}`}
-              placeholder="Enter question"
+              placeholder="Voer vraag in"
               value={question.question}
               onChange={(e) =>
                 updateQuestion(index, "question", e.target.value)
@@ -116,7 +116,7 @@ function MockQuiz() {
                 <input
                   type="text"
                   className={`w-11/12 transition duration-200 ease-in-out border active:shadow-md  rounded-l-2xl ${inputPadding} ${focusStyle}`}
-                  placeholder={`Answer ${answer._id}`}
+                  placeholder={`Antwoord ${answer._id}`}
                   value={answer.answer}
                   onChange={(e) =>
                     updateQuestion(index, "answers", e.target.value, answer._id)
@@ -130,7 +130,7 @@ function MockQuiz() {
                     updateQuestion(index, "isCorrect", true, answer._id)
                   }
                 >
-                  {answer.isCorrect ? "Correct" : "Incorrect"}
+                  {answer.isCorrect ? "Correct" : "Onjuist"}
                 </button>
               </div>
             ))}
