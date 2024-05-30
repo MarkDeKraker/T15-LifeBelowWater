@@ -1,7 +1,5 @@
-import {
-  useEffect,
-  useState,
-} from 'react';
+import { useEffect, useState } from "react";
+import { StyledButton } from "../buttons/AddButton";
 
 // THESE INTERFACES ARE FOR THE QUESTIONS THAT ARE BEING CREATED TO SEND TO THE API
 // THAT IS WHY THE QUESTIONTYPE DOESN'T HAVE A _ID
@@ -14,10 +12,6 @@ export interface AnswerType {
   isCorrect: boolean;
   _id: string;
 }
-// export interface Option {
-//   answer: string;
-//   isCorrect: boolean;
-// }
 
 function MockQuiz() {
   const [questions, setQuestions] = useState<QuestionType[]>([]);
@@ -90,29 +84,33 @@ function MockQuiz() {
 
   return (
     <>
-      <div className="p-5">
-        <button
-          className="mb-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={addQuestions}
-        >
+      <div className="p-5 border rounded-lg font-custom">
+        <StyledButton buttonStyle="secondary" onClick={addQuestions}>
           Add Question
-        </button>
+        </StyledButton>
         {questions.map((question, index) => (
-          <div key={index} className="mb-4 p-4 border rounded shadow">
+          <div
+            key={index}
+            className="p-8 my-4 border shadow rounded-2xl bg-primary/5"
+          >
             <input
               type="text"
-              className="block w-full mb-2 p-2 border rounded"
+              className="block w-full p-2 mb-8 border rounded-2x"
               placeholder="Enter question"
               value={question.question}
               onChange={(e) =>
                 updateQuestion(index, "question", e.target.value)
               }
             />
+            <hr className="my-4" />
             {question.answers.map((answer) => (
-              <div className="flex items-center mb-2" key={answer._id}>
+              <div
+                className="flex items-center justify-center m-2 "
+                key={answer._id}
+              >
                 <input
                   type="text"
-                  className="flex-grow p-2 border rounded"
+                  className="w-11/12 p-2 border rounded-l-2xl"
                   placeholder={`Answer ${answer._id}`}
                   value={answer.answer}
                   onChange={(e) =>
@@ -120,8 +118,8 @@ function MockQuiz() {
                   }
                 />
                 <button
-                  className={`ml-2 px-4 py-2 rounded text-white ${
-                    answer.isCorrect ? "bg-green-500" : "bg-red-500"
+                  className={`ml-2 px-4 py-2 rounded-r-2xl text-white ${
+                    answer.isCorrect ? "bg-green-500" : "bg-red-500/80"
                   }`}
                   onClick={() =>
                     updateQuestion(index, "isCorrect", true, answer._id)
