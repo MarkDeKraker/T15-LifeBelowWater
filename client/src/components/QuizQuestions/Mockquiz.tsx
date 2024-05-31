@@ -27,7 +27,7 @@ function MockQuiz() {
             <FormInput
               name="title"
               type="text"
-              className="p-2 bg-white border"
+              className=""
               placeholder="Voer title in"
               onChange={(e) => setTitle(e.target.value)}
             />
@@ -38,9 +38,10 @@ function MockQuiz() {
               key={index}
               className="p-8 my-4 border shadow rounded-2xl bg-primary/5"
             >
-              <input
+              <FormInput
+                name="question"
                 type="text"
-                className={`block w-full mb-8 border rounded-2xl ${inputPadding} ${focusStyle}`}
+                className={`block w-full rounded-custom mb-8 ${inputPadding} ${focusStyle}`}
                 placeholder="Voer vraag in"
                 value={question.question}
                 onChange={(e) =>
@@ -52,7 +53,8 @@ function MockQuiz() {
                   className="flex items-center justify-center m-2"
                   key={answer._id}
                 >
-                  <input
+                  <FormInput
+                    name="answer"
                     type="text"
                     className={`w-11/12 transition duration-200 ease-in-out border active:shadow-md  rounded-l-2xl ${inputPadding} ${focusStyle}`}
                     placeholder={`Antwoord ${answer._id}`}
