@@ -7,6 +7,12 @@ export interface QuizType {
   totalQuestions?: number;
   __v?: number;
 }
+export interface SaveQuizType {
+  slug?: string;
+  title: string;
+  password: string;
+  questions?: Question[];
+}
 export interface Question {
   _id: string;
   question: string;

@@ -1,8 +1,12 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { useAuth } from "./AuthContext";
 
 interface QuizContextType {
   questions: QuestionType[]; // Replace 'any' with the type of your quiz data
   setQuestions: React.Dispatch<React.SetStateAction<QuestionType[]>>;
+  setTitle: React.Dispatch<React.SetStateAction<string>>;
+  setPassword: React.Dispatch<React.SetStateAction<string>>;
   saveQuiz: () => void;
   addQuestions: () => void;
   updateQuestion: (
@@ -18,7 +22,11 @@ const QuizContext = React.createContext<QuizContextType | undefined>(undefined);
 export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
+  const { getTokenBearer } = useAuth();
   const [questions, setQuestions] = useState<QuestionType[] | []>([]);
+
+  const [title, setTitle] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   const addQuestions = () => {
     setQuestions([
@@ -83,10 +91,29 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
     setQuestions(updatedQuestions);
   };
 
+  const getSlug = (title: string) => title.toLowerCase().replace(/\s/g, "-");
+
   const saveQuiz = () => {
     // Implement your logic to submit the quiz
-    const quizData = questions;
-    console.log("Quiz data to be saved: ", quizData);
+
+    const payload = {
+      title: title,
+      slug: getSlug(title),
+      password: password,
+      questions: questions,
+      totalQuestions: questions.length,
+    };
+
+    // console.log(JSON.stringify(payload, null, 2));
+
+    axios
+      .post(`${import.meta.env.VITE_API_URL}/quiz`, payload, {
+        headers: {
+          Authorization: getTokenBearer(),
+        },
+      })
+      .then((response) => console.log(response.data))
+      .catch((error) => console.error("Error:", error));
   };
 
   return (
@@ -97,6 +124,8 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
         addQuestions,
         updateQuestion,
         saveQuiz,
+        setTitle,
+        setPassword,
       }}
     >
       {children}

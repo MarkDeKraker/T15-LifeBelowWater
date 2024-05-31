@@ -6,19 +6,32 @@ import Container from "../Layout/Container";
 import FormInput from "../form/FormInput";
 
 function MockQuiz() {
-  const { questions, addQuestions, updateQuestion, saveQuiz, setTitle } =
-    useQuizBuilder();
+  const {
+    questions,
+    addQuestions,
+    updateQuestion,
+    saveQuiz,
+    setTitle,
+    setPassword,
+  } = useQuizBuilder();
 
   return (
     <>
       <Container>
         <div className="p-5 border rounded-lg font-custom">
-          <div className="quiz-title">
+          <div className="flex flex-col space-y-4 quiz-fields">
             <FormInput
-              name="title"
               type="text"
+              name="title"
               placeholder="Voer titel in"
               onChange={(e) => setTitle(e.target.value)}
+            />
+
+            <FormInput
+              type="text"
+              name="password"
+              placeholder="Wachtwoord"
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
