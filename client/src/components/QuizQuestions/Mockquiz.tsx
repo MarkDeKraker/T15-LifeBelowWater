@@ -32,22 +32,6 @@ function MockQuiz() {
   return (
     <>
       <div className="p-5 border rounded-lg font-custom">
-        <div className="flex justify-between">
-          <StyledButton
-            buttonStyle="tertiary"
-            onClick={addQuestions}
-            icon={<AddIcon />}
-          >
-            Voeg vraag toe
-          </StyledButton>
-          <StyledButton
-            buttonStyle="primary"
-            onClick={saveQuiz}
-            icon={<SaveIcon />}
-          >
-            Opslaan
-          </StyledButton>
-        </div>
         {questions.map((question, index) => (
           <div
             key={index}
@@ -90,6 +74,22 @@ function MockQuiz() {
             ))}
           </div>
         ))}
+        <div className="flex justify-between">
+          <StyledButton
+            buttonStyle="tertiary"
+            onClick={addQuestions}
+            icon={<AddIcon />}
+          >
+            Voeg vraag toe
+          </StyledButton>
+          <StyledButton
+            buttonStyle="tertiary"
+            onClick={saveQuiz}
+            icon={<SaveIcon />}
+          >
+            Opslaan
+          </StyledButton>
+        </div>
       </div>
     </>
   );

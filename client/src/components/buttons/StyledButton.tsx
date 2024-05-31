@@ -27,7 +27,7 @@ export function StyledButton(props: Props) {
         onClick={props.onClick}
       >
         <div className="inline-flex items-center">
-          {props.icon && <span className="pr-2">{props.icon}</span>}
+          {props.icon || null}
           {props.children}
         </div>
       </button>
