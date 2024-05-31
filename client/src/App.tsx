@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import HomePage from "./components/HomePage";
+import HomePage from "./pages/HomePage.tsx";
 import Layout from "./components/Layout";
 import QuizPage from "./pages/QuizPage";
 import NotFound from "./pages/NotFound";

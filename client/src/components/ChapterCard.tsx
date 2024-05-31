@@ -2,16 +2,16 @@ import { To } from "react-router-dom";
 import { NavigateButton } from "./buttons/NavigateButton";
 import { ExpandButton } from "./buttons/ExpandButton";
 import React from "react";
+
 type Params = {
   title: string;
   subTitle: string;
   image: string;
   To: To;
-  expandedText: React.ReactNode
+  expandedText: React.ReactNode;
 };
 
 export default function ChapterCard(props: Params) {
-
   return (
     <div className="max-w-5xl p-5 mx-auto bg-white rounded-lg shadow-lg">
       <div className="flex space-x-4">
@@ -31,12 +31,11 @@ export default function ChapterCard(props: Params) {
             To="/plastic/probleem"
             children="Ga naar onderwerp"
           />
-          <ExpandButton 
-            expandedText={props.expandedText} 
+          <ExpandButton
+            expandedText={props.expandedText}
             buttonStyle="secondary"
             children="Belangrijkste termen"
-            >
-          </ExpandButton>
+          />
         </div>
       </div>
     </div>
