@@ -14,11 +14,6 @@ function MockQuiz() {
     console.log(questions);
   }, [questions]);
 
-  const focusStyle =
-    "focus:outline-none focus:ring-1 focus:ring-primary focus:ring-opacity-50";
-
-  const inputPadding = "p-2 py-3";
-
   return (
     <>
       <Container>
@@ -28,7 +23,7 @@ function MockQuiz() {
               name="title"
               type="text"
               className=""
-              placeholder="Voer title in"
+              placeholder="Voer titel in"
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
@@ -41,7 +36,7 @@ function MockQuiz() {
               <FormInput
                 name="question"
                 type="text"
-                className={`block w-full rounded-custom mb-8 ${inputPadding} ${focusStyle}`}
+                className={`block w-full rounded-none mb-8 `}
                 placeholder="Voer vraag in"
                 value={question.question}
                 onChange={(e) =>
@@ -56,7 +51,7 @@ function MockQuiz() {
                   <FormInput
                     name="answer"
                     type="text"
-                    className={`w-11/12 transition duration-200 ease-in-out border active:shadow-md  rounded-l-2xl ${inputPadding} ${focusStyle}`}
+                    className={`w-11/12 transition duration-200 ease-in-out border active:shadow-md rounded-l-2xl rounded-r-none`}
                     placeholder={`Antwoord ${answer._id}`}
                     value={answer.answer}
                     onChange={(e) =>
