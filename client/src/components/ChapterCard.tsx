@@ -28,7 +28,7 @@ export default function ChapterCard(props: Params) {
           </p>
           <NavigateButton
             buttonStyle="secondary"
-            To="/plastic/probleem"
+            To={props.To}
             children="Ga naar onderwerp"
           />
           <ExpandButton
