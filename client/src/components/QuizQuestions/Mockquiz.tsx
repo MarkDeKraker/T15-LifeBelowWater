@@ -4,9 +4,10 @@ import { useEffect } from "react";
 import AddIcon from "../icons/AddIcon";
 import SaveIcon from "../icons/SaveIcon";
 import Container from "../Layout/Container";
+import FormInput from "../form/FormInput";
 
 function MockQuiz() {
-  const { questions, addQuestions, updateQuestion, saveQuiz } =
+  const { questions, addQuestions, updateQuestion, saveQuiz, setTitle } =
     useQuizBuilder();
 
   useEffect(() => {
@@ -21,7 +22,17 @@ function MockQuiz() {
   return (
     <>
       <Container>
-        <div className="p-5 rounded-lg font-custom">
+        <div className="p-5 border rounded-lg font-custom">
+          <div className="quiz-title">
+            <FormInput
+              name="title"
+              type="text"
+              className="p-2 bg-white border"
+              placeholder="Voer title in"
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </div>
+
           {questions.map((question, index) => (
             <div
               key={index}
