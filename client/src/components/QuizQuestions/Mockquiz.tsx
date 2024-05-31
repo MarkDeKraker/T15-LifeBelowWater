@@ -5,18 +5,6 @@ import AddIcon from "../icons/AddIcon";
 import SaveIcon from "../icons/SaveIcon";
 import Container from "../Layout/Container";
 
-// THESE INTERFACES ARE FOR THE QUESTIONS THAT ARE BEING CREATED TO SEND TO THE API
-// THAT IS WHY THE QUESTIONTYPE DOESN'T HAVE A _ID
-export interface QuestionType {
-  question: string;
-  answers: AnswerType[];
-}
-export interface AnswerType {
-  answer: string;
-  isCorrect: boolean;
-  _id: string;
-}
-
 function MockQuiz() {
   const { questions, addQuestions, updateQuestion, saveQuiz } =
     useQuizBuilder();

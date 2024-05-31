@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { QuestionType } from "../components/QuizQuestions/Mockquiz";
 
 interface QuizContextType {
   questions: QuestionType[]; // Replace 'any' with the type of your quiz data
@@ -111,4 +110,16 @@ export const useQuizBuilder = () => {
     throw new Error("useQuiz must be used within a QuizProvider");
   }
   return context;
+};
+// THESE INTERFACES ARE FOR THE QUESTIONS THAT ARE BEING CREATED TO SEND TO THE API
+// THAT IS WHY THE QUESTIONTYPE DOESN'T HAVE A _ID
+
+export type QuestionType = {
+  question: string;
+  answers: AnswerType[];
+};
+export type AnswerType = {
+  answer: string;
+  isCorrect: boolean;
+  _id: string;
 };
