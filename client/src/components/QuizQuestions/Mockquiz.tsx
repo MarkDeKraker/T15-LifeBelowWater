@@ -1,6 +1,5 @@
 import { StyledButton } from "../buttons/StyledButton";
 import { useQuizBuilder } from "../../context/QuizBuilderContext";
-import { useEffect } from "react";
 import AddIcon from "../icons/AddIcon";
 import SaveIcon from "../icons/SaveIcon";
 import Container from "../Layout/Container";
@@ -10,10 +9,6 @@ function MockQuiz() {
   const { questions, addQuestions, updateQuestion, saveQuiz, setTitle } =
     useQuizBuilder();
 
-  useEffect(() => {
-    console.log(questions);
-  }, [questions]);
-
   return (
     <>
       <Container>
@@ -22,7 +17,6 @@ function MockQuiz() {
             <FormInput
               name="title"
               type="text"
-              className=""
               placeholder="Voer titel in"
               onChange={(e) => setTitle(e.target.value)}
             />
@@ -31,27 +25,28 @@ function MockQuiz() {
           {questions.map((question, index) => (
             <div
               key={index}
-              className="p-8 my-4 border shadow rounded-2xl bg-primary/5"
+              className="flex flex-col p-8 my-4 border shadow rounded-custom bg-primary/5"
             >
               <FormInput
                 name="question"
                 type="text"
-                className={`block w-full rounded-none mb-8 `}
+                className={`block w-full`}
                 placeholder="Voer vraag in"
                 value={question.question}
                 onChange={(e) =>
                   updateQuestion(index, "question", e.target.value)
                 }
               />
+              <div className="my-3 border border-1"></div>
               {question.answers.map((answer) => (
                 <div
-                  className="flex items-center justify-center m-2"
+                  className="flex items-center justify-center space-y-2"
                   key={answer._id}
                 >
                   <FormInput
                     name="answer"
                     type="text"
-                    className={`w-11/12 transition duration-200 ease-in-out border active:shadow-md rounded-l-2xl rounded-r-none`}
+                    className={` border rounded-l-2xl rounded-r-none`}
                     placeholder={`Antwoord ${answer._id}`}
                     value={answer.answer}
                     onChange={(e) =>
@@ -64,8 +59,8 @@ function MockQuiz() {
                     }
                   />
                   <button
-                    className={`ml-2 px-4 py-2 rounded-r-2xl text-white font-bold ${
-                      answer.isCorrect ? "bg-green-500" : "bg-red-500/80"
+                    className={`p-2 py-3 rounded-r-2xl text-white font-bold ${
+                      answer.isCorrect ? "bg-green-500/80" : "bg-red-500/60"
                     }`}
                     onClick={() =>
                       updateQuestion(index, "isCorrect", true, answer._id)

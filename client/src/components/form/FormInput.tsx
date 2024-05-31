@@ -7,9 +7,11 @@ type FormInputProps = {
 } & InputHTMLAttributes<HTMLInputElement>;
 
 const focusStyle =
-  "focus:outline-none focus:ring-1 focus:ring-primary focus:ring-opacity-50";
+  "focus:outline-none focus:ring-1 focus:ring-primary focus:ring-opacity-50 focus-visible:outline-none";
 
 const inputPadding = "p-2 py-3";
+
+const transitionStyle = "transition-all duration-200 ease-in-out";
 
 function FormInput({ ...props }: FormInputProps) {
   // const transitionStyle = "transition-all duration-150 ease-in-out";
@@ -17,7 +19,7 @@ function FormInput({ ...props }: FormInputProps) {
     <input
       {...props}
       className={overrideTailwindClasses(
-        `bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-custom focus:ring-none block w-full p-2.5 focus-visible:outline-none f${focusStyle} ${inputPadding} ${props.className}`
+        `bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md  block w-full  ${transitionStyle}  ${focusStyle} ${inputPadding} ${props.className}`
       )}
     />
   );
