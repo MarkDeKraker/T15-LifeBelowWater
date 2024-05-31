@@ -1,15 +1,9 @@
-import axios from 'axios';
-import {
-  AnimatePresence,
-  motion,
-} from 'framer-motion';
-import { useForm } from 'react-hook-form';
-import {
-  Link,
-  useNavigate,
-} from 'react-router-dom';
+import axios from "axios";
+import { AnimatePresence, motion } from "framer-motion";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
 
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from "../../context/AuthContext";
 
 type FormValues = {
   email: string;
@@ -84,7 +78,7 @@ function Login() {
       )}
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="space-y-4 flex flex-col"
+        className="flex flex-col space-y-4"
       >
         <input
           type="email"
@@ -133,7 +127,7 @@ function Login() {
         </AnimatePresence>
         <button
           type="submit"
-          className="w-72 h-14 text-lg text-white bg-blue-500 rounded-custom hover:bg-blue-600"
+          className="text-lg text-white bg-blue-500 w-72 h-14 rounded-custom hover:bg-blue-600"
         >
           Login
         </button>
@@ -141,7 +135,7 @@ function Login() {
       <div>
         Nog geen account?{" "}
         <Link to="/register">
-          <span className="text-blue-500 hover:underline cursor-pointer">
+          <span className="text-blue-500 cursor-pointer hover:underline">
             Registeer hier
           </span>
         </Link>
