@@ -1,4 +1,4 @@
-import MockQuiz from "../components/QuizQuestions/Mockquiz";
+import QuizBuilder from "../components/QuizQuestions/QuizBuilder";
 import { QuizProvider } from "../context/QuizBuilderContext";
 import { useRequireAuth } from "../hooks/useRequireAuth";
 
@@ -7,7 +7,7 @@ export default function QuizOverviewPage() {
 
   return (
     <QuizProvider>
-      <MockQuiz />
+      <QuizBuilder />
     </QuizProvider>
   );
 }

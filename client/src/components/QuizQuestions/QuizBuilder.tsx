@@ -5,7 +5,7 @@ import SaveIcon from "../icons/SaveIcon";
 import Container from "../Layout/Container";
 import FormInput from "../form/FormInput";
 
-function MockQuiz() {
+function QuizBuilder() {
   const {
     questions,
     addQuestions,
@@ -19,12 +19,13 @@ function MockQuiz() {
     <>
       <Container>
         <div className="p-5 border rounded-lg font-custom">
-          <div className="flex flex-col space-y-4 quiz-fields">
+          <form className="flex flex-col space-y-4 quiz-fields">
             <FormInput
               type="text"
               name="title"
               placeholder="Voer titel in"
               onChange={(e) => setTitle(e.target.value)}
+              required
             />
 
             <FormInput
@@ -32,8 +33,9 @@ function MockQuiz() {
               name="password"
               placeholder="Wachtwoord"
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
-          </div>
+          </form>
 
           {questions.map((question, index) => (
             <div
@@ -94,6 +96,7 @@ function MockQuiz() {
               Voeg vraag toe
             </StyledButton>
             <StyledButton
+              type="submit"
               buttonStyle="tertiary"
               onClick={saveQuiz}
               icon={<SaveIcon />}
@@ -107,4 +110,4 @@ function MockQuiz() {
   );
 }
 
-export default MockQuiz;
+export default QuizBuilder;
