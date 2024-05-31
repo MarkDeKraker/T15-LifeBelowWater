@@ -1,38 +1,43 @@
-import axios from 'axios';
-import {
-  AnimatePresence,
-  motion,
-} from 'framer-motion';
-import { useForm } from 'react-hook-form';
-import {
-  Link,
-  useNavigate,
-} from 'react-router-dom';
+import axios from "axios";
+import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
 
 type FormValues = {
   username: string;
   email: string;
   password: string;
+  apiError?: {
+    message: string;
+  };
 };
 
 function Register() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
+    setError,
   } = useForm<FormValues>({ mode: "onSubmit" });
 
   const navigate = useNavigate();
 
   const onSubmit = async (data: FormValues) => {
-    const response = await axios.post(
-      `${import.meta.env.VITE_API_URL}/auth/register`,
-      data
-    );
-    console.log(response.status);
-    if (response.status === 201) {
-      console.log("Succesvol geregistreerd");
-      navigate("/login");
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/auth/register`,
+        data
+      );
+      console.log(response.status);
+      if (response.status === 201) {
+        console.log("Succesvol geregistreerd");
+        navigate("/login");
+      }
+    } catch (error) {
+      console.error(error);
+      setError("root.apiError", {
+        message: "Er is een netwerkfout opgetreden. Probeer het later opnieuw.",
+      });
     }
   };
 
@@ -48,10 +53,37 @@ function Register() {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen space-y-8">
-      <span className="text-2xl text-gray-700">Login</span>
+      <span className="text-2xl text-gray-700">Registeren</span>
+      <AnimatePresence>
+        <LayoutGroup>
+          {errors.root?.apiError && (
+            <motion.p
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="text-red-500"
+            >
+              {errors.root?.apiError.message}
+            </motion.p>
+          )}
+
+          {isSubmitting && (
+            <motion.div
+              layout
+              className="flex items-center justify-center bg-gray-200 w-72 h-14 rounded-custom"
+            >
+              <span className="text-lg text-gray-700">
+                Bezig met registreren...
+              </span>
+            </motion.div>
+          )}
+        </LayoutGroup>
+      </AnimatePresence>
+
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="space-y-4 flex flex-col"
+        className="flex flex-col space-y-4"
       >
         <input
           type="text"
@@ -123,15 +155,15 @@ function Register() {
         </AnimatePresence>
         <button
           type="submit"
-          className="w-72 h-14 text-lg text-white bg-blue-500 rounded-custom hover:bg-blue-600"
+          className="text-lg text-white bg-blue-500 w-72 h-14 rounded-custom hover:bg-blue-600"
         >
-          Login
+          Registeer
         </button>
       </form>
       <div>
         Al een account?{" "}
         <Link to="/login">
-          <span className="text-blue-500 hover:underline cursor-pointer">
+          <span className="text-blue-500 cursor-pointer hover:underline">
             Log hier in
           </span>
         </Link>

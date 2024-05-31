@@ -33,7 +33,23 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<JoinQuizPage />} />
+            <Route path="/" element={<JoinQuizPage />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="register" element={<RegisterPage />} />
+            <Route path="logout" element={<LogoutPage />} />
+            <Route element={<LayoutRoute />}>
+              <Route path="home" element={<HomePage />} />
+              <Route path="plastic/probleem" element={<PlasticProblemPage />} />
+              <Route
+                path="plastic/gevolgen"
+                element={<PlasticConsequencesPage />}
+              />
+              <Route path="plastic/aanpak" element={<PlasticApproachPage />} />
+              <Route path="quiz/overview" element={<QuizOverviewPage />} />
+              <Route path="quiz/login/:slug" element={<QuizLoginPage />} />
+              <Route path="quiz/:_id" element={<QuizPage />} />
+            </Route>
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
             <Route path="logout" element={<LogoutPage />} />

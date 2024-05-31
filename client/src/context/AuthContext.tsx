@@ -7,10 +7,10 @@ interface AuthContextType {
   //   setExpiresIn: React.Dispatch<React.SetStateAction<number | null>>;
   getExpiresIn: () => string | null;
   getToken: () => string | null;
+  getTokenBearer: () => string;
   authToken: (token: string) => void;
   authExpiresIn: (expiresIn: number) => void;
   Logout: () => void;
-  tokenForBearer: () => string;
 }
 
 const AuthContext = React.createContext<AuthContextType | undefined>(undefined);
@@ -37,6 +37,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     return token;
   };
 
+  const getTokenBearer = () => {
+    return token ? `Bearer ${token}` : "";
+  };
+
   const getExpiresIn = () => {
     const expiresIn = localStorage.getItem("expiresIn");
     setExpiresIn(expiresIn ? parseInt(expiresIn) : null);
@@ -50,9 +54,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setExpiresIn(null);
   };
 
-  const tokenForBearer = () => {
-    return token ? `Bearer ${token}` : "";
-  };
   return (
     <AuthContext.Provider
       value={{
@@ -63,7 +64,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         authToken,
         authExpiresIn,
         Logout,
-        tokenForBearer,
+        getTokenBearer,
       }}
     >
       {children}
