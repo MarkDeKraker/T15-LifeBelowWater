@@ -4,7 +4,7 @@ import { QuestionType } from "../components/QuizQuestions/Mockquiz";
 interface QuizContextType {
   questions: QuestionType[]; // Replace 'any' with the type of your quiz data
   setQuestions: React.Dispatch<React.SetStateAction<QuestionType[]>>;
-  submitQuiz: () => void;
+  saveQuiz: () => void;
   addQuestions: () => void;
   updateQuestion: (
     index: number,
@@ -84,8 +84,10 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
     setQuestions(updatedQuestions);
   };
 
-  const submitQuiz = () => {
+  const saveQuiz = () => {
     // Implement your logic to submit the quiz
+    const quizData = questions;
+    console.log("Quiz data to be saved: ", quizData);
   };
 
   return (
@@ -93,9 +95,9 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
       value={{
         questions,
         setQuestions,
-        submitQuiz,
         addQuestions,
         updateQuestion,
+        saveQuiz,
       }}
     >
       {children}

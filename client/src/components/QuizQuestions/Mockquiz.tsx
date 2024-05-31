@@ -1,6 +1,8 @@
-import { StyledButton } from "../buttons/AddButton";
+import { StyledButton } from "../buttons/StyledButton";
 import { useQuizBuilder } from "../../context/QuizBuilderContext";
 import { useEffect } from "react";
+import AddIcon from "../icons/AddIcon";
+import SaveIcon from "../icons/SaveIcon";
 
 // THESE INTERFACES ARE FOR THE QUESTIONS THAT ARE BEING CREATED TO SEND TO THE API
 // THAT IS WHY THE QUESTIONTYPE DOESN'T HAVE A _ID
@@ -15,23 +17,37 @@ export interface AnswerType {
 }
 
 function MockQuiz() {
-  const { questions, addQuestions, updateQuestion } = useQuizBuilder();
+  const { questions, addQuestions, updateQuestion, saveQuiz } =
+    useQuizBuilder();
 
   useEffect(() => {
     console.log(questions);
   }, [questions]);
 
   const focusStyle =
-    "focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50";
+    "focus:outline-none focus:ring-1 focus:ring-primary focus:ring-opacity-50";
 
   const inputPadding = "p-2 py-3";
 
   return (
     <>
       <div className="p-5 border rounded-lg font-custom">
-        <StyledButton buttonStyle="secondary" onClick={addQuestions}>
-          Voeg vraag toe
-        </StyledButton>
+        <div className="flex justify-between">
+          <StyledButton
+            buttonStyle="tertiary"
+            onClick={addQuestions}
+            icon={<AddIcon />}
+          >
+            Voeg vraag toe
+          </StyledButton>
+          <StyledButton
+            buttonStyle="primary"
+            onClick={saveQuiz}
+            icon={<SaveIcon />}
+          >
+            Opslaan
+          </StyledButton>
+        </div>
         {questions.map((question, index) => (
           <div
             key={index}
@@ -39,7 +55,7 @@ function MockQuiz() {
           >
             <input
               type="text"
-              className={`block w-full  mb-8 border rounded-2xl ${inputPadding} ${focusStyle}`}
+              className={`block w-full mb-8 border rounded-2xl ${inputPadding} ${focusStyle}`}
               placeholder="Voer vraag in"
               value={question.question}
               onChange={(e) =>
