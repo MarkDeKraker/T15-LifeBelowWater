@@ -12,6 +12,7 @@ import PlasticConsequencesPage from "./pages/PlasticConsequencesPage.tsx";
 import PlasticApproachPage from "./pages/PlasticApproachPage.tsx";
 import QuizOverviewPage from "./pages/QuizOverviewPage.tsx";
 import QuizLoginPage from "./pages/QuizLoginPage.tsx";
+import QuizCompletedPage from "./pages/QuizCompletedPage.tsx";
 
 const App = () => {
   const [active, setActive] = useState<number>(0);
@@ -35,6 +36,8 @@ const App = () => {
 
             {/* quiz/login/:_id is waar de leerling naartoe wordt gestuurd als de wachtwoord correct is*/}
             <Route path="/quiz/:_id" element={<QuizPage />} />
+            <Route path="/quiz/completed" element={<QuizCompletedPage />} />
+
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>

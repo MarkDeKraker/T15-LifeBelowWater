@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-type AnswerButtonProps = {
+type QuizAnswerButtonProps = {
   disabled: boolean;
   answerText: string;
   isSelected: boolean;
@@ -8,7 +8,7 @@ type AnswerButtonProps = {
   handleClick: () => void;
 };
 
-const AnswerButton: React.FC<AnswerButtonProps> = ({
+const QuizAnswerButton: React.FC<QuizAnswerButtonProps> = ({
   disabled,
   answerText,
   isSelected,
@@ -21,7 +21,7 @@ const AnswerButton: React.FC<AnswerButtonProps> = ({
       className={`bg-primary font-custom p-5 text-white rounded-full text-left w-full ${
         isSelected
           ? isCorrect
-            ? "text-white bg-green-600 hover:bg-green/70 transition duration-200 ease-in-out"
+            ? "text-white bg-[#17a24d] hover:bg-green/70 transition duration-200 ease-in-out"
             : "text-white bg-red-600 hover:bg-red/70 transition duration-200 ease-in-out"
           : "text-white hover:bg-primary/70 transition duration-200 ease-in-out"
       }`}
@@ -32,4 +32,4 @@ const AnswerButton: React.FC<AnswerButtonProps> = ({
   );
 };
 
-export default AnswerButton;
+export default QuizAnswerButton;
