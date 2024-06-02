@@ -17,7 +17,7 @@ import PlasticApproachPage from '../PlasticApproachPage';
 import PlasticConsequencesPage from '../PlasticConsequencesPage';
 import PlasticProblemPage from '../PlasticProblemPage';
 import QuizBuilderPage from '../QuizBuilderPage';
-import QuizLoginPage from '../QuizLoginPage';
+import QuizCompletedPage from '../QuizCompletedPage';
 import QuizOverviewPage from '../QuizOverviewPage';
 import QuizPage from '../QuizPage';
 
@@ -48,8 +48,8 @@ function RoutesWithAnimation() {
             <Route path="plastic/aanpak" element={<PlasticApproachPage />} />
             <Route path="quiz" element={<QuizOverviewPage />} />
             <Route path="quiz/builder" element={<QuizBuilderPage />} />
-            <Route path="quiz/login/:slug" element={<QuizLoginPage />} />
-            <Route path="quiz/:_id" element={<QuizPage />} />
+            <Route path="quiz/:slug" element={<QuizPage />} />
+            <Route path="quiz/completed" element={<QuizCompletedPage />} />
           </Route>
         </Routes>
       </AnimationProvider>
