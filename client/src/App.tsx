@@ -42,9 +42,8 @@ const App = () => {
               <Route path="login" element={<LoginPage />} />
               <Route path="register" element={<RegisterPage />} />
               <Route path="logout" element={<LogoutPage />} />
-              <Route path="quiz/slug" element={<QuizPage />} />
+              <Route path="quiz/:slug" element={<QuizPage />} />
               <Route path="quiz/completed" element={<QuizCompletedPage />} />
-
               <Route element={<LayoutRoute />}>
                 <Route path="home" element={<HomePage />} />
                 <Route

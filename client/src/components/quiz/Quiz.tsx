@@ -1,84 +1,7 @@
 import { useEffect, useState } from "react";
 import { QuizType } from "../../types/QuizType";
 import QuizAnswerButton from "./QuizAnswerButton";
-import { useNavigate } from "react-router-dom";
-
-const quizData: QuizType = {
-  _id: "6655accbf77d2f464e8bdbd1",
-  slug: "test-quizzzz",
-  title: "Test Quizzzz",
-  password: "test123456",
-  questions: [
-    {
-      _id: "6655d363ff5d7a0353d814c0",
-      question: "Test question 1?",
-      answers: {
-        A: {
-          answer: "Answer A",
-          isCorrect: false,
-        },
-        B: {
-          answer: "Answer B",
-          isCorrect: true,
-        },
-        C: {
-          answer: "Answer C",
-          isCorrect: false,
-        },
-        D: {
-          answer: "Answer D",
-          isCorrect: false,
-        },
-      },
-    },
-    {
-      _id: "6655d363ff5d7a0353d814c1",
-      question: "Test question 2?",
-      answers: {
-        A: {
-          answer: "Answer A",
-          isCorrect: false,
-        },
-        B: {
-          answer: "Answer B",
-          isCorrect: false,
-        },
-        C: {
-          answer: "Answer C",
-          isCorrect: true,
-        },
-        D: {
-          answer: "Answer D",
-          isCorrect: false,
-        },
-      },
-    },
-    {
-      _id: "6655d363ff5d7a0353d814c41",
-      question: "Test question 2?",
-      answers: {
-        A: {
-          answer: "Answer A",
-          isCorrect: false,
-        },
-        B: {
-          answer: "Answer B",
-          isCorrect: false,
-        },
-        C: {
-          answer: "Answer C",
-          isCorrect: true,
-        },
-        D: {
-          answer: "Answer D",
-          isCorrect: false,
-        },
-      },
-    },
-  ],
-  totalQuestions: 2,
-  __v: 0,
-};
+import { useNavigate, useParams } from "react-router-dom";
 
 function Quiz() {
   const [selectedAnswers, setSelectedAnswers] = useState<{
@@ -87,6 +10,8 @@ function Quiz() {
   const [feedback, setFeedback] = useState<{ [key: string]: boolean }>({});
   const [quizCompleted, setQuizCompleted] = useState(false);
   const navigate = useNavigate();
+  const { slug } = useParams<{ slug: string }>();
+  const [quizData, setQuizData] = useState<QuizType>({} as QuizType);
 
   const handleAnswerClick = (
     questionId: string,
@@ -98,10 +23,29 @@ function Quiz() {
   };
 
   useEffect(() => {
-    if (Object.keys(selectedAnswers).length === quizData.questions.length) {
+    if (Object.keys(selectedAnswers).length === quizData.questions?.length) {
       setQuizCompleted(true);
     }
   }, [selectedAnswers]);
+
+  useEffect(() => {
+    const fetchQuiz = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/quiz/slug/${slug}`
+        );
+        const data = await response.json();
+        if (data.quiz.length === 0) {
+          navigate("/not-found");
+        }
+
+        setQuizData(data.quiz[0]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchQuiz();
+  }, []);
 
   return (
     <div className="max-w-4xl mx-auto p-6 rounded-lg shadow-lg my-10 overflow-auto ">
@@ -110,10 +54,10 @@ function Quiz() {
       </h1>
       <p className="text-center font-custom text-xl mb-6">
         Totaal aantal vragen beantwoord: {Object.keys(selectedAnswers).length}/
-        {quizData.questions.length}
+        {quizData.questions?.length}
       </p>
       <div className="space-y-6">
-        {quizData.questions.map((quizItem) => (
+        {quizData.questions?.map((quizItem) => (
           <div
             key={quizItem._id}
             className="p-4 border border-gray-200 rounded-lg shadow-lg"
