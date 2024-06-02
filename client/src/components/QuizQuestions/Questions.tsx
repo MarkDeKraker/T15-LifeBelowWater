@@ -1,13 +1,25 @@
-import { QuestionType, useQuizBuilder } from "../../context/QuizBuilderContext";
-import FormInput from "../form/FormInput";
+import {
+  AnimatePresence,
+  motion,
+} from 'framer-motion';
+
+import {
+  QuestionType,
+  useQuizBuilder,
+} from '../../context/QuizBuilderContext';
+import FormInput from '../form/FormInput';
 
 function Questions() {
-  const { questions, updateQuestion } = useQuizBuilder();
+  const { questions, updateQuestion, deleteQuestion } = useQuizBuilder();
 
   return (
-    <>
+    <AnimatePresence>
       {questions.map((question, index) => (
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -30 }}
+          transition={{ duration: 0.2 }}
           key={index}
           className="flex flex-col p-8 my-4 border shadow rounded-custom bg-primary/5"
         >
@@ -21,9 +33,15 @@ function Questions() {
           />
           <div className="my-3 border border-1"></div>
           <Answers question={question} index={index} />
-        </div>
+          <button
+            className="p-2 mt-4 bg-red-300 hover:bg-red-500 rounded-custom w-fit text-white transition-all duration-250 transform"
+            onClick={() => deleteQuestion(index)}
+          >
+            Verwijder vraag
+          </button>
+        </motion.div>
       ))}
-    </>
+    </AnimatePresence>
   );
 }
 

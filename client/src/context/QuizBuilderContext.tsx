@@ -18,6 +18,7 @@ interface QuizContextType {
     value: string | boolean,
     answerId?: string
   ) => void;
+  deleteQuestion: (index: number) => void;
 }
 
 const QuizContext = React.createContext<QuizContextType | undefined>(undefined);
@@ -106,8 +107,6 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
       totalQuestions: questions.length,
     };
 
-    // console.log(JSON.stringify(payload, null, 2));
-
     axios
       .post(`${import.meta.env.VITE_API_URL}/quiz`, payload, {
         headers: {
@@ -121,7 +120,21 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
       .catch((error) => {
         console.error("Error:", error);
         addAlert("Er is iets misgegaan", "error");
+        if (error.response.data.message === "All fields are required") {
+          addAlert("Vul alle velden in", "error");
+        }
+        if (
+          error.response.data.message ===
+          "Quiz with title, slug or password already exists"
+        ) {
+          addAlert("Quiz met deze titel en dit wachtwoord bestaat al", "error");
+        }
       });
+  };
+
+  const deleteQuestion = (index: number) => {
+    const updatedQuestions = questions.filter((_, i) => i !== index);
+    setQuestions(updatedQuestions);
   };
 
   return (
@@ -134,6 +147,7 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
         saveQuiz,
         setTitle,
         setPassword,
+        deleteQuestion,
       }}
     >
       {children}
