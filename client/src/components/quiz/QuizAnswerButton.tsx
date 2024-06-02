@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from 'react';
 
 type QuizAnswerButtonProps = {
   disabled: boolean;
@@ -18,14 +18,17 @@ const QuizAnswerButton: React.FC<QuizAnswerButtonProps> = ({
   return (
     <button
       disabled={disabled}
-      className={`bg-primary font-custom p-5 text-white rounded-full text-left w-full ${
+      className={` font-custom p-5 text-white rounded-full text-left w-full active:scale-95 transform transition-transform   ${
         isSelected
           ? isCorrect
-            ? "text-white bg-green-600 hover:bg-green/70 transition duration-200 ease-in-out"
-            : "text-white bg-red-600 hover:bg-red/70 transition duration-200 ease-in-out"
-          : "text-white hover:bg-primary/70 transition duration-200 ease-in-out"
+            ? "text-white bg-green-600 hover:bg-green/70  duration-200 ease-in-out  "
+            : "text-white bg-red-600 hover:bg-red/70 transition duration-200 ease-in-out "
+          : `text-white  bg-secondary transition duration-200 ease-in-out ${
+              disabled ? "cursor-not-allowed" : "hover:bg-primary"
+            } `
       }`}
       onClick={handleClick}
+      type="button"
     >
       {answerText}
     </button>

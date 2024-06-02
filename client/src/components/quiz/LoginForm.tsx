@@ -1,6 +1,12 @@
-import { SubmitHandler, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { useAlert } from "../../context/AlertContext";
+import { motion } from 'framer-motion';
+import {
+  SubmitHandler,
+  useForm,
+} from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+
+import { useAlert } from '../../context/AlertContext';
+import { useAnimationContext } from '../../context/AnimationContext';
 
 type FormValues = {
   password: string;
@@ -15,6 +21,7 @@ function LoginForm() {
 
   const navigate = useNavigate();
   const { addAlert } = useAlert();
+  const { routeVariants } = useAnimationContext();
 
   const onSubmit: SubmitHandler<FormValues> = async ({ password }) => {
     try {
@@ -39,7 +46,10 @@ function LoginForm() {
   const transitionStyle = "transition-all duration-150 ease-in-out";
 
   return (
-    <form
+    <motion.form
+      variants={routeVariants}
+      initial="initial"
+      animate="final"
       className={`space-y-4 md:space-y-6 ${transitionStyle}`}
       onSubmit={handleSubmit(onSubmit)}
     >
@@ -79,7 +89,7 @@ function LoginForm() {
       >
         Start quiz
       </button>
-    </form>
+    </motion.form>
   );
 }
 
