@@ -1,10 +1,8 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 
-import {
-  ArrowDownIcon, ArrowUpIcon
-} from "@heroicons/react/24/solid";
+import { ArrowDownIcon } from '@heroicons/react/24/solid';
 
 type Props = {
   children: React.ReactNode;
@@ -28,25 +26,25 @@ export function ExpandButton(props: Props) {
       >
         {props.children}
         <motion.span
-          animate={{ opacity: 1}}
-          transition={{ duration: 0.4, ease: "easeInOut"}}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
           className="ml-2 text-black"
         >
-          {collapsed ? (
-            <ArrowUpIcon className="inline-flex w-4 h-4" />
-          ) : (
+          <motion.div animate={{ rotateZ: collapsed ? 180 : 0 }}>
             <ArrowDownIcon className="inline-flex w-4 h-4" />
-          )}
+          </motion.div>
         </motion.span>
       </button>
 
       <motion.div
         initial={false}
         animate={{ height: collapsed ? "auto" : 0, opacity: collapsed ? 1 : 0 }}
-        transition={{ duration: 0.7, ease: "easeInOut"}}
+        transition={{ duration: 0.7, ease: "easeInOut" }}
         className="overflow-hidden"
       >
-        <div className="mt-3 text-[#666] max-w-xl font-custom">{expandedText}</div>
+        <div className="mt-3 text-[#666] max-w-xl font-custom">
+          {expandedText}
+        </div>
       </motion.div>
     </>
   );

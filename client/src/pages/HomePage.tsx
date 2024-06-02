@@ -3,7 +3,7 @@ import ChapterCard from "../components/ChapterCard";
 import H2 from "../components/typography/H2";
 import { useRequireAuth } from "../hooks/useRequireAuth";
 
-export default function HomePage() {
+function HomePage() {
   useRequireAuth();
   return (
     <>
@@ -12,10 +12,10 @@ export default function HomePage() {
         <ChapterCard
           title="Plastic soep"
           subTitle="Water is essentieel voor het leven op aarde, zowel voor mensen als de natuur.
-          Helaas wordt water bedreigd door plasticvervuiling, die ernstige schade aanricht aan zeeleven
-          en onze omgeving."
+        Helaas wordt water bedreigd door plasticvervuiling, die ernstige schade aanricht aan zeeleven
+        en onze omgeving."
           image={plasticsoep}
-          To="/probleem/aanpak/"
+          To="/plastic/aanpak"
           expandedText={
             <div>
               <ul className="space-y-2">
@@ -59,3 +59,4 @@ export default function HomePage() {
     </>
   );
 }
+export default HomePage;
