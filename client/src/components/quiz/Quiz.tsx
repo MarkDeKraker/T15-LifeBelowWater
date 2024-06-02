@@ -104,7 +104,7 @@ function Quiz() {
   }, [selectedAnswers]);
 
   return (
-    <div className="max-w-4xl mx-auto p-6 rounded-lg shadow-lg my-10 overflow-auto">
+    <div className="max-w-4xl mx-auto p-6 rounded-lg shadow-lg my-10 overflow-auto ">
       <h1 className="text-2xl font-bold mb-4 text-center font-custom">
         {quizData.title}
       </h1>

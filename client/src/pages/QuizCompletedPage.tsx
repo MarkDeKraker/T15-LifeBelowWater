@@ -2,7 +2,7 @@ import QuizCompleted from "../components/quiz/QuizCompleted";
 
 export default function QuizCompletedPage() {
   return (
-    <div className="align-middle min-h-full flex justify-center">
+    <div className="flex flex-col items-center justify-center h-screen">
       <QuizCompleted />
     </div>
   );
