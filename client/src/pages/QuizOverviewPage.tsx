@@ -1,13 +1,8 @@
-import QuizBuilder from "../components/QuizQuestions/QuizBuilder";
-import { QuizProvider } from "../context/QuizBuilderContext";
+import QuizzesOverview from "../components/quiz/QuizzesOverview";
 import { useRequireAuth } from "../hooks/useRequireAuth";
 
 export default function QuizOverviewPage() {
   useRequireAuth();
 
-  return (
-    <QuizProvider>
-      <QuizBuilder />
-    </QuizProvider>
-  );
+  return <QuizzesOverview />;
 }

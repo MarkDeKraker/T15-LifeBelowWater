@@ -1,6 +1,9 @@
-import axios from "axios";
-import React, { useState } from "react";
-import { useAuth } from "./AuthContext";
+import React, { useState } from 'react';
+
+import axios from 'axios';
+
+import { useAlert } from './AlertContext';
+import { useAuth } from './AuthContext';
 
 interface QuizContextType {
   questions: QuestionType[]; // Replace 'any' with the type of your quiz data
@@ -23,6 +26,7 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const { getTokenBearer } = useAuth();
+  const { addAlert } = useAlert();
   const [questions, setQuestions] = useState<QuestionType[] | []>([]);
 
   const [title, setTitle] = useState<string>("");
@@ -94,8 +98,6 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
   const getSlug = (title: string) => title.toLowerCase().replace(/\s/g, "-");
 
   const saveQuiz = () => {
-    // Implement your logic to submit the quiz
-
     const payload = {
       title: title,
       slug: getSlug(title),
@@ -112,8 +114,14 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
           Authorization: getTokenBearer(),
         },
       })
-      .then((response) => console.log(response.data))
-      .catch((error) => console.error("Error:", error));
+      .then((response) => {
+        console.log(response.data);
+        addAlert("Quiz is succesvol opgeslagen", "success");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        addAlert("Er is iets misgegaan", "error");
+      });
   };
 
   return (
