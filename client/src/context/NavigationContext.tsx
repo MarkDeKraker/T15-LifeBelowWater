@@ -1,4 +1,8 @@
-import { createContext, Dispatch, SetStateAction } from "react";
+import {
+  createContext,
+  Dispatch,
+  SetStateAction,
+} from 'react';
 
 // Definieer een type voor je context
 interface NavigationContextType {

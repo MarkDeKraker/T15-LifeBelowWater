@@ -21,7 +21,7 @@ function Alert() {
   }, [alerts, removeAlert]);
 
   return (
-    <div className="fixed left-0 right-0 m-auto transform max-w-sm w-full top-2">
+    <div className="fixed left-0 right-0 m-auto transform max-w-sm w-full top-2 z-50">
       <AnimatePresence initial={false}>
         {alerts.map((alert, index) => (
           <motion.div
