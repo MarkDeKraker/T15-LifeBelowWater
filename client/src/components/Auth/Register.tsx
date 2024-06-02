@@ -1,14 +1,7 @@
-import axios from 'axios';
-import {
-  AnimatePresence,
-  LayoutGroup,
-  motion,
-} from 'framer-motion';
-import { useForm } from 'react-hook-form';
-import {
-  Link,
-  useNavigate,
-} from 'react-router-dom';
+import axios from "axios";
+import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
 
 type FormValues = {
   username: string;
@@ -78,7 +71,7 @@ function Register() {
           {isSubmitting && (
             <motion.div
               layout
-              className="w-72 h-14 flex items-center justify-center bg-gray-200 rounded-custom"
+              className="flex items-center justify-center bg-gray-200 w-72 h-14 rounded-custom"
             >
               <span className="text-lg text-gray-700">
                 Bezig met registreren...
@@ -90,7 +83,7 @@ function Register() {
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="space-y-4 flex flex-col"
+        className="flex flex-col space-y-4"
       >
         <input
           type="text"
@@ -162,7 +155,7 @@ function Register() {
         </AnimatePresence>
         <button
           type="submit"
-          className="w-72 h-14 text-lg text-white bg-blue-500 rounded-custom hover:bg-blue-600"
+          className="text-lg text-white bg-blue-500 w-72 h-14 rounded-custom hover:bg-blue-600"
         >
           Registeer
         </button>
@@ -170,7 +163,7 @@ function Register() {
       <div>
         Al een account?{" "}
         <Link to="/login">
-          <span className="text-blue-500 hover:underline cursor-pointer">
+          <span className="text-blue-500 cursor-pointer hover:underline">
             Log hier in
           </span>
         </Link>

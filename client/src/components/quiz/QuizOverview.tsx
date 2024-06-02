@@ -1,23 +1,36 @@
-import React from "react";
+import { mockQuizzes } from "./mockVariables";
+import { useState } from "react";
+import { QuizType } from "../../types/QuizType";
 
 export default function QuizOverview() {
+  const [quizList, setQuiz] = useState<QuizType[]>([...mockQuizzes]);
+
+  function handleQuizlist() {
+    // console.log();
+    // deze velde later vervangen met de input velden
+    setQuiz([...quizList, { title: "new quiz", password: "new password" }]);
+
+    // console.log(quizList);
+    // postNewQuiz();
+  }
+
   return (
-    <div className="flex justify-center align-middle text-center min-h-full p-4">
-      <div className="flex flex-col lg:flex-row justify-center items-center w-full max-w-screen-lg">
-        <div className="w-full lg:w-1/2 p-4">
-          <div className="bg-blue-100 rounded-2xl border-2 border-zinc-300 p-4 mb-4">
-            <h1 className="text-black text-2xl lg:text-3xl font-normal font-custom">
+    <div className="flex justify-center min-h-full p-4 text-center align-middle">
+      <div className="flex flex-col items-center justify-center w-full max-w-screen-lg lg:flex-row">
+        <div className="w-full p-4 lg:w-1/2">
+          <div className="p-4 mb-4 bg-blue-100 border-2 rounded-2xl border-zinc-300">
+            <h1 className="text-2xl font-normal text-black lg:text-3xl font-custom">
               Quizzes Overzicht
             </h1>
           </div>
           <div className="flex flex-col space-y-4">
-            {["Quiz 1", "Quiz 2", "Quiz 3"].map((quiz, index) => (
+            {quizList.map((post) => (
               <div
-                key={index}
+                key={post._id}
                 className="flex items-center justify-center space-x-4"
               >
-                <span className="text-black text-lg lg:text-2xl font-normal font-custom">
-                  {quiz}
+                <span className="text-lg font-normal text-black lg:text-2xl font-custom">
+                  {post.title}
                 </span>
                 <span>-</span>
                 <div className="flex span-x-4">
@@ -60,24 +73,29 @@ export default function QuizOverview() {
             ))}
           </div>
         </div>
-        <div className="w-full lg:w-1/2 p-4">
-          <div className="rounded-2xl p-4 mb-4">
-            <h1 className="text-black text-2xl lg:text-3xl font-normal font-custom">
-              Maak een quiz aan
-            </h1>
-          </div>
-          <div className="flex flex-col space-y-4">
-            <input
-              placeholder="Titel"
-              className="w-full border-2 p-2 rounded-full mb-2"
-            />
-            <input
-              placeholder="Beschrijving"
-              className="w-full border-2 p-2 rounded-full mb-2"
-            />
-            <button className="bg-sky-600 rounded-full p-2 w-full text-white">
-              Quiz aanmaken
-            </button>
+        <div className="w-full p-4 lg:w-1/2">
+          <div className="form">
+            <div className="p-4 mb-4 rounded-2xl">
+              <h1 className="text-2xl font-normal text-black lg:text-3xl font-custom">
+                Maak een quiz aan
+              </h1>
+            </div>
+            <div className="flex flex-col space-y-4">
+              <input
+                placeholder="Titel"
+                className="w-full p-2 mb-2 border-2 rounded-full"
+              />
+              <input
+                placeholder="Beschrijving"
+                className="w-full p-2 mb-2 border-2 rounded-full"
+              />
+              <button
+                className="w-full p-2 text-white rounded-full bg-sky-600"
+                onClick={handleQuizlist}
+              >
+                Quiz aanmaken
+              </button>
+            </div>
           </div>
         </div>
       </div>
