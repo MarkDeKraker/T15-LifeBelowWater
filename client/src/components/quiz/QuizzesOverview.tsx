@@ -6,10 +6,12 @@ import {
 } from 'react';
 
 import axios from 'axios';
+import { motion } from 'framer-motion';
 import Skeleton from 'react-loading-skeleton';
 import { useNavigate } from 'react-router-dom';
 
 import { useAlert } from '../../context/AlertContext';
+import { useAnimationContext } from '../../context/AnimationContext';
 import { useAuth } from '../../context/AuthContext';
 import { QuizType } from '../../types/QuizType';
 import { StyledButton } from '../buttons/StyledButton';
@@ -21,6 +23,7 @@ function QuizzesOverview() {
   const { getTokenBearer } = useAuth();
   const navigate = useNavigate();
   const { addAlert } = useAlert();
+  const { routeVariants } = useAnimationContext();
 
   const addQuiz = () => {
     navigate("/quiz/builder");
@@ -73,7 +76,12 @@ function QuizzesOverview() {
   }, [getTokenBearer]);
 
   return (
-    <div className="p-4">
+    <motion.div
+      variants={routeVariants}
+      initial="initial"
+      animate="final"
+      className="p-4"
+    >
       <div className="flex justify-between items-center">
         <StyledButton buttonStyle="secondary" onClick={addQuiz}>
           Quiz Toevoegen
@@ -143,7 +151,7 @@ function QuizzesOverview() {
           </tbody>
         </table>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

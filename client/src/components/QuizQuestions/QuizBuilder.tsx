@@ -1,3 +1,6 @@
+import { motion } from 'framer-motion';
+
+import { useAnimationContext } from '../../context/AnimationContext';
 import { useQuizBuilder } from '../../context/QuizBuilderContext';
 import { StyledButton } from '../buttons/StyledButton';
 import FormInput from '../form/FormInput';
@@ -7,9 +10,15 @@ import Questions from './Questions';
 
 function QuizBuilder() {
   const { addQuestions, saveQuiz, setTitle, setPassword } = useQuizBuilder();
+  const { routeVariants } = useAnimationContext();
 
   return (
-    <div className="mt-8">
+    <motion.div
+      variants={routeVariants}
+      initial="initial"
+      animate="final"
+      className="mt-8"
+    >
       <Container>
         <div className="p-5 border rounded-lg font-custom">
           <form className="flex flex-col space-y-4 quiz-fields">
@@ -50,7 +59,7 @@ function QuizBuilder() {
           </div>
         </div>
       </Container>
-    </div>
+    </motion.div>
   );
 }
 

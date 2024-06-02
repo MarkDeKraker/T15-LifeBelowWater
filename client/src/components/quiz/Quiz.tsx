@@ -1,7 +1,17 @@
-import { useEffect, useState } from "react";
-import { QuizType } from "../../types/QuizType";
-import QuizAnswerButton from "./QuizAnswerButton";
-import { useNavigate, useParams } from "react-router-dom";
+import {
+  useEffect,
+  useState,
+} from 'react';
+
+import { motion } from 'framer-motion';
+import {
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
+
+import { useAnimationContext } from '../../context/AnimationContext';
+import { QuizType } from '../../types/QuizType';
+import QuizAnswerButton from './QuizAnswerButton';
 
 function Quiz() {
   const [selectedAnswers, setSelectedAnswers] = useState<{
@@ -12,6 +22,7 @@ function Quiz() {
   const navigate = useNavigate();
   const { slug } = useParams<{ slug: string }>();
   const [quizData, setQuizData] = useState<QuizType>({} as QuizType);
+  const { routeVariants } = useAnimationContext();
 
   const handleAnswerClick = (
     questionId: string,
@@ -48,7 +59,12 @@ function Quiz() {
   }, []);
 
   return (
-    <div className="max-w-4xl mx-auto p-6 rounded-lg shadow-lg my-10 overflow-auto ">
+    <motion.div
+      variants={routeVariants}
+      initial="initial"
+      animate="final"
+      className="max-w-4xl mx-auto p-6 rounded-lg shadow-lg my-10 overflow-auto "
+    >
       <h1 className="text-2xl font-bold mb-4 text-center font-custom">
         {quizData.title}
       </h1>
@@ -107,14 +123,16 @@ function Quiz() {
         <button
           onClick={() => navigate("/quiz/completed")}
           disabled={!quizCompleted}
-          className={`bg-primary hover:bg-primary/70 transition duration-200 ease-in-out p-5 text-white rounded-full font-custom ${
-            quizCompleted ? "cursor-pointer" : "cursor-not-allowed"
+          className={`bg-secondary   duration-200 ease-in-out p-5 text-white rounded-full font-custom active:scale-95  ${
+            quizCompleted
+              ? "cursor-pointer hover:bg-primary/70 transform transition-transform"
+              : "cursor-not-allowed"
           }`}
         >
           Afronden
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

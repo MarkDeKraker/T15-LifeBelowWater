@@ -56,12 +56,13 @@ export default function SideBar() {
               icon={<GlobeAltIcon className="w-6 h-6" />}
               link={"/home"}
             />
+
             <SideBarItem
               title="Quizzes"
               collapsed={collapsed}
               index={1}
               icon={<AcademicCapIcon className="w-6 h-6" />}
-              link={"/quiz/overview"}
+              link={"/quiz"}
             />
           </div>
 
