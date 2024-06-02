@@ -38,6 +38,8 @@ function RoutesWithAnimation() {
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
           <Route path="logout" element={<LogoutPage />} />
+          <Route path="quiz/:slug" element={<QuizPage />} />
+          <Route path="quiz/completed" element={<QuizCompletedPage />} />
           <Route element={<LayoutRoute />}>
             <Route path="home" element={<HomePage />} />
             <Route path="plastic/probleem" element={<PlasticProblemPage />} />
@@ -48,8 +50,6 @@ function RoutesWithAnimation() {
             <Route path="plastic/aanpak" element={<PlasticApproachPage />} />
             <Route path="quiz" element={<QuizOverviewPage />} />
             <Route path="quiz/builder" element={<QuizBuilderPage />} />
-            <Route path="quiz/:slug" element={<QuizPage />} />
-            <Route path="quiz/completed" element={<QuizCompletedPage />} />
           </Route>
         </Routes>
       </AnimationProvider>
