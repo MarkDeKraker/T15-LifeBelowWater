@@ -1,7 +1,7 @@
-import JoinQuiz from '../components/JoinQuiz/JoinQuiz';
+import JoinQuiz from "../components/JoinQuiz/JoinQuiz";
 
 function JoinQuizPage() {
-    return ( <><JoinQuiz/></> );
+  return <JoinQuiz />;
 }
 
 export default JoinQuizPage;
