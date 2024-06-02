@@ -1,15 +1,15 @@
-import { StyledButton } from "../buttons/StyledButton";
-import { useQuizBuilder } from "../../context/QuizBuilderContext";
-import AddIcon from "../icons/AddIcon";
-import Container from "../Layout/Container";
-import FormInput from "../form/FormInput";
-import Questions from "./Questions";
+import { useQuizBuilder } from '../../context/QuizBuilderContext';
+import { StyledButton } from '../buttons/StyledButton';
+import FormInput from '../form/FormInput';
+import AddIcon from '../icons/AddIcon';
+import Container from '../Layout/Container';
+import Questions from './Questions';
 
 function QuizBuilder() {
   const { addQuestions, saveQuiz, setTitle, setPassword } = useQuizBuilder();
 
   return (
-    <>
+    <div className="mt-8">
       <Container>
         <div className="p-5 border rounded-lg font-custom">
           <form className="flex flex-col space-y-4 quiz-fields">
@@ -50,7 +50,7 @@ function QuizBuilder() {
           </div>
         </div>
       </Container>
-    </>
+    </div>
   );
 }
 
