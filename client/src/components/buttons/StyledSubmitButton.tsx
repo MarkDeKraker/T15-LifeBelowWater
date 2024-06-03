@@ -1,4 +1,5 @@
 import { overrideTailwindClasses } from "tailwind-override";
+import { activeStyle } from "./StyledButton";
 type Props = {
   buttonStyle?: "primary" | "secondary" | "tertiary";
   className?: string;
@@ -18,8 +19,6 @@ export function StyledSubmitButton(props: Props) {
 
   const tertiaryStyle =
     "box-border border border-gray-800 text-gray-800 hover:border-none";
-
-  const activeStyle = "active:scale-95 transform transition-transform";
 
   return (
     <>

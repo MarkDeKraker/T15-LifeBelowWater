@@ -15,7 +15,7 @@ function Questions() {
           exit={{ opacity: 0, y: -30 }}
           transition={{ duration: 0.2 }}
           key={index}
-          className="flex flex-col p-8 my-4 border shadow rounded-custom bg-primary/5"
+          className="flex flex-col p-8 my-4 shadow rounded-custom bg-primary/5"
         >
           <FormInput
             name="question"
@@ -56,7 +56,7 @@ function Answers({
             <FormInput
               name="answer"
               type="text"
-              className="px-2 py-3 my-2 border border-r-0 border-collapse rounded-r-none first:mt-0 first:mb-0 rounded-l-2xl"
+              className="px-2 py-3 border border-r-0 border-collapse rounded-r-none first:mt-0 first:mb-0 rounded-l-2xl"
               placeholder={`Antwoord ${answer._id}`}
               value={answer.answer}
               onChange={(e) =>
@@ -65,7 +65,7 @@ function Answers({
             />
             <button
               type="button"
-              className={`transition-all ease-in duration-150  p-2 py-3 my-2  rounded-r-2xl text-white font-bold ${
+              className={`transform transition-all ease-in duration-150  p-2 py-3 my-1 rounded-r-2xl text-white font-bold ${
                 answer.isCorrect ? "bg-green-500/80" : "bg-red-500/60"
               }`}
               onClick={() =>

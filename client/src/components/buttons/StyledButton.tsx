@@ -5,6 +5,8 @@ type Props = {
   icon?: React.ReactNode;
 };
 
+export const activeStyle = "active:scale-95 transform transition";
+
 export function StyledButton(props: Props) {
   const buttonStyle = props.buttonStyle || "primary";
 
@@ -14,7 +16,6 @@ export function StyledButton(props: Props) {
     tertiary: "bg-tertiary",
   };
 
-  const activeStyle = "active:scale-95 transform transition-transform";
   const tertiaryStyle =
     "box-border border border-gray-800 text-gray-800 hover:border-none";
 
