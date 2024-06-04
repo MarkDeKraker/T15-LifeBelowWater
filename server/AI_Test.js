@@ -12,7 +12,7 @@ const model = new ChatOpenAI({
     azureOpenAIApiDeploymentName: process.env.ENGINE_NAME,
 });
 
-async function generateResponse() {
+async function generateQuestion() {
     try {
         // const { query } = req.body;
 
@@ -21,27 +21,15 @@ async function generateResponse() {
         const system = "Je bent een basisschool docent voor groep 7 en 8. Verwoord je antwoorden op een manier dat het begrijpelijk is voor kinderen van 10 tot 12 jaar oud.";
 
         const engineeredPrompt = `{ Kun je mij een quizvraag geven over plasticvervuiling in oceaan? Een vraag heeft drie foute antwoorded en één goed antwoord. Geef het antwoord in het volgende JSON formaat en wijk er niet van af. NO YAPPING:
-                {
-                    "answers": {
-                        "A": {
-                            "answer": "",
-                            "isCorrect": 
-                        },
-                        "B": {
-                            "answer": "",
-                            "isCorrect": 
-                        },
-                        "C": {
-                            "answer": "",
-                            "isCorrect": 
-                        },
-                        "D": {
-                            "answer": "",
-                            "isCorrect": 
-                        }
-                    },
-                    "question": "",
-                },
+            {
+                question: "",
+                answers: [
+                  { _id: "A", answer: "", isCorrect: true },
+                  { _id: "B", answer: "", isCorrect: false },
+                  { _id: "C", answer: "", isCorrect: false },
+                  { _id: "D", answer: "", isCorrect: false },
+                ],
+              },    
             }`;
 
         const res = await model.invoke([
@@ -75,4 +63,4 @@ function extractJSON(response) {
     }
 }
 
-generateResponse();
+generateQuestion();

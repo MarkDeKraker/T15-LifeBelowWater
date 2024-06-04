@@ -49,6 +49,13 @@ function QuizBuilder() {
             >
               Voeg vraag toe
             </StyledButton>
+            <StyledButton
+              buttonStyle="secondary"
+              onClick={addQuestions}
+              icon={<AddIcon />}
+            >
+              Genereer vraag
+            </StyledButton>
             <button
               type="submit"
               onClick={saveQuiz}

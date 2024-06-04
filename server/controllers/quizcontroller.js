@@ -1,4 +1,5 @@
 import Quiz from "../models/Quiz.js";
+import AIModel from "../settings/openAI.js";
 
 export class QuizController {
   // get all quizzes
@@ -384,5 +385,54 @@ export class QuizController {
         message: "Quiz not found",
       });
     }
+  }
+
+  async generateQuestion(req, res) {
+    try {
+
+      const system = "Je bent een basisschool docent voor groep 7 en 8. Verwoord je antwoorden op een manier dat het begrijpelijk is voor kinderen van 10 tot 12 jaar oud.";
+
+      const engineeredPrompt = `{ Kun je mij een quizvraag geven over plasticvervuiling in oceaan? Een vraag heeft drie foute antwoorded en één goed antwoord. Geef het antwoord in het volgende JSON formaat en wijk er niet van af. NO YAPPING:
+        {
+          question: "",
+          answers: [
+            { _id: "A", answer: "", isCorrect: true },
+            { _id: "B", answer: "", isCorrect: false },
+            { _id: "C", answer: "", isCorrect: false },
+            { _id: "D", answer: "", isCorrect: false },
+          ],
+        },    
+      }`;
+
+      const res = await AIModel.invoke([
+        ["system", system],
+        ["user", engineeredPrompt]
+      ]);
+
+      const jsonResponse = extractJSON(res.content);
+      // console.log(res.content);
+      console.log(jsonResponse);
+    } catch (error) {
+      console.error("Error invoking the model:", error);
+    }
+  }
+
+}
+
+function extractJSON(response) {
+  const jsonStart = response.indexOf("{");
+  const jsonEnd = response.lastIndexOf("}") + 1;
+
+  if (jsonStart === -1 || jsonEnd === -1) {
+    throw new Error("No valid JSON found in response");
+  }
+
+  const jsonString = response.slice(jsonStart, jsonEnd);
+
+  try {
+    const jsonObject = JSON.parse(jsonString);
+    return jsonObject;
+  } catch (error) {
+    throw new Error("Failed to parse JSON: " + error.message);
   }
 }
