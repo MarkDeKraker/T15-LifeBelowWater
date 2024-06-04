@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { AnimatePresence, motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
@@ -35,18 +35,17 @@ function Login() {
         authExpiresIn(response.data.expiresIn);
         navigate("/home");
       }
-    } catch (error) {
-      console.error(error);
-      if (error.response.data == "Incorrect email or password") {
-        console.log("Incorrect email or password");
-        setError("root.apiError", { message: "Incorrect email or password" });
-        // setError("email", {});
-        // setError("password", {});
-      }
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        if (error.response?.data == "Incorrect email or password") {
+          console.log("Incorrect email or password");
+          setError("root.apiError", { message: "Incorrect email or password" });
+        }
 
-      if (error.response.data == "Incorrect password") {
-        console.log("Incorrect password");
-        setError("password", { message: "Incorrect password" });
+        if (error.response?.data == "Incorrect password") {
+          console.log("Incorrect password");
+          setError("password", { message: "Incorrect password" });
+        }
       }
     }
   };
