@@ -1,18 +1,26 @@
-import "react-loading-skeleton/dist/skeleton.css";
+import 'react-loading-skeleton/dist/skeleton.css';
 
-import { useEffect, useState } from "react";
+import {
+  useEffect,
+  useState,
+} from 'react';
 
-import axios from "axios";
-import { motion } from "framer-motion";
-import Skeleton from "react-loading-skeleton";
-import { useNavigate } from "react-router-dom";
+import axios from 'axios';
+import {
+  AnimatePresence,
+  motion,
+} from 'framer-motion';
+import Skeleton from 'react-loading-skeleton';
+import { useNavigate } from 'react-router-dom';
 
-import { useAlert } from "../../context/AlertContext";
-import { useAnimationContext } from "../../context/AnimationContext";
-import { useAuth } from "../../context/AuthContext";
-import { QuizType } from "../../types/QuizType";
-import { StyledButton } from "../buttons/StyledButton";
-import ConfirmModal from "../common/ConfirmModal";
+import { ClipboardIcon } from '@heroicons/react/24/outline';
+
+import { useAlert } from '../../context/AlertContext';
+import { useAnimationContext } from '../../context/AnimationContext';
+import { useAuth } from '../../context/AuthContext';
+import { QuizType } from '../../types/QuizType';
+import { StyledButton } from '../buttons/StyledButton';
+import ConfirmModal from '../common/ConfirmModal';
 
 function QuizzesOverview() {
   const [quizzes, setQuizzes] = useState<QuizType[]>([]);
@@ -114,6 +122,7 @@ function QuizzesOverview() {
               <th className="py-3 px-6 text-left">Slug</th>
               <th className="py-3 px-6 text-left">Wachtwoord</th>
               <th className="py-3 px-6 text-left">Aantal Vragen</th>
+              <th className="py-3 px-6 text-left">Link</th>
               <th className="py-3 px-6 text-center">Acties</th>
             </tr>
           </thead>
@@ -121,7 +130,7 @@ function QuizzesOverview() {
             {loading
               ? [...Array(totalQuizzes)].map((_, index) => (
                   <tr key={index}>
-                    <td colSpan={5}>
+                    <td colSpan={6}>
                       <Skeleton
                         count={1}
                         className="py-3 px-6"
@@ -147,8 +156,22 @@ function QuizzesOverview() {
                     <td className="py-3 px-6 text-left whitespace-nowrap">
                       {quiz.totalQuestions}
                     </td>
+                    <td className="py-3 px-6 text-left whitespace-nowrap">
+                      <span
+                        className="cursor-pointer text-primary-500 hover:underline transition-colors duration-200 flex items-center select-none"
+                        onClick={async () => {
+                          const url = `http://${window.location.host}/quiz/${quiz.slug}`;
+                          await navigator.clipboard.writeText(url);
+                          addAlert("Link is gekopieerd", "success");
+                        }}
+                      >
+                        http://{window.location.host}/quiz/{quiz.slug}{" "}
+                        <ClipboardIcon className="ml-2 w-4 h-4" />
+                      </span>
+                    </td>
                     <td className="py-3 px-6 text-center">
                       <button
+                        // Uncomment and modify the function name as needed
                         // onClick={() => openEditModal(quiz)}
                         className="bg-secondary hover:bg-primary text-white font-bold py-1 px-2 rounded mr-2 transition-colors duration-200"
                       >
@@ -162,12 +185,17 @@ function QuizzesOverview() {
                       >
                         Verwijder
                       </button>
-                      <ConfirmModal
-                        onConfirm={deleteQuiz}
-                        isOpen={deleteModalOpen}
-                        onClose={closeDeleteModal}
-                        quiz={currentQuiz as QuizType}
-                      />
+                      <AnimatePresence>
+                        {deleteModalOpen && (
+                          <ConfirmModal
+                            key={quiz._id}
+                            onConfirm={deleteQuiz}
+                            isOpen={deleteModalOpen}
+                            onClose={closeDeleteModal}
+                            quiz={currentQuiz as QuizType}
+                          />
+                        )}
+                      </AnimatePresence>
                     </td>
                   </tr>
                 ))}
