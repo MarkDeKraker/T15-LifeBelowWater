@@ -5,6 +5,8 @@ type Props = {
   icon?: React.ReactNode;
 };
 
+export const activeStyle = "active:scale-95 transform transition";
+
 export function StyledButton(props: Props) {
   const buttonStyle = props.buttonStyle || "primary";
 
@@ -23,7 +25,9 @@ export function StyledButton(props: Props) {
         className={`box-border border-transparent px-4 py-2 mt-5 rounded-full caption-top ${
           bgColor[buttonStyle]
         } font-custom hover:bg-primary/70 transition duration-200 ease-in-out hover:text-white hover:shadow-md active:shadow-md focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 inline-flex items-center
-        ${props.buttonStyle === "tertiary" ? tertiaryStyle : ""}`}
+        ${
+          props.buttonStyle === "tertiary" ? tertiaryStyle : ""
+        } ${activeStyle}`}
         onClick={props.onClick}
       >
         <div className="inline-flex items-center">

@@ -1,11 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
-import {
-  AnimatePresence,
-  motion,
-} from 'framer-motion';
+import { AnimatePresence, motion } from "framer-motion";
 
-import { useAlert } from '../../context/AlertContext';
+import { useAlert } from "../../context/AlertContext";
 
 function Alert() {
   const { alerts, removeAlert } = useAlert();
@@ -21,7 +18,7 @@ function Alert() {
   }, [alerts, removeAlert]);
 
   return (
-    <div className="fixed left-0 right-0 m-auto transform max-w-sm w-full top-2 z-50">
+    <div className="fixed left-0 right-0 z-50 w-full max-w-sm m-auto transform top-2 ">
       <AnimatePresence initial={false}>
         {alerts.map((alert, index) => (
           <motion.div
@@ -35,7 +32,7 @@ function Alert() {
               scale: 0.65,
               transition: { duration: 0.5 },
             }}
-            className="shadow-lg rounded-lg overflow-hidden my-2"
+            className="my-2 overflow-hidden rounded-lg shadow-lg"
             style={{ zIndex: 1500 - index }}
           >
             <div
