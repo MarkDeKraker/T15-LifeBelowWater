@@ -48,6 +48,17 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
     ]);
   };
 
+  // const addQuestionsFromAi = () => {
+    
+  //   const data = fetch();
+
+  //   setQuestions([
+  //     ...questions,
+  //     {
+  //       response
+  //   ]);
+  // };
+
   const updateQuestion = (
     index: number,
     field: "question" | "isCorrect" | "answers",
