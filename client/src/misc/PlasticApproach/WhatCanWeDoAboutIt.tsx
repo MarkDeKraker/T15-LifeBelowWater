@@ -34,7 +34,7 @@ const whatCanWeDoAboutIt = {
             <br />
             <br />
             We weten dat gewoontes moeilijk te veranderen zijn, maar zelfs een
-            kleine individuele inzet kan een verschil maken, vooral als we het
+            kleine individuele inzet kan een verschil maken. Vooral als we het
             hebben over de eenmalige plastics die we eerder hebben genoemd, die
             volgens gegevens van het Europees Parlement verantwoordelijk zijn
             voor 49% van alle mariene vervuiling.

@@ -1,11 +1,17 @@
-import { SubmitHandler, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { motion } from 'framer-motion';
+import {
+  SubmitHandler,
+  useForm,
+} from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+
+import { useAlert } from '../../context/AlertContext';
+import { useAnimationContext } from '../../context/AnimationContext';
 
 type FormValues = {
   password: string;
 };
 
-const url = `/src/data/QuizMockData.json`;
 function LoginForm() {
   const {
     register,
@@ -14,26 +20,22 @@ function LoginForm() {
   } = useForm<FormValues>({ mode: "onSubmit" });
 
   const navigate = useNavigate();
+  const { addAlert } = useAlert();
+  const { routeVariants } = useAnimationContext();
 
   const onSubmit: SubmitHandler<FormValues> = async ({ password }) => {
     try {
-      const res = await fetch(url);
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(
-          "Er is iets misgegaan bij het ophalen van de data. Probeer het later opnieuw."
-        );
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/quiz/password/${password}`
+      );
+      const data = await response.json();
+      if (data.quiz.length > 0) {
+        navigate("/quiz/" + data.quiz[0].slug);
+      } else {
+        addAlert("Wachtwoord is onjuist", "error");
       }
-
-      // Als de password overeenkomt met de data, navigeer dan naar de quizpagina
-      if (password === data.password) {
-        navigate(`/quiz/${data._id}`);
-      }
-
-      return "Voer een geldig wachtwoord in!";
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -44,7 +46,10 @@ function LoginForm() {
   const transitionStyle = "transition-all duration-150 ease-in-out";
 
   return (
-    <form
+    <motion.form
+      variants={routeVariants}
+      initial="initial"
+      animate="final"
       className={`space-y-4 md:space-y-6 ${transitionStyle}`}
       onSubmit={handleSubmit(onSubmit)}
     >
@@ -74,18 +79,9 @@ function LoginForm() {
               value: 3,
               message: "Moet minimaal 3 karakters bevatten",
             },
-            validate: async (value) => {
-              // Voor nu wordt de data uit een json bestand gehaald, Later moet dit vervangen worden door een fetch naar de backend.
-              const response = await fetch(url);
-              const data = await response.json();
-              if (value !== data.password) {
-                return "Voer een geldige wachtwoord in!";
-              }
-            },
           })}
         />
       </div>
-
       <button
         type="submit"
         disabled={errors.password ? true : false}
@@ -93,7 +89,7 @@ function LoginForm() {
       >
         Start quiz
       </button>
-    </form>
+    </motion.form>
   );
 }
 

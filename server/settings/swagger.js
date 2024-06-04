@@ -1,4 +1,4 @@
-import swaggerJsDoc from "swagger-jsdoc";
+import swaggerJsDoc from 'swagger-jsdoc';
 
 const swaggerOptions = {
   definition: {
@@ -14,7 +14,7 @@ const swaggerOptions = {
       },
     ],
   },
-  apis: ["./routes/*/*.js", "./app.js", "./settings/swagger.js"],
+  apis: ["./routes/*/*.js", "./app.js", "./settings/swagger.js", "./controllers/*.js"],
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);

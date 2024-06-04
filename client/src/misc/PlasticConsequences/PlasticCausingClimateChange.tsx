@@ -56,11 +56,11 @@ const plasticCausingClimateChange = {
               allow="autoplay; fullscreen; picture-in-picture"
               allowFullScreen
             ></iframe>
-            <p className="text-black text-xs underline text-center">
+            <h3 className="text-black text-xs underline text-center">
               <a href="https://vimeo.com/899060411">Microplastic showreel</a>{" "}
               van <a href="https://vimeo.com/user42606124">Richard Kirby</a> on{" "}
               <a href="https://vimeo.com">Vimeo</a>.
-            </p>
+            </h3>
           </p>
         </div>
       </motion.div>
