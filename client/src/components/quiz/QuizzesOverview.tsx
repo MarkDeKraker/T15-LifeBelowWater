@@ -67,6 +67,7 @@ function QuizzesOverview() {
         setQuizzes(updatedQuizzes);
         addAlert("Quiz is succesvol verwijderd", "success");
         setDeleteModalOpen(false);
+        setTotalQuizzes(totalQuizzes - 1);
       })
       .catch((error) => {
         console.log(error);
