@@ -5,10 +5,10 @@ import express from "express";
 import mongoose from "mongoose";
 import swaggerUi from "swagger-ui-express";
 
-import adminRoutes from "./routes/admins/admins.js";
-import authRoutes from "./routes/auth/authentication.js";
-import quizRoutes from "./routes/quiz/http.js";
-import swaggerDocs from "./settings/swagger.js";
+import adminRoutes from "../routes/admins/admins.js";
+import authRoutes from "../routes/auth/authentication.js";
+import quizRoutes from "../routes/quiz/http.js";
+import swaggerDocs from "../settings/swagger.js";
 
 dotenv.config();
 
@@ -16,6 +16,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+
 if (process.env.NODE_ENV === "development") {
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 }
@@ -25,7 +26,13 @@ console.log(
   chalk.bgRedBright.bold(process.env.NODE_ENV)
 );
 
-const uri = `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_HOST}:${process.env.MONGO_PORT}`;
+let uri = "";
+if (process.env.NODE_ENV === "production") {
+  uri = process.env.MONGODB_CONNECTIONSTRING;
+} else {
+  uri = `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_HOST}:${process.env.MONGO_PORT}`;
+}
+
 const port = process.env.PORT || 3000;
 
 mongoose
