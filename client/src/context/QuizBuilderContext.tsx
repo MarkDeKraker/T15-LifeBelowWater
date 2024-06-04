@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 import { useAlert } from './AlertContext';
 import { useAuth } from './AuthContext';
@@ -32,6 +33,7 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const [title, setTitle] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const navigate = useNavigate();
 
   const addQuestions = () => {
     setQuestions([
@@ -116,6 +118,7 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
       .then((response) => {
         console.log(response.data);
         addAlert("Quiz is succesvol opgeslagen", "success");
+        navigate(`/quiz`);
       })
       .catch((error) => {
         console.error("Error:", error);

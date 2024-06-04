@@ -12,6 +12,7 @@ import CollapseButton from "./CollapseButton";
 import CollapsedIcon from "./icons/CollapsedIcon";
 import CollapseIcon from "./icons/CollapseIcon";
 import SideBarItem from "./SideBarItem";
+import { useNavigate } from "react-router-dom";
 
 export default function SideBar() {
   const [collapsed, isCollapsed] = useState(false);
@@ -29,6 +30,8 @@ export default function SideBar() {
     },
   };
 
+  const navigate = useNavigate();
+
   return (
     <motion.aside
       initial={{ width: 250 }}
@@ -38,7 +41,10 @@ export default function SideBar() {
       className="flex flex-col p-4 space-y-4 bg-primary"
     >
       {!collapsed && (
-        <h1 className="text-xl font-bold text-center cursor-pointer text-stone-50 font-custom">
+        <h1
+          className="text-xl font-bold text-center cursor-pointer text-stone-50 font-custom"
+          onClick={() => navigate("/home")}
+        >
           Aqua Academy
         </h1>
       )}
