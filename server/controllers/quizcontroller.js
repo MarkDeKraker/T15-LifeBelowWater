@@ -1,5 +1,9 @@
 import Quiz from "../models/Quiz.js";
 import AIModel from "../settings/openAI.js";
+import { PromptTemplate } from '@langchain/core/prompts';
+import { JsonOutputFunctionsParser } from "langchain/output_parsers";
+
+const { model } = AIModel;
 
 export class QuizController {
   // get all quizzes
@@ -445,7 +449,7 @@ export class QuizController {
 
       const system = "Je bent een basisschool docent voor groep 7 en 8. Verwoord je antwoorden op een manier dat het begrijpelijk is voor kinderen van 10 tot 12 jaar oud.";
 
-      const engineeredPrompt = `{ Kun je mij een quizvraag geven over ${topic} in de oceaan? Een vraag heeft drie foute antwoorded en één goed antwoord. Geef het antwoord in het volgende JSON formaat en wijk er niet van af. NO YAPPING:
+      const engineeredPrompt = `{ Kun je mij een quizvraag geven over ${topic} in de oceaan? Een vraag heeft drie foute antwoorden en één goed antwoord. Geef het antwoord in het volgende JSON formaat en wijk er niet van af. Stuur alleen de json terug. NO YAPPING:
         {
           question: "",
           answers: [
@@ -457,18 +461,39 @@ export class QuizController {
         },    
       }`;
 
-      const response = await AIModel.invoke([
-        ["system", system],
-        ["user", engineeredPrompt]
-      ]);
+      const parser = new JsonOutputFunctionsParser({ argsOnly: false });
+      const maxRetries = 5;
+      let attempt = 0;
+      let validResponse = false;
+      let parsedResponse = null;
 
-      const jsonResponse = extractJSON(response.content);
+      while (attempt < maxRetries && !validResponse) {
+        try {
+          attempt++;
+          const response = await model.invoke([
+            ["system", system],
+            ["user", engineeredPrompt]
+          ], {
+            outputParser: parser,
+          });
 
-      if (jsonResponse) {
-        return res.status(200).json(jsonResponse);
+          console.log(`Attempt ${attempt}: Raw response:`, response.content);
+
+          // Try to parse the JSON response
+          parsedResponse = JSON.parse(response.content);
+          validResponse = true; // If parsing succeeds, break the loop    
+          // console.log(response.content, typeof response.content);
+          console.log("Parsed response:", parsedResponse, typeof parsedResponse);
+        } catch (parseError) {
+          console.error(`Attempt ${attempt}: Failed to parse response. Retrying...`, parseError);
+        }
+      }
+
+      if (validResponse && parsedResponse) {
+        return res.status(200).json({ response: parsedResponse, message: "Quiz question generated successfully" });
       } else {
         return res.status(500).json({
-          message: "Failed to generate quiz question",
+          message: "Failed to generate quiz question after multiple attempts",
         });
       }
     } catch (error) {
@@ -482,33 +507,31 @@ export class QuizController {
 
 }
 
-// function extractJSON(responseText) {
-//   const start = responseText.indexOf('{');
-//   const end = responseText.lastIndexOf('}');
 
-//   if (start !== -1 && end !== -1 && end > start) {
-//     const jsonString = responseText.substring(start, end + 1);
-//     return jsonString;
-//   } else {
-//     console.error("JSON not found in response text");
-//     return null;
-//   }
-// }
-
-function extractJSON(response) {
-  const jsonStart = response.indexOf("{");
-  const jsonEnd = response.lastIndexOf("}") + 1;
-
-  if (jsonStart === -1 || jsonEnd === -1) {
-    throw new Error("No valid JSON found in response");
-  }
-
-  const jsonString = response.slice(jsonStart, jsonEnd);
+async function applyPromptEngineering(json) {
+  const promptEngineeringTemplate = new PromptTemplate({
+    inputVariables: ["json"],
+    template:
+      "Is this a valid json?: '{json}'.If not make it a valid json. Only send the valid json back.",
+  });
+  // ? like a treasure full of knowledge Dungeons and Dragons 5e questions
 
   try {
-    const jsonObject = JSON.parse(jsonString);
-    return jsonObject;
+    // Generate the prompt using the question asked by the user
+    const prompt = await promptEngineeringTemplate.format({ json });
+
+    // Ask the model to improve the question
+    const improvedQuestion = await model.invoke(prompt);
+
+    // Return the improved question
+    return improvedQuestion.content;
   } catch (error) {
-    throw new Error("Failed to parse JSON: " + error.message);
+    console.error(
+      "An error occurred while applying prompt engineering:",
+      error
+    );
+    // In case of an error, return the original question
+    return question;
   }
 }
+

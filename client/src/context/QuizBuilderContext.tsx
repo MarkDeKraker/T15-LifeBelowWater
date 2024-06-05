@@ -51,35 +51,53 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
     ]);
   };
 
-  const addQuestionsFromAi = async (topic: string) => {
-    
-    try {
-      const response = await fetch('/quiz/generate', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ topic }),
-      });
+  const addQuestionsFromAi = (topic: string) => {
 
-      if (!response.ok) {
-        throw new Error('Failed to fetch question from AI');
-      }
-
-      const data: QuestionType = await response.json();
+     axios.post(`${import.meta.env.VITE_API_URL}/quiz/generate`, {
+      topic
+    })
+    .then((response) => {
+      console.log('Success:', response.data.response)
+      const newQuestion = response.data.response;
+      const apiMessage = response.data.message;
 
       setQuestions([
         ...questions,
-        data,
+        newQuestion,
       ]);
+      addAlert(`${apiMessage}`, "success");
+    }).catch((error) => {
+      console.error('Error:', error);
+      addAlert("Er is iets misgegaan", "error");
+    });
+    
+    // try {
+      // const response = await fetch(`${import.meta.env.VITE_API_URL}/quiz/generate`, {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify({ topic }),
+      // });
+
+      // if (!response.ok) {
+      //   throw new Error('Failed to fetch question from AI');
+      // }
+
+      // const data: QuestionType = await response.json();
+
+      // setQuestions([
+      //   ...questions,
+      //   data,
+      // ]);
 
       // setQuestions((prevQuestions) => [
       //   ...prevQuestions,
       //   data,
       // ]);
-    } catch (error) {
-      console.error('Error fetching question from AI:', error);
-    }
+    // } catch (error) {
+    //   console.error('Error fetching question from AI:', error);
+    // }
   };
 
   const updateQuestion = (

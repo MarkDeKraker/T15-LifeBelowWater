@@ -51,6 +51,14 @@ function QuizBuilder() {
             >
               Voeg vraag toe
             </StyledButton>
+            <div className="flex justify-between">
+            <StyledButton
+              buttonStyle="secondary"
+              onClick={() => addQuestionsFromAi('plasticvervuiling')}
+              icon={<AddIcon />}
+            >
+              Genereer een vraag
+            </StyledButton>
             <StyledSubmitButton
               buttonStyle="tertiary"
               onClick={saveQuiz}
@@ -60,6 +68,7 @@ function QuizBuilder() {
               Quiz Opslaan
             </StyledSubmitButton>
           </div>
+        </div>
         </div>
       </Container>
     </motion.div>
