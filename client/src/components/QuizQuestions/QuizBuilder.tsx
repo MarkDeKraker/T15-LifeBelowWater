@@ -1,12 +1,14 @@
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
-import { useAnimationContext } from '../../context/AnimationContext';
-import { useQuizBuilder } from '../../context/QuizBuilderContext';
-import { StyledButton } from '../buttons/StyledButton';
-import FormInput from '../form/FormInput';
-import AddIcon from '../icons/AddIcon';
-import Container from '../Layout/Container';
-import Questions from './Questions';
+import { useAnimationContext } from "../../context/AnimationContext";
+import { useQuizBuilder } from "../../context/QuizBuilderContext";
+import { StyledButton } from "../buttons/StyledButton";
+import FormInput from "../form/FormInput";
+import AddIcon from "../icons/AddIcon";
+import Container from "../Layout/Container";
+import Questions from "./Questions";
+import { StyledSubmitButton } from "../buttons/StyledSubmitButton";
+import SaveIcon from "../icons/SaveIcon";
 
 function QuizBuilder() {
   const { addQuestions, addQuestionsFromAi, saveQuiz, setTitle, setPassword } = useQuizBuilder();
@@ -49,21 +51,14 @@ function QuizBuilder() {
             >
               Voeg vraag toe
             </StyledButton>
-            <StyledButton
-              buttonStyle="secondary"
-              
-              onClick={() => addQuestionsFromAi('plasticvervuiling')}
-              icon={<AddIcon />}
-            >
-              Genereer vraag
-            </StyledButton>
-            <button
-              type="submit"
+            <StyledSubmitButton
+              buttonStyle="tertiary"
               onClick={saveQuiz}
-              className="hover:underline"
+              className="text-gray-800 border-0 hover:underline-offset-2"
+              icon={<SaveIcon />}
             >
               Quiz Opslaan
-            </button>
+            </StyledSubmitButton>
           </div>
         </div>
       </Container>

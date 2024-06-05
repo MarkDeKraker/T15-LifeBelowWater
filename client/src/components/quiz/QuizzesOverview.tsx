@@ -6,15 +6,21 @@ import {
 } from 'react';
 
 import axios from 'axios';
-import { motion } from 'framer-motion';
+import {
+  AnimatePresence,
+  motion,
+} from 'framer-motion';
 import Skeleton from 'react-loading-skeleton';
 import { useNavigate } from 'react-router-dom';
+
+import { ClipboardIcon } from '@heroicons/react/24/outline';
 
 import { useAlert } from '../../context/AlertContext';
 import { useAnimationContext } from '../../context/AnimationContext';
 import { useAuth } from '../../context/AuthContext';
 import { QuizType } from '../../types/QuizType';
 import { StyledButton } from '../buttons/StyledButton';
+import ConfirmModal from '../common/ConfirmModal';
 
 function QuizzesOverview() {
   const [quizzes, setQuizzes] = useState<QuizType[]>([]);
@@ -23,6 +29,9 @@ function QuizzesOverview() {
   const { getTokenBearer } = useAuth();
   const navigate = useNavigate();
   const { addAlert } = useAlert();
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [currentQuiz, setCurrentQuiz] = useState<QuizType | null>(null);
+
   const { routeVariants } = useAnimationContext();
 
   const addQuiz = () => {
@@ -33,17 +42,32 @@ function QuizzesOverview() {
   // open pop up modal for editing quiz
   // };
 
-  const deleteQuiz = (id: string | undefined) => {
+  const openDeleteModal = (quiz: QuizType) => {
+    setCurrentQuiz(quiz);
+    setDeleteModalOpen(true);
+  };
+
+  const closeDeleteModal = () => {
+    setDeleteModalOpen(false);
+  };
+
+  const deleteQuiz = () => {
+    if (!currentQuiz?._id) return;
+
     axios
-      .delete(`${import.meta.env.VITE_API_URL}/quiz/${id}`, {
+      .delete(`${import.meta.env.VITE_API_URL}/quiz/${currentQuiz._id}`, {
         headers: {
           Authorization: getTokenBearer(),
         },
       })
       .then(() => {
-        const updatedQuizzes = quizzes.filter((quiz) => quiz._id !== id);
+        const updatedQuizzes = quizzes.filter(
+          (quiz) => quiz._id !== currentQuiz._id
+        );
         setQuizzes(updatedQuizzes);
         addAlert("Quiz is succesvol verwijderd", "success");
+        setDeleteModalOpen(false);
+        setTotalQuizzes(totalQuizzes - 1);
       })
       .catch((error) => {
         console.log(error);
@@ -99,6 +123,7 @@ function QuizzesOverview() {
               <th className="py-3 px-6 text-left">Slug</th>
               <th className="py-3 px-6 text-left">Wachtwoord</th>
               <th className="py-3 px-6 text-left">Aantal Vragen</th>
+              <th className="py-3 px-6 text-left">Link</th>
               <th className="py-3 px-6 text-center">Acties</th>
             </tr>
           </thead>
@@ -106,7 +131,7 @@ function QuizzesOverview() {
             {loading
               ? [...Array(totalQuizzes)].map((_, index) => (
                   <tr key={index}>
-                    <td colSpan={5}>
+                    <td colSpan={6}>
                       <Skeleton
                         count={1}
                         className="py-3 px-6"
@@ -132,19 +157,46 @@ function QuizzesOverview() {
                     <td className="py-3 px-6 text-left whitespace-nowrap">
                       {quiz.totalQuestions}
                     </td>
+                    <td className="py-3 px-6 text-left whitespace-nowrap">
+                      <span
+                        className="cursor-pointer text-primary-500 hover:underline transition-colors duration-200 flex items-center select-none"
+                        onClick={async () => {
+                          const url = `http://${window.location.host}/quiz/${quiz.slug}`;
+                          await navigator.clipboard.writeText(url);
+                          addAlert("Link is gekopieerd", "success");
+                        }}
+                      >
+                        http://{window.location.host}/quiz/{quiz.slug}{" "}
+                        <ClipboardIcon className="ml-2 w-4 h-4" />
+                      </span>
+                    </td>
                     <td className="py-3 px-6 text-center">
                       <button
-                        // onClick={() => editQuiz(quiz._id)}
+                        // Uncomment and modify the function name as needed
+                        // onClick={() => openEditModal(quiz)}
                         className="bg-secondary hover:bg-primary text-white font-bold py-1 px-2 rounded mr-2 transition-colors duration-200"
                       >
                         Bewerk
                       </button>
                       <button
-                        onClick={() => deleteQuiz(quiz._id)}
+                        onClick={() => {
+                          openDeleteModal(quiz);
+                        }}
                         className="bg-red-300 hover:bg-red-500 text-white font-bold py-1 px-2 rounded transition-colors duration-200"
                       >
                         Verwijder
                       </button>
+                      <AnimatePresence>
+                        {deleteModalOpen && (
+                          <ConfirmModal
+                            key={quiz._id}
+                            onConfirm={deleteQuiz}
+                            isOpen={deleteModalOpen}
+                            onClose={closeDeleteModal}
+                            quiz={currentQuiz as QuizType}
+                          />
+                        )}
+                      </AnimatePresence>
                     </td>
                   </tr>
                 ))}

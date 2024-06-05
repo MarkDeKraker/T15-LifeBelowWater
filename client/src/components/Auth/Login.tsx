@@ -62,7 +62,7 @@ function Login() {
     : "border-gray-300";
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen space-y-8">
+    <div className="flex flex-col items-center justify-center h-screen space-y-8 font-custom">
       <span className="text-2xl text-gray-700">Login</span>
       {errors.root?.apiError && (
         <motion.p
