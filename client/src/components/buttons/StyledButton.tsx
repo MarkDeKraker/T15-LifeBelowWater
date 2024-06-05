@@ -3,6 +3,7 @@ type Props = {
   children: React.ReactNode;
   onClick: () => void | any;
   icon?: React.ReactNode;
+  disabled?: boolean;
 };
 
 export const activeStyle = "active:scale-95 transform transition";

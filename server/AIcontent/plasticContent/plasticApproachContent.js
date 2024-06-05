@@ -1,0 +1,21 @@
+const plasticApproachContent = "Het is moeilijk om plastic uit de oceaan te halen als het erin is gekomen. Niet onmogelijk, maar wel moeilijk. Nieuwe technologieën stellen ons in staat om grotere stukken afval uit de oceaan te halen. Bedrijven werken aan het ontwikkelen van biologisch afbreekbare alternatieven voor plastic en technologieën om plasticafval op te ruimen, zoals drijvende barrières en op afval gerichte schepen." +
+    
+"Kleine plastic voorwerpen en microplastics zijn bijna onmogelijk te bereiken, vooral als ze diep in de oceaan zijn. Daarom hebben veel wetenschappers en natuurbeschermers verklaard dat de beste oplossing is om te voorkomen dat plastic afval überhaupt in rivieren en zeeën terechtkomt." +
+
+"Dit kan worden bereikt door verbetering van onze afvalbeheersystemen en de invoering van recycling. Bovendien is het essentieel om het ontwerp en het gebruik van wegwerpverpakkingen te heroverwegen en de productie van onnodige eenmalige (single-use) plastic producten te verminderen." + 
+
+"Wat kunnen wij zelf eraan doen? Plasticvervuiling is een wereldwijd probleem, maar iedereen kan een bijdrage doen om plastic uit de oceaan te houden! Hier zijn wat mogelijkheden die je zelf kunt aannemen en delen met de mensen om je heen: Wees bewust van het plastic die je gebruikt - Denk eens aan alle plastic items die je gebruikt in je dagelijks leven. Kun je ze allemaal tellen? Meer bewust worden van de manier waarop je plastic gebruikt is een geweldig begin om plastic afval te verminderen." + 
+
+"We weten dat gewoontes moeilijk te veranderen zijn, maar zelfs een kleine individuele inzet kan een verschil maken. Vooral als we het hebben over de eenmalige plastics die we eerder hebben genoemd, die volgens gegevens van het Europees Parlement verantwoordelijk zijn voor 49% van alle mariene vervuiling."
+
+"Hier zijn wat nieuwe gewoonten waar je inspiratie uit kunt halen: Verminder het gebruik van wegwerpbare plastic bekers, borden, bestek en flessen. Neem bijvoorbeeld je eigen herbruikbare fles mee naar school. - Kies metalen of glazen voedselcontainers en opslagopties in plaats van plastic - Kies voor snacks en voedsel dat niet in plastic verpakt is, zoals fruit dat in een eigen schil zit. - Gebruik geen plastic rietjes en roerstaafjes, maar kies voor herbruikbare of papieren alternatieven. - Ruil plastic tassen in voor herbruikbare tassen, gemaakt van stof of vezel. - Moedig anderen aan om ook minder plastic te gebruiken door het goede voorbeeld te geven en hen te informeren over de voordelen van plasticvrije alternatieven." +
+
+"Neem deel aan (of organiseer!) een opruimactie in de buurt - Als je bij een zee of rivier woont, kun je je vrijwillig aanmelden om zwerfvuil op te ruimen in je lokale gemeenschap, waardoor je plastics uit de waterwegen verwijdert en voorkomt dat ze überhaupt in de oceaan terechtkomen. Er zijn veel organisaties waarbij je je kunt aansluiten, of je kunt het gewoon in het weekend doen met je vrienden en familie. Alle beetjes helpen!" +
+
+"Ondersteun de juiste wetgeving en regelgeving - Veel landen hebben wetten aangenomen om plasticgebruik te verminderen en afvalbeheer te verbeteren. Dit gaat over het verbieden van bepaalde plastic producten, zoals wegwerpplastic, en het implementeren van recyclingprogramma's." +
+
+"Het is essentieel dat je wetgeving ondersteunt die gericht is op het verminderen van het gebruik en de productie van plastic, het verbeteren van recyclingfaciliteiten en het beter beheren van afval in het algemeen. Als jonge leerling mag jij zelf nog niet stemmen, maar je kunt wel: Brieven schrijven aan lokale overheden om je bezorgdheid te delen en te pleiten voor strengere wetten tegen plasticvervuiling. Deelnemen aan petities of zelf petities starten om steun te verzamelen voor wetten en regels die plasticvermindering bevorderen. Anderen informeren over het belang van wetgeving tegen plasticvervuiling en moedig hen aan om ook actie te ondernemen." +
+
+"Deel je kennis! - Je hebt nu veel geleerd over de impact van plasticvervuiling op het milieu en de oceanen. Als jij ook verandering wilt zien, helpt het enorm om je kennis met vrienden en familie te delen. Hiermee worden steeds meer mensen bewust van het probleem en wordt er mee actie genomen om het probleem te bestrijden."
+
+export default plasticApproachContent;

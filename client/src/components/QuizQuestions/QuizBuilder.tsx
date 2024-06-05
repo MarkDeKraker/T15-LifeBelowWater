@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 import { useAnimationContext } from "../../context/AnimationContext";
 import { useQuizBuilder } from "../../context/QuizBuilderContext";
@@ -13,6 +14,13 @@ import SaveIcon from "../icons/SaveIcon";
 function QuizBuilder() {
   const { addQuestions, addQuestionsFromAi, saveQuiz, setTitle, setPassword } = useQuizBuilder();
   const { routeVariants } = useAnimationContext();
+  const [selectedTopic, setSelectedTopic] = useState('');
+
+  const topics = [
+    "Probleem van plasticvervuiling in de oceaan",
+    "Gevolgen van plasticvervuiling in de oceaan",
+    "Aanpak van plasticvervuiling in de oceaan"
+  ];
 
   return (
     <motion.div
@@ -39,6 +47,17 @@ function QuizBuilder() {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
+
+            <select
+              value={selectedTopic}
+              onChange={(e) => setSelectedTopic(e.target.value)}
+              required
+            >
+              <option value="" disabled>Selecteer een onderwerp</option>
+              {topics.map((topic, index) => (
+                <option key={index} value={topic}>{topic}</option>
+              ))}
+            </select>
           </form>
 
           <Questions />
@@ -52,23 +71,24 @@ function QuizBuilder() {
               Voeg vraag toe
             </StyledButton>
             <div className="flex justify-between">
-            <StyledButton
-              buttonStyle="secondary"
-              onClick={() => addQuestionsFromAi('plasticvervuiling')}
-              icon={<AddIcon />}
-            >
-              Genereer een vraag
-            </StyledButton>
-            <StyledSubmitButton
-              buttonStyle="tertiary"
-              onClick={saveQuiz}
-              className="text-gray-800 border-0 hover:underline-offset-2"
-              icon={<SaveIcon />}
-            >
-              Quiz Opslaan
-            </StyledSubmitButton>
+              <StyledButton
+                buttonStyle="secondary"
+                onClick={() => addQuestionsFromAi(selectedTopic)}
+                icon={<AddIcon />}
+                disabled={!selectedTopic}
+              >
+                Genereer een vraag
+              </StyledButton>
+              <StyledSubmitButton
+                buttonStyle="tertiary"
+                onClick={saveQuiz}
+                className="text-gray-800 border-0 hover:underline-offset-2"
+                icon={<SaveIcon />}
+              >
+                Quiz Opslaan
+              </StyledSubmitButton>
+            </div>
           </div>
-        </div>
         </div>
       </Container>
     </motion.div>

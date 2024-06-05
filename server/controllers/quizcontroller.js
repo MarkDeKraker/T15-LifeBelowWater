@@ -2,6 +2,7 @@ import Quiz from "../models/Quiz.js";
 import AIModel from "../settings/openAI.js";
 import { PromptTemplate } from '@langchain/core/prompts';
 import { JsonOutputFunctionsParser } from "langchain/output_parsers";
+import topicContentMap from "../AIcontent/topicContentMap.js";
 
 const { model } = AIModel;
 
@@ -447,9 +448,16 @@ export class QuizController {
         });
       }
 
-      const system = "Je bent een basisschool docent voor groep 7 en 8. Verwoord je antwoorden op een manier dat het begrijpelijk is voor kinderen van 10 tot 12 jaar oud.";
+      const content = topicContentMap[topic];
+        if (!content) {
+            return res.status(400).json({
+                message: "Invalid topic provided",
+            });
+        }
 
-      const engineeredPrompt = `{ Kun je mij een quizvraag geven over ${topic} in de oceaan? Een vraag heeft drie foute antwoorden en één goed antwoord. Geef het antwoord in het volgende JSON formaat en wijk er niet van af. Stuur alleen de json terug. NO YAPPING:
+      const system = `Je bent een basisschool docent voor groep 7 en 8. Verwoord je antwoorden op een manier dat het begrijpelijk is voor kinderen van 10 tot 12 jaar oud. Hier is wat informatie over ${topic}: ${content}`;
+
+      const engineeredPrompt = `{ Kun je mij een quizvraag geven over ${topic}? Een vraag heeft drie foute antwoorden en één goed antwoord. Geef het antwoord in het volgende JSON formaat en wijk er niet van af. Stuur alleen de json terug. NO YAPPING:
         {
           question: "",
           answers: [
