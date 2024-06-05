@@ -12,6 +12,7 @@ interface QuizContextType {
   setPassword: React.Dispatch<React.SetStateAction<string>>;
   saveQuiz: () => void;
   addQuestions: () => void;
+  addQuestionsFromAi: (topic: string) => void;
   updateQuestion: (
     index: number,
     field: "question" | "isCorrect" | "answers",
@@ -48,16 +49,36 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
     ]);
   };
 
-  // const addQuestionsFromAi = () => {
+  const addQuestionsFromAi = async (topic: string) => {
     
-  //   const data = fetch();
+    try {
+      const response = await fetch('/quiz/generate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ topic }),
+      });
 
-  //   setQuestions([
-  //     ...questions,
-  //     {
-  //       response
-  //   ]);
-  // };
+      if (!response.ok) {
+        throw new Error('Failed to fetch question from AI');
+      }
+
+      const data: QuestionType = await response.json();
+
+      setQuestions([
+        ...questions,
+        data,
+      ]);
+
+      // setQuestions((prevQuestions) => [
+      //   ...prevQuestions,
+      //   data,
+      // ]);
+    } catch (error) {
+      console.error('Error fetching question from AI:', error);
+    }
+  };
 
   const updateQuestion = (
     index: number,
@@ -154,6 +175,7 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
         questions,
         setQuestions,
         addQuestions,
+        addQuestionsFromAi,
         updateQuestion,
         saveQuiz,
         setTitle,

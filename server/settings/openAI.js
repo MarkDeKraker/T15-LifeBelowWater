@@ -12,4 +12,4 @@ const AIModel = new ChatOpenAI({
     azureOpenAIApiDeploymentName: process.env.ENGINE_NAME,
 });
 
-export { AIModel};
+export default { AIModel};

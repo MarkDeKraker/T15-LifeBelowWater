@@ -387,12 +387,65 @@ export class QuizController {
     }
   }
 
+  // generate quiz question
+  /**
+   * @swagger
+   * /api/v1/quiz/generate:
+   *   post:
+   *     summary: Generate a quiz question
+   *     tags: [Quizzes]
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             type: object
+   *             properties:
+   *               topic:
+   *                 type: string
+   *                 description: The topic for the quiz question
+   *                 example: plasticvervuiling
+   *     responses:
+   *       200:
+   *         description: Quiz question generated successfully
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: object
+   *               properties:
+   *                 question:
+   *                   type: string
+   *                 answers:
+   *                   type: array
+   *                   items:
+   *                     type: object
+   *                     properties:
+   *                       _id:
+   *                         type: string
+   *                       answer:
+   *                         type: string
+   *                       isCorrect:
+   *                         type: boolean
+   *       400:
+   *         description: Bad request
+   *       500:
+   *         description: Server error
+   */
+
   async generateQuestion(req, res) {
     try {
 
+      const { topic } = req.body;
+
+      if (!topic) {
+        return res.status(400).json({
+          message: "Topic is required",
+        });
+      }
+
       const system = "Je bent een basisschool docent voor groep 7 en 8. Verwoord je antwoorden op een manier dat het begrijpelijk is voor kinderen van 10 tot 12 jaar oud.";
 
-      const engineeredPrompt = `{ Kun je mij een quizvraag geven over plasticvervuiling in oceaan? Een vraag heeft drie foute antwoorded en één goed antwoord. Geef het antwoord in het volgende JSON formaat en wijk er niet van af. NO YAPPING:
+      const engineeredPrompt = `{ Kun je mij een quizvraag geven over ${topic} in de oceaan? Een vraag heeft drie foute antwoorded en één goed antwoord. Geef het antwoord in het volgende JSON formaat en wijk er niet van af. NO YAPPING:
         {
           question: "",
           answers: [
@@ -404,20 +457,43 @@ export class QuizController {
         },    
       }`;
 
-      const res = await AIModel.invoke([
+      const response = await AIModel.invoke([
         ["system", system],
         ["user", engineeredPrompt]
       ]);
 
-      const jsonResponse = extractJSON(res.content);
-      // console.log(res.content);
-      console.log(jsonResponse);
+      const jsonResponse = extractJSON(response.content);
+
+      if (jsonResponse) {
+        return res.status(200).json(jsonResponse);
+      } else {
+        return res.status(500).json({
+          message: "Failed to generate quiz question",
+        });
+      }
     } catch (error) {
       console.error("Error invoking the model:", error);
+      return res.status(500).json({
+        error: error.message,
+        message: "Server error",
+      });
     }
-  }
+  };
 
 }
+
+// function extractJSON(responseText) {
+//   const start = responseText.indexOf('{');
+//   const end = responseText.lastIndexOf('}');
+
+//   if (start !== -1 && end !== -1 && end > start) {
+//     const jsonString = responseText.substring(start, end + 1);
+//     return jsonString;
+//   } else {
+//     console.error("JSON not found in response text");
+//     return null;
+//   }
+// }
 
 function extractJSON(response) {
   const jsonStart = response.indexOf("{");

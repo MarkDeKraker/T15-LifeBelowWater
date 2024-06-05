@@ -9,7 +9,7 @@ import Container from '../Layout/Container';
 import Questions from './Questions';
 
 function QuizBuilder() {
-  const { addQuestions, saveQuiz, setTitle, setPassword } = useQuizBuilder();
+  const { addQuestions, addQuestionsFromAi, saveQuiz, setTitle, setPassword } = useQuizBuilder();
   const { routeVariants } = useAnimationContext();
 
   return (
@@ -51,7 +51,8 @@ function QuizBuilder() {
             </StyledButton>
             <StyledButton
               buttonStyle="secondary"
-              onClick={addQuestions}
+              
+              onClick={() => addQuestionsFromAi('plasticvervuiling')}
               icon={<AddIcon />}
             >
               Genereer vraag
