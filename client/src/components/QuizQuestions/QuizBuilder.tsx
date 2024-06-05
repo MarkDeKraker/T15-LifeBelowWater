@@ -49,6 +49,7 @@ function QuizBuilder() {
             />
 
             <select
+              className="border border-gray-300 rounded-lg p-2 text-gray-900"
               value={selectedTopic}
               onChange={(e) => setSelectedTopic(e.target.value)}
               required
