@@ -314,11 +314,17 @@ export class QuizController {
       }
 
       // check if quiz with title, slug or password exists
+      // this excludes the current quiz that is being updated
       const quizExists = await Quiz.findOne({
-        $or: [
-          { title: req.body.title },
-          { slug: req.body.slug },
-          { password: req.body.password },
+        $and: [
+          { _id: { $ne: req.params._id } },
+          {
+            $or: [
+              { title: req.body.title },
+              { slug: req.body.slug },
+              { password: req.body.password },
+            ],
+          },
         ],
       });
 
