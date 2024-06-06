@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const answerSchema = new mongoose.Schema(
   {
@@ -12,6 +12,7 @@ const answerSchema = new mongoose.Schema(
 const questionSchema = new mongoose.Schema({
   question: { type: String, required: true },
   answers: [answerSchema],
+  id: { type: String, required: true },
 });
 
 const quizSchema = new mongoose.Schema({

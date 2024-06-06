@@ -1,7 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 
-import { QuestionType, useQuizBuilder } from "../../context/QuizBuilderContext";
+import { useQuizBuilder } from "../../context/QuizBuilderContext";
 import FormInput from "../form/FormInput";
+import { Question } from "../../types/QuizType";
 
 function Questions() {
   const { questions, updateQuestion, deleteQuestion } = useQuizBuilder();
@@ -39,20 +40,14 @@ function Questions() {
   );
 }
 
-function Answers({
-  question,
-  index,
-}: {
-  question: QuestionType;
-  index: number;
-}) {
+function Answers({ question, index }: { question: Question; index: number }) {
   const { updateQuestion } = useQuizBuilder();
 
   return (
     <>
       {question.answers.map((answer) => {
         return (
-          <div className="flex items-center justify-center " key={answer._id}>
+          <div className="flex items-center justify-center" key={answer._id}>
             <FormInput
               name="answer"
               type="text"

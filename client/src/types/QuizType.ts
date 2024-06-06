@@ -13,18 +13,14 @@ export interface SaveQuizType {
   password: string;
   questions?: Question[];
 }
-export interface Question {
-  _id: string;
+export type Question = {
   question: string;
-  answers: Answer;
-}
-export interface Answer {
-  A: Option;
-  B: Option;
-  C: Option;
-  D: Option;
-}
-export interface Option {
+  answers: AnswerType[];
+  id: string;
+};
+
+export type AnswerType = {
   answer: string;
   isCorrect: boolean;
-}
+  _id: string;
+};

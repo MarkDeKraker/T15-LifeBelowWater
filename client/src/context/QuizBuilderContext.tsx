@@ -1,14 +1,16 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import { useAlert } from "./AlertContext";
 import { useAuth } from "./AuthContext";
+import { Question } from "../types/QuizType";
 
 interface QuizContextType {
-  questions: QuestionType[]; // Replace 'any' with the type of your quiz data
-  setQuestions: React.Dispatch<React.SetStateAction<QuestionType[]>>;
+  questions: Question[]; // Replace 'any' with the type of your quiz data
+  setQuestions: React.Dispatch<React.SetStateAction<Question[]>>;
   setTitle: React.Dispatch<React.SetStateAction<string>>;
   setPassword: React.Dispatch<React.SetStateAction<string>>;
   saveQuiz: () => void;
@@ -29,7 +31,7 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const { getTokenBearer } = useAuth();
   const { addAlert } = useAlert();
-  const [questions, setQuestions] = useState<QuestionType[] | []>([]);
+  const [questions, setQuestions] = useState<Question[]>([]);
 
   const [title, setTitle] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -39,7 +41,7 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
     setQuestions([
       ...questions,
       {
-        id: crypto.randomUUID(), // creates a unique id, so we can delete the question, and don't get issues with order
+        id: uuidv4(), // creates a unique id, so we can delete the question, and don't get issues with order
         question: "",
         answers: [
           { _id: "A", answer: "", isCorrect: true },
@@ -170,14 +172,3 @@ export const useQuizBuilder = () => {
 };
 // THESE INTERFACES ARE FOR THE QUESTIONS THAT ARE BEING CREATED TO SEND TO THE API
 // THAT IS WHY THE QUESTIONTYPE DOESN'T HAVE A _ID
-
-export type QuestionType = {
-  question: string;
-  answers: AnswerType[];
-  id: string;
-};
-export type AnswerType = {
-  answer: string;
-  isCorrect: boolean;
-  _id: string;
-};

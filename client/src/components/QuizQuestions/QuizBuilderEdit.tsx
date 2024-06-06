@@ -1,7 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
-
+import { v4 as uuidv4 } from "uuid";
 import { useAnimationContext } from "../../context/AnimationContext";
-import { AnswerType, QuestionType } from "../../context/QuizBuilderContext";
 import FormInput from "../form/FormInput";
 import Container from "../Layout/Container";
 import { StyledSubmitButton } from "../buttons/StyledSubmitButton";
@@ -13,6 +12,7 @@ import { useAlert } from "../../context/AlertContext";
 import axios from "axios";
 import { StyledButton } from "../buttons/StyledButton";
 import AddIcon from "../icons/AddIcon";
+import { Question } from "../../types/QuizType";
 
 function QuizBuilderEdit() {
   const navigate = useNavigate();
@@ -22,11 +22,9 @@ function QuizBuilderEdit() {
   const location = useLocation();
   const previous = location.state;
 
-  const [questions, setQuestions] = useState<QuestionType[] | []>([]);
-
-  if (questions.length === 0) {
-    setQuestions(previous.quiz.questions);
-  }
+  const [questions, setQuestions] = useState<Question[] | []>(
+    previous.quiz.questions
+  );
 
   const [editTitle, setTitle] = useState<string>(previous.quiz.title);
   const [password, setPassword] = useState<string>(previous.quiz.password);
@@ -37,7 +35,7 @@ function QuizBuilderEdit() {
     setQuestions([
       ...questions,
       {
-        id: crypto.randomUUID(), // creates a unique id, so we can delete the question, and don't get issues with order
+        id: uuidv4(), // creates a unique id, so we can delete the question, and don't get issues with order
         question: "",
         answers: [
           { _id: "A", answer: "", isCorrect: true },
@@ -50,13 +48,13 @@ function QuizBuilderEdit() {
   };
 
   const updateQuestion = (
-    index: number,
+    index: string,
     field: "question" | "isCorrect" | "answers",
     value: string | boolean,
     answerId?: string
   ) => {
-    const updatedQuestions = questions.map((question, i) => {
-      if (i === index) {
+    const updatedQuestions = questions.map((question) => {
+      if (question.id === index) {
         switch (field) {
           case "question":
             // Update the question text
@@ -88,6 +86,9 @@ function QuizBuilderEdit() {
             };
 
           default:
+            console.warn(
+              "Unknown field is used, you don't have to worry about this message"
+            );
             // In case an unknown field is used
             return question;
         }
@@ -178,7 +179,7 @@ function QuizBuilderEdit() {
 
           {/* Copied from <Questions/>, so It would not conflict*/}
           <AnimatePresence>
-            {questions.map((question: QuestionType, index: number) => (
+            {questions.map((question) => (
               <motion.div
                 initial={{ opacity: 0, y: -30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -194,15 +195,51 @@ function QuizBuilderEdit() {
                   placeholder="Voer vraag in"
                   defaultValue={question.question}
                   onChange={(e) =>
-                    updateQuestion(index, "question", e.target.value)
+                    updateQuestion(question.id, "question", e.target.value)
                   }
                 />
                 <div className="mt-6 mb-4 border border-1"></div>
-                <Answers
-                  items={question.answers}
-                  updateQuestion={updateQuestion}
-                  index={index}
-                />
+
+                {question.answers.map((answer) => {
+                  return (
+                    <div
+                      className="flex items-center justify-center "
+                      key={answer._id}
+                    >
+                      <FormInput
+                        name="answer"
+                        type="text"
+                        className="px-2 py-3 border border-r-0 border-collapse rounded-r-none first:mt-0 first:mb-0 rounded-l-2xl"
+                        placeholder={`Antwoord ${answer._id}`}
+                        value={answer.answer}
+                        onChange={(e) =>
+                          updateQuestion(
+                            question.id,
+                            "answers",
+                            e.target.value,
+                            answer._id
+                          )
+                        }
+                      />
+                      <button
+                        type="button"
+                        className={`transform transition-all ease-in duration-150  p-2 py-3 my-1 rounded-r-2xl text-white font-bold ${
+                          answer.isCorrect ? "bg-green-500/80" : "bg-red-500/60"
+                        }`}
+                        onClick={() =>
+                          updateQuestion(
+                            question.id,
+                            "isCorrect",
+                            true,
+                            answer._id
+                          )
+                        }
+                      >
+                        {answer.isCorrect ? "Correct" : "Onjuist"}
+                      </button>
+                    </div>
+                  );
+                })}
 
                 <button
                   className="p-2 mt-4 text-white transition-all transform bg-red-300 hover:bg-red-500 rounded-custom w-fit duration-250"
@@ -234,53 +271,6 @@ function QuizBuilderEdit() {
         </div>
       </Container>
     </motion.div>
-  );
-}
-
-function Answers({
-  items,
-  index,
-  updateQuestion,
-}: {
-  items: AnswerType[];
-  index: number;
-  updateQuestion: (
-    index: number,
-    field: "question" | "isCorrect" | "answers",
-    value: string | boolean,
-    answerId?: string
-  ) => void;
-}) {
-  return (
-    <>
-      {items.map((answer) => {
-        return (
-          <div className="flex items-center justify-center " key={answer._id}>
-            <FormInput
-              name="answer"
-              type="text"
-              className="px-2 py-3 border border-r-0 border-collapse rounded-r-none first:mt-0 first:mb-0 rounded-l-2xl"
-              placeholder={`Antwoord ${answer._id}`}
-              defaultValue={answer.answer}
-              onChange={(e) =>
-                updateQuestion(index, "answers", e.target.value, answer._id)
-              }
-            />
-            <button
-              type="button"
-              className={`transform transition-all ease-in duration-150  p-2 py-3 my-1 rounded-r-2xl text-white font-bold ${
-                answer.isCorrect ? "bg-green-500/80" : "bg-red-500/60"
-              }`}
-              onClick={() =>
-                updateQuestion(index, "isCorrect", true, answer._id)
-              }
-            >
-              {answer.isCorrect ? "Correct" : "Onjuist"}
-            </button>
-          </div>
-        );
-      })}
-    </>
   );
 }
 
