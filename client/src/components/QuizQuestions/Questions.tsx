@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useQuizBuilder } from "../../context/QuizBuilderContext";
 import FormInput from "../form/FormInput";
 import { Question } from "../../types/QuizType";
+import { TrashIcon } from "@heroicons/react/24/outline";
 
 function Questions() {
   const { questions, updateQuestion, deleteQuestion } = useQuizBuilder();
@@ -29,10 +30,13 @@ function Questions() {
           <div className="mt-6 mb-4 border border-1"></div>
           <Answers question={question} index={index} />
           <button
-            className="p-2 mt-4 text-white transition-all transform bg-red-300 hover:bg-red-500 rounded-custom w-fit duration-250"
+            className="p-2 px-4 mt-4 text-white transition-all transform bg-red-300 hover:bg-red-500 rounded-custom w-fit duration-250"
             onClick={() => deleteQuestion(question.id)}
           >
-            Verwijder vraag
+            <div className="flex items-center justify-between ">
+              <TrashIcon className="w-6 h-6 " />
+              Verwijder vraag
+            </div>
           </button>
         </motion.div>
       ))}

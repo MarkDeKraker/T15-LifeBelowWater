@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { useAlert } from "./AlertContext";
 import { useAuth } from "./AuthContext";
@@ -11,8 +11,11 @@ import { Question } from "../types/QuizType";
 interface QuizContextType {
   questions: Question[]; // Replace 'any' with the type of your quiz data
   setQuestions: React.Dispatch<React.SetStateAction<Question[]>>;
+  title: string;
   setTitle: React.Dispatch<React.SetStateAction<string>>;
+  password: string;
   setPassword: React.Dispatch<React.SetStateAction<string>>;
+  updateQuiz: () => void;
   saveQuiz: () => void;
   addQuestions: () => void;
   updateQuestion: (
@@ -29,12 +32,25 @@ const QuizContext = React.createContext<QuizContextType | undefined>(undefined);
 export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
+  // location is needed to get the previous state of the quiz, so we can edit it
+  const location = useLocation();
+  const previous = location.state;
+
   const { getTokenBearer } = useAuth();
   const { addAlert } = useAlert();
-  const [questions, setQuestions] = useState<Question[]>([]);
 
-  const [title, setTitle] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  // If there is a previous state, use the questions from that state, also needed for editing
+  const initialQuestions: Question[] | [] = previous?.quiz?.questions || [];
+  const initialTitle: string = previous?.quiz?.title || "";
+  const initialPassword: string = previous?.quiz?.password || "";
+
+  // Needed to get the previous state of the quiz, so we can edit it
+  const [questions, setQuestions] = useState(initialQuestions);
+
+  const [title, setTitle] = useState(initialTitle);
+
+  const [password, setPassword] = useState<string>(initialPassword);
+
   const navigate = useNavigate();
 
   const addQuestions = () => {
@@ -138,6 +154,47 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
       });
   };
 
+  const updateQuiz = () => {
+    const payload = {
+      title: title,
+      slug: getSlug(title),
+      password: password,
+      questions: questions,
+      totalQuestions: questions.length,
+    };
+
+    console.log("current payload", payload);
+
+    axios
+      .put(
+        `${import.meta.env.VITE_API_URL}/quiz/${previous.quiz._id}`,
+        payload,
+        {
+          headers: {
+            Authorization: getTokenBearer(),
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        addAlert("Quiz is succesvol gewijzigd", "success");
+        navigate(`/quiz`);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        addAlert("Er is iets misgegaan", "error");
+        if (error.response.data.message === "All fields are required") {
+          addAlert("Vul alle velden in", "error");
+        }
+        if (
+          error.response.data.message ===
+          "Quiz with title, slug or password already exists"
+        ) {
+          addAlert("Quiz met deze titel en dit wachtwoord bestaat al", "error");
+        }
+      });
+  };
+
   const deleteQuestion = (resourceId: string) => {
     const updatedQuestions = questions.filter(
       (question) => question.id !== resourceId
@@ -152,8 +209,11 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
         setQuestions,
         addQuestions,
         updateQuestion,
+        updateQuiz,
         saveQuiz,
+        title,
         setTitle,
+        password,
         setPassword,
         deleteQuestion,
       }}

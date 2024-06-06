@@ -33,7 +33,7 @@ function QuizzesOverview() {
   };
 
   const editQuiz = (quiz: QuizType) => {
-    navigate(`/quiz/builder/edit/`, { state: { quiz } });
+    navigate(`/quiz/builder/`, { state: { quiz } });
   };
 
   const openDeleteModal = (quiz: QuizType) => {

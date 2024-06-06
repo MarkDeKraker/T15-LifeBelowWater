@@ -9,11 +9,21 @@ import Container from "../Layout/Container";
 import Questions from "./Questions";
 import { StyledSubmitButton } from "../buttons/StyledSubmitButton";
 import SaveIcon from "../icons/SaveIcon";
+import { useLocation } from "react-router-dom";
 
 function QuizBuilder() {
-  const { addQuestions, saveQuiz, setTitle, setPassword } = useQuizBuilder();
+  const {
+    addQuestions,
+    updateQuiz,
+    saveQuiz,
+    title,
+    password,
+    setTitle,
+    setPassword,
+  } = useQuizBuilder();
   const { routeVariants } = useAnimationContext();
 
+  const location = useLocation();
   return (
     <motion.div
       variants={routeVariants}
@@ -28,6 +38,7 @@ function QuizBuilder() {
               type="text"
               name="title"
               placeholder="Voer titel in"
+              defaultValue={title}
               onChange={(e) => setTitle(e.target.value)}
               required
             />
@@ -36,6 +47,7 @@ function QuizBuilder() {
               type="text"
               name="password"
               placeholder="Wachtwoord"
+              defaultValue={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
@@ -53,7 +65,7 @@ function QuizBuilder() {
             </StyledButton>
             <StyledSubmitButton
               buttonStyle="tertiary"
-              onClick={saveQuiz}
+              onClick={location.state ? updateQuiz : saveQuiz}
               className="text-gray-800 border-0 hover:underline-offset-2"
               icon={<SaveIcon />}
             >
