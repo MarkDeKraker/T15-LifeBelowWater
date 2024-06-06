@@ -14,7 +14,7 @@ function Questions() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -30 }}
           transition={{ duration: 0.2 }}
-          key={index}
+          key={question.id}
           className="flex flex-col p-8 my-4 shadow rounded-custom bg-primary/5"
         >
           <FormInput
@@ -29,7 +29,7 @@ function Questions() {
           <Answers question={question} index={index} />
           <button
             className="p-2 mt-4 text-white transition-all transform bg-red-300 hover:bg-red-500 rounded-custom w-fit duration-250"
-            onClick={() => deleteQuestion(index)}
+            onClick={() => deleteQuestion(question.id)}
           >
             Verwijder vraag
           </button>

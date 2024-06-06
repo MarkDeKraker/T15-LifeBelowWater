@@ -37,6 +37,7 @@ function QuizBuilderEdit() {
     setQuestions([
       ...questions,
       {
+        id: crypto.randomUUID(), // creates a unique id, so we can delete the question, and don't get issues with order
         question: "",
         answers: [
           { _id: "A", answer: "", isCorrect: true },
@@ -139,9 +140,10 @@ function QuizBuilderEdit() {
 
   const getSlug = (title: string) => title.toLowerCase().replace(/\s/g, "-");
 
-  const deleteQuestion = (index: number) => {
-    console.log("deleteQuestion", index);
-    const updatedQuestions = questions.filter((_, i) => i !== index);
+  const deleteQuestion = (resourceId: string) => {
+    const updatedQuestions = questions.filter(
+      (question) => question.id !== resourceId
+    );
     setQuestions(updatedQuestions);
   };
 
@@ -182,7 +184,7 @@ function QuizBuilderEdit() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -30 }}
                 transition={{ duration: 0.2 }}
-                key={index}
+                key={question.id}
                 className="flex flex-col p-8 my-4 shadow rounded-custom bg-primary/5"
               >
                 <FormInput
@@ -204,7 +206,7 @@ function QuizBuilderEdit() {
 
                 <button
                   className="p-2 mt-4 text-white transition-all transform bg-red-300 hover:bg-red-500 rounded-custom w-fit duration-250"
-                  onClick={() => deleteQuestion(index)}
+                  onClick={() => deleteQuestion(question.id)}
                 >
                   Verwijder vraag
                 </button>

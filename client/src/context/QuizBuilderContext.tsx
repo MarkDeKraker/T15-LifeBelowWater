@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-import { useAlert } from './AlertContext';
-import { useAuth } from './AuthContext';
+import { useAlert } from "./AlertContext";
+import { useAuth } from "./AuthContext";
 
 interface QuizContextType {
   questions: QuestionType[]; // Replace 'any' with the type of your quiz data
@@ -19,7 +19,7 @@ interface QuizContextType {
     value: string | boolean,
     answerId?: string
   ) => void;
-  deleteQuestion: (index: number) => void;
+  deleteQuestion: (resourceId: string) => void;
 }
 
 const QuizContext = React.createContext<QuizContextType | undefined>(undefined);
@@ -39,6 +39,7 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
     setQuestions([
       ...questions,
       {
+        id: crypto.randomUUID(), // creates a unique id, so we can delete the question, and don't get issues with order
         question: "",
         answers: [
           { _id: "A", answer: "", isCorrect: true },
@@ -135,8 +136,10 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
       });
   };
 
-  const deleteQuestion = (index: number) => {
-    const updatedQuestions = questions.filter((_, i) => i !== index);
+  const deleteQuestion = (resourceId: string) => {
+    const updatedQuestions = questions.filter(
+      (question) => question.id !== resourceId
+    );
     setQuestions(updatedQuestions);
   };
 
@@ -171,6 +174,7 @@ export const useQuizBuilder = () => {
 export type QuestionType = {
   question: string;
   answers: AnswerType[];
+  id: string;
 };
 export type AnswerType = {
   answer: string;
