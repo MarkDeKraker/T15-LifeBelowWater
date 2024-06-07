@@ -1,10 +1,13 @@
-const BannerComp = ({ source, alt }: { source: string, alt: string }) => {
+const BannerComp = ({ source, alt, children }: { source: string, alt: string, children?: React.ReactNode }) => {
   return (
-    <img
-        className="col-start-2 col-end-11 relative z-20"
+    <div className="relative w-full h-full z-20">
+      <img
+        className="h-full w-screen object-cover top-0 left-0 z-20"
         src={source}
         alt={alt}
       />
+      {children && <div className="absolute inset-0 flex items-center justify-center text-center text-white lg:text-8xl sm:text-7xl drop-shadow-2xl font-semibold font-custom mb-10 z-30">{children}</div>}
+    </div>
   );
 };
 
