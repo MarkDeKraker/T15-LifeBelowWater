@@ -52,7 +52,7 @@ export default function PlasticProblem() {
                 />
             </div>
 
-            <div className="p-10 flex flex-col items-center w-full z-0 space-y-20 bg-gradient-a">
+            <div className="p-10 flex flex-col items-center w-full z-0 space-y-20">
                 <ContentCard
                     title={Microplastics.title}
                     subTitle={Microplastics.subTitle}
