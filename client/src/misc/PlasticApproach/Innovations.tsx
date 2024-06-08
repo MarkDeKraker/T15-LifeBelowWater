@@ -80,7 +80,7 @@ const innovations = {
   image: OceanCleanup,
   expandedText: (
     <div
-      className="relative z-20 space-y-5 px-3 clear-right"
+      className="relative z-20 space-y-5 md:px-0 sm:px-3 clear-right"
     >
       <br />
 

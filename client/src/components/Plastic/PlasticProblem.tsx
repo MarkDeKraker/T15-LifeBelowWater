@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 import PlasticPageParentComp from "./PlasticPageParentComp.tsx";
 
 import ContentCard from "../ContentCard.tsx";
@@ -18,7 +20,12 @@ import KeyFacts from "../../misc/PlasticProblem/KeyFacts";
 
 export default function PlasticProblem() {
     return (
-        <div className="flex flex-col items-center w-full h-full z-0 overflow-y-auto">
+        <motion.div className="flex flex-col items-center w-full h-full z-0 overflow-y-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.0, delay: 0.5, ease: "easeInOut"}}
+        >
 
             <BannerComp source={banner} alt={"Grote afbeelding dat plastic vervuiling in de oceaan laat zien"}>
                 {title.divs}
@@ -66,6 +73,6 @@ export default function PlasticProblem() {
                 />
             </div>
 
-        </div>
+        </motion.div>
     );
 }

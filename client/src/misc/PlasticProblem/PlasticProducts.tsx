@@ -52,7 +52,7 @@ const plasticProducts = {
   subTitle: "Plastic, gemaakt van fossiele brandstoffen, bestaat pas iets meer dan honderd jaar, maar heeft ons leven volledig veranderd. Je ziet plastic al over je heen:",
   image: SingleUsePlasticImage1024x675,
   expandedText: (
-    <div className="relative z-20 space-y-1 px-3 clear-right">
+    <div className="relative z-20 space-y-1 md:px-0 sm:px-3 clear-right">
       <ul className="text-cyan-950 text-xs font-semibold space-y-0.5 float-left pb-3 max-w-80">
         <li>Plastic flessen voor water en frisdrank.</li>
         <li>Plastic boodschappentassen.</li>

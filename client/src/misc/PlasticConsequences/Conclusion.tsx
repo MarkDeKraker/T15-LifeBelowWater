@@ -7,7 +7,7 @@ const conclusion = {
         className="mt-5 rounded-xl z-20"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.5 }}
+        transition={{ duration: 1.3 }}
         viewport={{ once: true }}
       >
         <div

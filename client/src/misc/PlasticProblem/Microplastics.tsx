@@ -50,7 +50,7 @@ const Microplastics = {
   subTitle: "Maar niet al het plasticafval in de oceaan komt door zwerfafval. Soms wordt plastic niet goed gemaakt en komen er microplastics in het water. Ook gooien sommige vissers plastic spullen in de oceaan, wat ook voorvervuiling zorgt.",
   image: "https://d3n8a8pro7vhmx.cloudfront.net/foe/pages/1667/attachments/original/1604715275/microplasticspoulos3.jpg?1604715275",
   expandedText: (
-    <div className="relative z-20 space-y-1 px-3 clear-right">
+    <div className="relative z-20 space-y-1 md:px-0 sm:px-3 clear-right">
       <p className="text-cyan-950 text-sm font-semibold font-custom text-wrap py-3">
         <strong>Microplastics</strong> zijn piepkleine stukjes plastic. Ze
         zijn zo klein dat ze door dieren in de zee kunnen worden opgegeten.

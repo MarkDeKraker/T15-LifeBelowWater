@@ -10,10 +10,10 @@ const TopicLink = ({ to, text }: { to: string, text: string }) => {
     return (
         <Link to={to} className="flex-1">
             <div
-                className={`h-14 lg:px-32 sm:px-5 ${bgColor} rounded-full mt-5 hover:bg-blue-950 hover:text-white grid place-items-center`}
+                className={`h-16 lg:px-28 sm:px-10 ${bgColor} md:rounded-full sm:rounded-lg mt-5 hover:bg-blue-950 hover:text-white grid place-items-center`}
             >
                 <div
-                    className={`text-center ${textColor} text-lg font-semibold font-custom hover:text-white`}
+                    className={`text-center ${textColor} md:text-lg sm:text-sm font-semibold font-custom hover:text-white`}
                 >
                     {text}
                 </div>

@@ -71,16 +71,13 @@ import GreenhouseGases from "../../assets/broeikasgassen_fd4109a1-pie-chart-1024
 
 const plasticCausingClimateChange = {
   title: "Afvalplastic veroorzaakt ook klimaatverandering",
+  subTitle: "Veel van het plastic dat niet bij de recyclingfabriek terechtkomt, belandt in onze rivieren en oceanen. Dit is niet alleen gevaarlijk voor de dieren en planten wiens leefgebieden zijn veranderd in onderwater-afvalhopen, maar het vormt ook een bedreiging voor het klimaat.",
   image: ClimateEffect,
   expandedText: (
-    <div className="relative z-20 space-y-1 px-3 clear-right">
+    <div className="relative z-20 space-y-1 md:px-0 sm:px-3 clear-right">
 
       <p className="text-cyan-950 text-sm font-semibold font-custom text-wrap py-3">
-        Veel van het plastic dat niet bij de recyclingfabriek terechtkomt,
-        belandt in onze rivieren en oceanen. Dit is niet alleen gevaarlijk
-        voor de dieren en planten wiens leefgebieden zijn veranderd in
-        onderwater-afvalhopen, maar het vormt ook een bedreiging voor het
-        klimaat. Plastic stoot broeikasgassen uit wanneer het langzaam
+         Plastic stoot broeikasgassen uit wanneer het langzaam
         afbreekt. Zonlicht en warmte zorgen ervoor dat het{" "}
         <strong>methaan</strong> en <strong>etheen</strong> vrijgeeft - en
         dat gebeurt steeds sneller naarmate het plastic in steeds kleinere

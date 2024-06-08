@@ -15,7 +15,7 @@ export default function ContentCard(props: Params) {
       className="max-w-full sm:max-w-5xl p-5 mx-auto bg-white rounded-lg shadow-lg"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 2, ease: "easeInOut" }}
+      transition={{ duration: 1.7, ease: "easeInOut" }}
     >
       <motion.div
         className="flex flex-col lg:flex-row space-x-0 sm:space-x-4"

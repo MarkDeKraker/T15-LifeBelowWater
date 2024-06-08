@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 import PlasticPageParentComp from "./PlasticPageParentComp.tsx";
 
 import ContentCard from "../ContentCard.tsx";
@@ -24,7 +26,12 @@ import conclusion from "../../misc/PlasticConsequences/Conclusion.tsx";
 
 export default function PlasticConsequences() {
     return (
-        <div className="flex flex-col items-center w-full h-full z-0 overflow-y-auto">
+        <motion.div className="flex flex-col items-center w-full h-full z-0 overflow-y-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.0, delay: 0.5, ease: "easeInOut" }}
+        >
 
             <BannerComp source={banner} alt={"Grote afbeelding dat plastic vervuiling in de oceaan en een schildpad laat zien"}>
                 {title.divs}
@@ -41,7 +48,7 @@ export default function PlasticConsequences() {
                     expandedText={harmToAnimals.expandedText}
                 />
 
-                <div className="w-full space-y-5 mt-10">
+                <div className="w-full max-w-5xl space-y-5 mt-10">
                     <PlasticPageParentComp children={healthRisks.divs} />
 
                     <PlasticPageParentComp children={economicDamage.divs} />
@@ -66,6 +73,7 @@ export default function PlasticConsequences() {
 
                 <ContentCard
                     title={plasticCausingClimateChange.title}
+                    subTitle={plasticCausingClimateChange.subTitle}
                     image={plasticCausingClimateChange.image}
                     expandedText={plasticCausingClimateChange.expandedText}
                 />
@@ -77,28 +85,7 @@ export default function PlasticConsequences() {
 
             </div>
 
-            {/* <div className="p-10 flex flex-col items-center w-full h-full z-0 space-y-20">
-                <ContentCardWithoutExpand
-                    title={plasticMoving.title}
-                    subTitle={plasticMoving.subTitle}
-                />
-            </div>
-
-            <div className="p-10 flex flex-col items-center w-full z-0 space-y-20 bg-gradient-a">
-                <ContentCard
-                    title={Microplastics.title}
-                    subTitle={Microplastics.subTitle}
-                    image={Microplastics.image}
-                    expandedText={Microplastics.expandedText}
-                />
-
-                <ContentCardWithoutExpand
-                    title={KeyFacts.title}
-                    subText={KeyFacts.subText}
-                />
-            </div> */}
-
-        </div>
+        </motion.div>
         // <div className="sticky grid grid-cols-11 w-full h-full z-0 overflow-y-auto bg-gradient-b">
 
         //     <PlasticPageParentComp children={title.divs}/>

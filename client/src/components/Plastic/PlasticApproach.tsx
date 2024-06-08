@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 import PlasticPageParentComp from "./PlasticPageParentComp.tsx";
 
 import ContentCard from "../ContentCard.tsx";
@@ -19,7 +21,12 @@ import conclusion from "../../misc/PlasticApproach/Conclusion";
 
 export default function PlasticApproach() {
     return (
-        <div className="flex flex-col items-center w-full h-full z-0 overflow-y-auto">
+        <motion.div className="flex flex-col items-center w-full h-full z-0 overflow-y-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.0, delay: 0.5, ease: "easeInOut" }}
+        >
 
             <BannerComp source={banner} alt={"Afbeelding van mensen die plastic op een strand opruimen"}>
                 {title.divs}
@@ -64,7 +71,7 @@ export default function PlasticApproach() {
             <div className="flex flex-col items-center w-full h-auto z-0 space-y-20">
                 <PlasticPageParentComp children={conclusion.divs} />
             </div>
-            
+
             {/* <div className="sticky grid grid-cols-11 w-full h-full z-0 overflow-y-auto bg-gradient-c">
 
                 <PlasticPageParentComp children={title.divs} />
@@ -86,6 +93,6 @@ export default function PlasticApproach() {
                 <PlasticPageParentComp children={shareKnowledge.divs} />*/}
 
 
-        </div>
+        </motion.div>
     );
 }
