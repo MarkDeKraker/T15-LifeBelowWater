@@ -31,7 +31,7 @@ export default function ContentCardWithoutExpand(props: Params) {
           >
             {props.title}
           </motion.p>
-          <motion.p
+          <motion.div
             className="items-center text-center text-gray-700 text-sm sm:text-base max-w-full font-custom"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -39,8 +39,8 @@ export default function ContentCardWithoutExpand(props: Params) {
             transition={{ delay: 0.7, duration: 1 }}
           >
             {props.subTitle}
-          </motion.p>
-          <motion.p
+          </motion.div>
+          <motion.div
             className="text-gray-700 text-sm sm:text-base max-w-full font-custom"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -48,7 +48,7 @@ export default function ContentCardWithoutExpand(props: Params) {
             transition={{ delay: 0.7, duration: 1 }}
           >
             {props.subText}
-          </motion.p>
+          </motion.div>
         </div>
       </motion.div>
     </motion.div>
