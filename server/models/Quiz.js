@@ -12,7 +12,7 @@ const answerSchema = new mongoose.Schema(
 const questionSchema = new mongoose.Schema({
   question: { type: String, required: true },
   answers: [answerSchema],
-  id: { type: String, required: true },
+  _id: { type: String, required: true },
 });
 
 const quizSchema = new mongoose.Schema({

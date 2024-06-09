@@ -16,7 +16,7 @@ export interface SaveQuizType {
 export type Question = {
   question: string;
   answers: AnswerType[];
-  id: string;
+  _id: string;
 };
 
 export type AnswerType = {

@@ -57,7 +57,7 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
     setQuestions([
       ...questions,
       {
-        id: uuidv4(), // creates a unique id, so we can delete the question, and don't get issues with order
+        _id: uuidv4(), // creates a unique id, so we can delete the question, and don't get issues with order
         question: "",
         answers: [
           { _id: "A", answer: "", isCorrect: true },
@@ -197,7 +197,7 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const deleteQuestion = (resourceId: string) => {
     const updatedQuestions = questions.filter(
-      (question) => question.id !== resourceId
+      (question) => question._id !== resourceId
     );
     setQuestions(updatedQuestions);
   };
