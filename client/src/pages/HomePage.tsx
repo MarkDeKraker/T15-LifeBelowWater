@@ -20,7 +20,7 @@ function HomePage() {
         Helaas wordt water bedreigd door plasticvervuiling, die ernstige schade aanricht aan zeeleven
         en onze omgeving."
             image={plasticsoep}
-            To="/plastic/aanpak"
+            To="/plastic/probleem"
             expandedText={
               <div>
                 <ul className="space-y-2">

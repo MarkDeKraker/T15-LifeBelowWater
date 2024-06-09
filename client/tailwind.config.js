@@ -16,6 +16,8 @@ export default {
           "linear-gradient(180deg, rgba(128,206,250,1) 0%, rgba(93,148,180,1) 55%, rgba(48,99,147,1) 60%, rgba(10,22,34,1) 100%)",
         "gradient-c":
           "linear-gradient(180deg, rgba(100,209,255,1) 0%, rgba(74,151,184,1) 55%, rgba(15,73,186,1) 60%, rgba(4,19,49,1) 100%)",
+        'gradient-d':
+          'repeating-radial-gradient(circle at 0 0, transparent 0, #62beda 40px), repeating-linear-gradient(#e7f5f955, #e7f5f9)'
       },
       colors: {
         primary: colors.sky[600],
