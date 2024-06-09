@@ -8,6 +8,7 @@ type Props = {
   children: React.ReactNode;
   expandedText: React.ReactNode;
   buttonStyle?: "primary" | "secondary" | "tertiary";
+  float?: "left" | "right";
 };
 
 export function ExpandButton(props: Props) {
@@ -22,7 +23,7 @@ export function ExpandButton(props: Props) {
     <>
       <button
         onClick={toggleCollapse}
-        className={`text-black hover:underline px-4 py-2 mt-5 rounded-full caption-top transition duration-200 ease-in-out focus:ring-opacity-50 inline-flex`}
+        className={`float-${props.float} text-black hover:underline px-4 py-2 mt-5 rounded-full caption-top transition duration-200 ease-in-out focus:ring-opacity-50 inline-flex`}
       >
         {props.children}
         <motion.span
@@ -40,9 +41,9 @@ export function ExpandButton(props: Props) {
         initial={false}
         animate={{ height: collapsed ? "auto" : 0, opacity: collapsed ? 1 : 0 }}
         transition={{ duration: 0.7, ease: "easeInOut" }}
-        className="overflow-hidden"
+        className="overflow-hidden lg:w-auto sm:w-full"
       >
-        <div className="mt-3 text-[#666] max-w-xl font-custom">
+        <div className="mt-3 max-w-full sm:max-w-xl font-custom text-sm sm:text-base rounded-lg">
           {expandedText}
         </div>
       </motion.div>

@@ -1,42 +1,78 @@
+import { motion } from "framer-motion";
+
 import PlasticPageParentComp from "./PlasticPageParentComp.tsx";
+
+import ContentCard from "../ContentCard.tsx";
+import ContentCardWithoutExpand from "../ContentCardWithoutExpand.tsx";
 
 import title from "../../misc/Title";
 import banner from "../../assets/water-pollution@2x.jpg";
 import TopicComp from "./TopicComp.tsx";
 import BannerComp from "./BannerComp.tsx";
-import BackgroundSunComp from "./BackgroundSunComp.tsx";
+// import BackgroundSunComp from "./BackgroundSunComp.tsx";
 
 import plasticProducts from "../../misc/PlasticProblem/PlasticProducts";
 import plasticInnovations from "../../misc/PlasticProblem/PlasticInnovations";
-import problemVideo from "../../misc/PlasticProblem/Video";
+import problemVideo from "../../misc/PlasticProblem/PlasticBeachVideo.tsx";
 import plasticMoving from "../../misc/PlasticProblem/PlasticMoving";
 import Microplastics from "../../misc/PlasticProblem/Microplastics";
 import KeyFacts from "../../misc/PlasticProblem/KeyFacts";
 
 export default function PlasticProblem() {
     return (
-        <div className="sticky grid grid-cols-11 w-full h-full z-0 overflow-y-auto bg-gradient-a">
+        <motion.div className="flex flex-col items-center w-full h-full z-0 overflow-y-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.0, delay: 0.5, ease: "easeInOut"}}
+        >
 
-            <PlasticPageParentComp children={title.divs}/>
+            <BannerComp source={banner} alt={"Grote afbeelding dat plastic vervuiling in de oceaan laat zien"}>
+                {title.divs}
+            </BannerComp>
 
             <TopicComp />
 
-            <BannerComp source={banner} alt={"Grote afbeelding dat plastic vervuiling in de oceaan laat zien"}/>
+            <div className="p-10 flex flex-col items-center w-full z-0 space-y-20">
 
-            <BackgroundSunComp bg={"bg-white"}/>
+                <ContentCard
+                    title={plasticProducts.title}
+                    subTitle={plasticProducts.subTitle}
+                    image={plasticProducts.image}
+                    expandedText={plasticProducts.expandedText}
+                />
 
-            <PlasticPageParentComp children={plasticProducts.divs}/>
+                <ContentCard
+                    subTitle={plasticInnovations.subTitle}
+                    image={plasticInnovations.image}
+                    expandedText={plasticInnovations.expandedText}
+                />
 
-            <PlasticPageParentComp children={plasticInnovations.divs}/>
+                <PlasticPageParentComp children={problemVideo.divs} />
 
-            <PlasticPageParentComp children={problemVideo.divs}/>
+            </div>
 
-            <PlasticPageParentComp children={plasticMoving.divs}/>
+            <div className="p-10 flex flex-col items-center w-full h-full z-0 space-y-20">
+                <ContentCardWithoutExpand
+                    title={plasticMoving.title}
+                    subTitle={plasticMoving.subTitle}
+                />
+            </div>
 
-            <PlasticPageParentComp children={Microplastics.divs}/>
+            <div className="p-10 flex flex-col items-center w-full z-0 space-y-20">
+                <ContentCard
+                    title={Microplastics.title}
+                    subTitle={Microplastics.subTitle}
+                    image={Microplastics.image}
+                    expandedText={Microplastics.expandedText}
+                />
 
-            <PlasticPageParentComp children={KeyFacts.divs}/>
+                <ContentCardWithoutExpand
+                    title={KeyFacts.title}
+                    subText={KeyFacts.subText}
+                />
+            </div>
 
-        </div>
+        </motion.div>
     );
 }

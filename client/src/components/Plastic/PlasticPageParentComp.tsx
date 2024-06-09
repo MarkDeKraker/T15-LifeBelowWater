@@ -1,4 +1,4 @@
-function PlasticPageParentComp({ children }: { children: any }) {
+function PlasticPageParentComp({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 
