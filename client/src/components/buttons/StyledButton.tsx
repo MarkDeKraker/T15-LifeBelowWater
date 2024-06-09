@@ -1,7 +1,7 @@
 type Props = {
   buttonStyle?: "primary" | "secondary" | "tertiary";
   children: React.ReactNode;
-  onClick: () => void | any;
+  onClick: () => void;
   icon?: React.ReactNode;
   disabled?: boolean;
 };

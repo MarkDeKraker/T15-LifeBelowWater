@@ -22,6 +22,10 @@ function QuizBuilder() {
     "Aanpak van plasticvervuiling in de oceaan"
   ];
 
+  const GenerateQuestion = () => {
+    addQuestionsFromAi(selectedTopic);
+  };
+
   return (
     <motion.div
       variants={routeVariants}
@@ -74,7 +78,7 @@ function QuizBuilder() {
             <div className="flex justify-between">
               <StyledButton
                 buttonStyle="secondary"
-                onClick={() => addQuestionsFromAi(selectedTopic)}
+                onClick={GenerateQuestion}
                 icon={<AddIcon />}
                 disabled={!selectedTopic}
               >
