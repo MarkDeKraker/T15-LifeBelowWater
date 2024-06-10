@@ -12,14 +12,15 @@ import { StyledSubmitButton } from "../buttons/StyledSubmitButton";
 import SaveIcon from "../icons/SaveIcon";
 
 function QuizBuilder() {
-  const { addQuestions, addQuestionsFromAi, saveQuiz, setTitle, setPassword } = useQuizBuilder();
+  const { addQuestions, addQuestionsFromAi, saveQuiz, setTitle, setPassword } =
+    useQuizBuilder();
   const { routeVariants } = useAnimationContext();
-  const [selectedTopic, setSelectedTopic] = useState('');
+  const [selectedTopic, setSelectedTopic] = useState("");
 
   const topics = [
     "Probleem van plasticvervuiling in de oceaan",
     "Gevolgen van plasticvervuiling in de oceaan",
-    "Aanpak van plasticvervuiling in de oceaan"
+    "Aanpak van plasticvervuiling in de oceaan",
   ];
 
   const GenerateQuestion = () => {
@@ -53,14 +54,18 @@ function QuizBuilder() {
             />
 
             <select
-              className="border border-gray-300 rounded-lg p-2 text-gray-900"
+              className="p-2 text-gray-900 border border-gray-300 rounded-lg"
               value={selectedTopic}
               onChange={(e) => setSelectedTopic(e.target.value)}
               required
             >
-              <option value="" disabled>Selecteer een onderwerp</option>
+              <option value="" disabled>
+                Selecteer een onderwerp
+              </option>
               {topics.map((topic, index) => (
-                <option key={index} value={topic}>{topic}</option>
+                <option key={index} value={topic}>
+                  {topic}
+                </option>
               ))}
             </select>
           </form>
@@ -68,14 +73,15 @@ function QuizBuilder() {
           <Questions />
 
           <div className="flex justify-between">
-            <StyledButton
-              buttonStyle="tertiary"
-              onClick={addQuestions}
-              icon={<AddIcon />}
-            >
-              Voeg vraag toe
-            </StyledButton>
-            <div className="flex justify-between">
+            <div className="flex">
+              <StyledButton
+                buttonStyle="tertiary"
+                onClick={addQuestions}
+                icon={<AddIcon />}
+              >
+                Voeg vraag toe
+              </StyledButton>
+
               <StyledButton
                 buttonStyle="secondary"
                 onClick={GenerateQuestion}
@@ -84,15 +90,15 @@ function QuizBuilder() {
               >
                 Genereer een vraag
               </StyledButton>
-              <StyledSubmitButton
-                buttonStyle="tertiary"
-                onClick={saveQuiz}
-                className="text-gray-800 border-0 hover:underline-offset-2"
-                icon={<SaveIcon />}
-              >
-                Quiz Opslaan
-              </StyledSubmitButton>
             </div>
+            <StyledSubmitButton
+              buttonStyle="tertiary"
+              onClick={saveQuiz}
+              className="text-gray-800 border-0 hover:underline-offset-2"
+              icon={<SaveIcon />}
+            >
+              Quiz Opslaan
+            </StyledSubmitButton>
           </div>
         </div>
       </Container>
