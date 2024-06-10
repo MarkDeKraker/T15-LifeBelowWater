@@ -1,26 +1,20 @@
-import 'react-loading-skeleton/dist/skeleton.css';
+import "react-loading-skeleton/dist/skeleton.css";
 
-import {
-  useEffect,
-  useState,
-} from 'react';
+import { useEffect, useState } from "react";
 
-import axios from 'axios';
-import {
-  AnimatePresence,
-  motion,
-} from 'framer-motion';
-import Skeleton from 'react-loading-skeleton';
-import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import { AnimatePresence, motion } from "framer-motion";
+import Skeleton from "react-loading-skeleton";
+import { useNavigate } from "react-router-dom";
 
-import { ClipboardIcon } from '@heroicons/react/24/outline';
+import { ClipboardIcon } from "@heroicons/react/24/outline";
 
-import { useAlert } from '../../context/AlertContext';
-import { useAnimationContext } from '../../context/AnimationContext';
-import { useAuth } from '../../context/AuthContext';
-import { QuizType } from '../../types/QuizType';
-import { StyledButton } from '../buttons/StyledButton';
-import ConfirmModal from '../common/ConfirmModal';
+import { useAlert } from "../../context/AlertContext";
+import { useAnimationContext } from "../../context/AnimationContext";
+import { useAuth } from "../../context/AuthContext";
+import { QuizType } from "../../types/QuizType";
+import { StyledButton } from "../buttons/StyledButton";
+import ConfirmModal from "../common/ConfirmModal";
 
 function QuizzesOverview() {
   const [quizzes, setQuizzes] = useState<QuizType[]>([]);
@@ -38,9 +32,9 @@ function QuizzesOverview() {
     navigate("/quiz/builder");
   };
 
-  // const editQuiz = (id: string | undefined) => {
-  // open pop up modal for editing quiz
-  // };
+  const editQuiz = (quiz: QuizType) => {
+    navigate(`/quiz/builder/`, { state: { quiz } });
+  };
 
   const openDeleteModal = (quiz: QuizType) => {
     setCurrentQuiz(quiz);
@@ -106,7 +100,7 @@ function QuizzesOverview() {
       animate="final"
       className="p-4"
     >
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <StyledButton buttonStyle="secondary" onClick={addQuiz}>
           Quiz Toevoegen
         </StyledButton>
@@ -117,24 +111,24 @@ function QuizzesOverview() {
       </div>
       <div className="mt-4 overflow-x-auto">
         <table className="w-full table-auto">
-          <thead className=" bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+          <thead className="text-sm leading-normal text-gray-600 uppercase bg-gray-200 ">
             <tr>
-              <th className="py-3 px-6 text-left">Quiz Titel</th>
-              <th className="py-3 px-6 text-left">Slug</th>
-              <th className="py-3 px-6 text-left">Wachtwoord</th>
-              <th className="py-3 px-6 text-left">Aantal Vragen</th>
-              <th className="py-3 px-6 text-left">Link</th>
-              <th className="py-3 px-6 text-center">Acties</th>
+              <th className="px-6 py-3 text-left">Quiz Titel</th>
+              <th className="px-6 py-3 text-left">Slug</th>
+              <th className="px-6 py-3 text-left">Wachtwoord</th>
+              <th className="px-6 py-3 text-left">Aantal Vragen</th>
+              <th className="px-6 py-3 text-left">Link</th>
+              <th className="px-6 py-3 text-center">Acties</th>
             </tr>
           </thead>
-          <tbody className="text-gray-600 text-sm font-light">
+          <tbody className="text-sm font-light text-gray-600">
             {loading
               ? [...Array(totalQuizzes)].map((_, index) => (
                   <tr key={index}>
                     <td colSpan={6}>
                       <Skeleton
                         count={1}
-                        className="py-3 px-6"
+                        className="px-6 py-3"
                         highlightColor="#bfdbfe"
                       />
                     </td>
@@ -145,21 +139,21 @@ function QuizzesOverview() {
                     className="border-b border-gray-200 hover:bg-gray-100"
                     key={quiz._id}
                   >
-                    <td className="py-3 px-6 text-left whitespace-nowrap">
+                    <td className="px-6 py-3 text-left whitespace-nowrap">
                       {quiz.title}
                     </td>
-                    <td className="py-3 px-6 text-left whitespace-nowrap">
+                    <td className="px-6 py-3 text-left whitespace-nowrap">
                       {quiz.slug}
                     </td>
-                    <td className="py-3 px-6 text-left whitespace-nowrap">
+                    <td className="px-6 py-3 text-left whitespace-nowrap">
                       {quiz.password}
                     </td>
-                    <td className="py-3 px-6 text-left whitespace-nowrap">
+                    <td className="px-6 py-3 text-left whitespace-nowrap">
                       {quiz.totalQuestions}
                     </td>
-                    <td className="py-3 px-6 text-left whitespace-nowrap">
+                    <td className="px-6 py-3 text-left whitespace-nowrap">
                       <span
-                        className="cursor-pointer text-primary-500 hover:underline transition-colors duration-200 flex items-center select-none"
+                        className="flex items-center transition-colors duration-200 cursor-pointer select-none text-primary-500 hover:underline"
                         onClick={async () => {
                           const url = `http://${window.location.host}/quiz/${quiz.slug}`;
                           await navigator.clipboard.writeText(url);
@@ -167,14 +161,13 @@ function QuizzesOverview() {
                         }}
                       >
                         http://{window.location.host}/quiz/{quiz.slug}{" "}
-                        <ClipboardIcon className="ml-2 w-4 h-4" />
+                        <ClipboardIcon className="w-4 h-4 ml-2" />
                       </span>
                     </td>
-                    <td className="py-3 px-6 text-center">
+                    <td className="px-6 py-3 text-center">
                       <button
-                        // Uncomment and modify the function name as needed
-                        // onClick={() => openEditModal(quiz)}
-                        className="bg-secondary hover:bg-primary text-white font-bold py-1 px-2 rounded mr-2 transition-colors duration-200"
+                        onClick={() => editQuiz(quiz)}
+                        className="px-2 py-1 mr-2 font-bold text-white transition-colors duration-200 rounded bg-secondary hover:bg-primary"
                       >
                         Bewerk
                       </button>
@@ -182,7 +175,7 @@ function QuizzesOverview() {
                         onClick={() => {
                           openDeleteModal(quiz);
                         }}
-                        className="bg-red-300 hover:bg-red-500 text-white font-bold py-1 px-2 rounded transition-colors duration-200"
+                        className="px-2 py-1 font-bold text-white transition-colors duration-200 bg-red-300 rounded hover:bg-red-500"
                       >
                         Verwijder
                       </button>

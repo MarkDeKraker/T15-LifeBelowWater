@@ -103,6 +103,7 @@ function Login() {
           )}
         </AnimatePresence>
         <input
+          autoComplete="current-password"
           id="password"
           type="password"
           {...register("password", {

@@ -132,6 +132,7 @@ function Register() {
           )}
         </AnimatePresence>
         <input
+          autoComplete="new-password"
           id="password"
           type="password"
           {...register("password", {

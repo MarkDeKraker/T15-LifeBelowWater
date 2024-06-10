@@ -1,17 +1,11 @@
-import {
-  useEffect,
-  useState,
-} from 'react';
+import { useEffect, useState } from "react";
 
-import { motion } from 'framer-motion';
-import {
-  useNavigate,
-  useParams,
-} from 'react-router-dom';
+import { motion } from "framer-motion";
+import { useNavigate, useParams } from "react-router-dom";
 
-import { useAnimationContext } from '../../context/AnimationContext';
-import { QuizType } from '../../types/QuizType';
-import QuizAnswerButton from './QuizAnswerButton';
+import { useAnimationContext } from "../../context/AnimationContext";
+import { QuizType } from "../../types/QuizType";
+import QuizAnswerButton from "./QuizAnswerButton";
 
 function Quiz() {
   const [selectedAnswers, setSelectedAnswers] = useState<{
@@ -82,25 +76,18 @@ function Quiz() {
               {quizItem.question}
             </h2>
             <div className="grid grid-cols-2 gap-2">
-              {Object.keys(quizItem.answers).map((key) => (
+              {Object.keys(quizItem.answers).map((key, index) => (
                 <QuizAnswerButton
                   disabled={selectedAnswers[quizItem._id] !== undefined}
-                  key={key}
-                  answerText={
-                    quizItem.answers[key as keyof typeof quizItem.answers]
-                      .answer
-                  }
+                  key={index}
+                  answerText={quizItem.answers[index].answer}
                   isSelected={selectedAnswers[quizItem._id] === key}
-                  isCorrect={
-                    quizItem.answers[key as keyof typeof quizItem.answers]
-                      .isCorrect
-                  }
+                  isCorrect={quizItem.answers[index].isCorrect}
                   handleClick={() =>
                     handleAnswerClick(
                       quizItem._id,
                       key,
-                      quizItem.answers[key as keyof typeof quizItem.answers]
-                        .isCorrect
+                      quizItem.answers[index].isCorrect
                     )
                   }
                 />
