@@ -18,6 +18,7 @@ interface QuizContextType {
   updateQuiz: () => void;
   saveQuiz: () => void;
   addQuestions: () => void;
+  addQuestionsFromAi: (topic: string) => void;
   updateQuestion: (
     index: number,
     field: "question" | "isCorrect" | "answers",
@@ -67,6 +68,33 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
         ],
       },
     ]);
+  };
+
+  const addQuestionsFromAi = (topic: string) => {
+    if (!topic) {
+      addAlert(
+        "Selecteer een onderwerp voordat je een vraag genereert",
+        "error"
+      );
+      return;
+    }
+
+    axios
+      .post(`${import.meta.env.VITE_API_URL}/quiz/generate`, {
+        topic,
+      })
+      .then((response) => {
+        console.log("Success:", response.data.response);
+        const newQuestion = response.data.response;
+        const apiMessage = response.data.message;
+
+        setQuestions([...questions, newQuestion]);
+        addAlert(`${apiMessage}`, "success");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        addAlert("Er is iets misgegaan", "error");
+      });
   };
 
   const updateQuestion = (
@@ -208,6 +236,7 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
         questions,
         setQuestions,
         addQuestions,
+        addQuestionsFromAi,
         updateQuestion,
         updateQuiz,
         saveQuiz,

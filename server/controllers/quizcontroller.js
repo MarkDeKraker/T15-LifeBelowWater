@@ -1,4 +1,10 @@
 import Quiz from "../models/Quiz.js";
+import AIModel from "../settings/openAI.js";
+import { PromptTemplate } from '@langchain/core/prompts';
+import { JsonOutputFunctionsParser } from "langchain/output_parsers";
+import topicContentMap from "../AIcontent/topicContentMap.js";
+
+const { model } = AIModel;
 
 export class QuizController {
   // get all quizzes
@@ -391,4 +397,155 @@ export class QuizController {
       });
     }
   }
+
+  // generate quiz question
+  /**
+   * @swagger
+   * /api/v1/quiz/generate:
+   *   post:
+   *     summary: Generate a quiz question
+   *     tags: [Quizzes]
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             type: object
+   *             properties:
+   *               topic:
+   *                 type: string
+   *                 description: The topic for the quiz question
+   *                 example: plasticvervuiling
+   *     responses:
+   *       200:
+   *         description: Quiz question generated successfully
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: object
+   *               properties:
+   *                 question:
+   *                   type: string
+   *                 answers:
+   *                   type: array
+   *                   items:
+   *                     type: object
+   *                     properties:
+   *                       _id:
+   *                         type: string
+   *                       answer:
+   *                         type: string
+   *                       isCorrect:
+   *                         type: boolean
+   *       400:
+   *         description: Bad request
+   *       500:
+   *         description: Server error
+   */
+
+  async generateQuestion(req, res) {
+    try {
+
+      const { topic } = req.body;
+
+      if (!topic) {
+        return res.status(400).json({
+          message: "Topic is required",
+        });
+      }
+
+      const content = topicContentMap[topic];
+        if (!content) {
+            return res.status(400).json({
+                message: "Invalid topic provided",
+            });
+        }
+
+      const system = `Je bent een basisschool docent voor groep 7 en 8. Verwoord je antwoorden op een manier dat het begrijpelijk is voor kinderen van 10 tot 12 jaar oud. Hier is wat informatie over ${topic}: ${content}`;
+
+      const engineeredPrompt = `{ Kun je mij een quizvraag geven over ${topic}? Een vraag heeft drie foute antwoorden en één goed antwoord. Geef het antwoord in het volgende JSON formaat en wijk er niet van af. Stuur alleen de json terug. NO YAPPING:
+        {
+          question: "",
+          answers: [
+            { _id: "A", answer: "", isCorrect: true },
+            { _id: "B", answer: "", isCorrect: false },
+            { _id: "C", answer: "", isCorrect: false },
+            { _id: "D", answer: "", isCorrect: false },
+          ],
+        },    
+      }`;
+
+      const parser = new JsonOutputFunctionsParser({ argsOnly: false });
+      const maxRetries = 5;
+      let attempt = 0;
+      let validResponse = false;
+      let parsedResponse = null;
+
+      while (attempt < maxRetries && !validResponse) {
+        try {
+          attempt++;
+          const response = await model.invoke([
+            ["system", system],
+            ["user", engineeredPrompt]
+          ], {
+            outputParser: parser,
+          });
+
+          console.log(`Attempt ${attempt}: Raw response:`, response.content);
+
+          // Try to parse the JSON response
+          parsedResponse = JSON.parse(response.content);
+          validResponse = true; // If parsing succeeds, break the loop    
+          // console.log(response.content, typeof response.content);
+          console.log("Parsed response:", parsedResponse, typeof parsedResponse);
+        } catch (parseError) {
+          console.error(`Attempt ${attempt}: Failed to parse response. Retrying...`, parseError);
+        }
+      }
+
+      if (validResponse && parsedResponse) {
+        return res.status(200).json({ response: parsedResponse, message: "Quiz question generated successfully" });
+      } else {
+        return res.status(500).json({
+          message: "Failed to generate quiz question after multiple attempts",
+        });
+      }
+    } catch (error) {
+      console.error("Error invoking the model:", error);
+      return res.status(500).json({
+        error: error.message,
+        message: "Server error",
+      });
+    }
+  };
+
 }
+
+
+async function applyPromptEngineering(json) {
+  const promptEngineeringTemplate = new PromptTemplate({
+    inputVariables: ["json"],
+    template:
+      "Is this a valid json?: '{json}'.If not make it a valid json. Only send the valid json back.",
+  });
+  // ? like a treasure full of knowledge Dungeons and Dragons 5e questions
+
+  try {
+    // Generate the prompt using the question asked by the user
+    const prompt = await promptEngineeringTemplate.format({ json });
+
+    // Ask the model to improve the question
+    const improvedQuestion = await model.invoke(prompt);
+
+    // Return the improved question
+    return improvedQuestion.content;
+  } catch (error) {
+    console.error(
+      "An error occurred while applying prompt engineering:",
+      error
+    );
+    // In case of an error, return the original question
+    return question;
+  }
+}
+

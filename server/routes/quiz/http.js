@@ -14,5 +14,6 @@ router.get("/quiz/slug/:slug", quizController.getQuizBySlug);
 router.post("/quiz", verifyToken, quizController.createQuiz);
 router.put("/quiz/:_id", verifyToken, quizController.updateQuiz);
 router.delete("/quiz/:_id", verifyToken, quizController.deleteQuiz);
+router.post("/quiz/generate", quizController.generateQuestion);
 
 export default router;
