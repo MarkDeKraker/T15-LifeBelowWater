@@ -58,7 +58,7 @@ function LoginForm() {
           htmlFor="password" //change this to password
           className="block mb-2 text-sm font-medium text-gray-900 "
         >
-          Jouw password
+          Jouw quizcode
           {errors.password && (
             <span className="font-bold text-red-800">
               : {errors.password?.message}
