@@ -3,6 +3,7 @@ import AIModel from "../settings/openAI.js";
 import { PromptTemplate } from '@langchain/core/prompts';
 import { JsonOutputFunctionsParser } from "langchain/output_parsers";
 import topicContentMap from "../AIcontent/topicContentMap.js";
+import { v4 as uuidv4 } from "uuid";
 
 const { model } = AIModel;
 
@@ -465,6 +466,7 @@ export class QuizController {
 
       const engineeredPrompt = `{ Kun je mij een quizvraag geven over ${topic}? Een vraag heeft drie foute antwoorden en één goed antwoord. Geef het antwoord in het volgende JSON formaat en wijk er niet van af. Stuur alleen de json terug. NO YAPPING:
         {
+          _id: ${uuidv4()}
           question: "",
           answers: [
             { _id: "A", answer: "", isCorrect: true },
@@ -474,6 +476,8 @@ export class QuizController {
           ],
         },    
       }`;
+
+      console.log(engineeredPrompt);
 
       const parser = new JsonOutputFunctionsParser({ argsOnly: false });
       const maxRetries = 5;
