@@ -64,4 +64,5 @@ This software uses the following packages:
 - [Node.js](https://nodejs.org/)
 - [OpenAI](https://openai.com/en-GB/)
 - [Docker](https://www.docker.com/)
+- [MongoDB](https://www.mongodb.com/)
 - [Tailwind CSS](https://tailwindcss.com/)
