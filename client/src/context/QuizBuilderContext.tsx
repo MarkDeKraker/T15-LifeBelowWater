@@ -88,7 +88,13 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({
         const newQuestion = response.data.response;
         const apiMessage = response.data.message;
 
-        setQuestions([...questions, newQuestion]);
+        // Add unique ID to the new question
+        const questionWithId = {
+          _id: uuidv4(),
+          ...newQuestion,
+        };
+        
+        setQuestions((prevQuestions) => [...prevQuestions, questionWithId]);
         addAlert(`${apiMessage}`, "success");
       })
       .catch((error) => {
